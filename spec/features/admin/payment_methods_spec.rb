@@ -3,7 +3,7 @@ RSpec.feature 'Payment methods', type: :feature do
   background do
     sign_in_as! create(:admin_user)
     visit spree.admin_path
-    click_link 'Configuration'
+    click_link 'Settings'
   end
 
   # Regression test for #5
