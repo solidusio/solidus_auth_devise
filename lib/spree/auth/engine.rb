@@ -5,17 +5,17 @@ module Spree
   module Auth
     class Engine < Rails::Engine
       isolate_namespace Spree
-      engine_name 'spree_auth'
+      engine_name 'solidus_auth'
 
       initializer "spree.auth.environment", :before => :load_config_initializers do |app|
         Spree::Auth::Config = Spree::AuthConfiguration.new
       end
 
-      initializer "spree_auth_devise.set_user_class", :after => :load_config_initializers do
+      initializer "solidus_auth_devise.set_user_class", :after => :load_config_initializers do
         Spree.user_class = "Spree::User"
       end
 
-      initializer "spree_auth_devise.check_secret_token" do
+      initializer "solidus_auth_devise.check_secret_token" do
         if Spree::Auth.default_secret_key == Devise.secret_key
           puts "[WARNING] You are not setting Devise.secret_key within your application!"
           puts "You must set this in config/initializers/devise.rb. Here's an example:"
@@ -30,8 +30,8 @@ module Spree
         end
         if Spree::Auth::Engine.backend_available?
           Rails.application.config.assets.precompile += [
-            'lib/assets/javascripts/spree/backend/spree_auth.js',
-            'lib/assets/javascripts/spree/backend/spree_auth.css'
+            'lib/assets/javascripts/spree/backend/solidus_auth.js',
+            'lib/assets/javascripts/spree/backend/solidus_auth.css'
           ]
           Dir.glob(File.join(File.dirname(__FILE__), "../../controllers/backend/*/*/*_decorator*.rb")) do |c|
             Rails.configuration.cache_classes ? require(c) : load(c)
@@ -39,8 +39,8 @@ module Spree
         end
         if Spree::Auth::Engine.frontend_available?
           Rails.application.config.assets.precompile += [
-            'lib/assets/javascripts/spree/frontend/spree_auth.js',
-            'lib/assets/javascripts/spree/frontend/spree_auth.css'
+            'lib/assets/javascripts/spree/frontend/solidus_auth.js',
+            'lib/assets/javascripts/spree/frontend/solidus_auth.css'
           ]
           Dir.glob(File.join(File.dirname(__FILE__), "../../controllers/frontend/*/*_decorator*.rb")) do |c|
             Rails.configuration.cache_classes ? require(c) : load(c)
