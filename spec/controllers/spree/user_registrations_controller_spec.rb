@@ -45,10 +45,9 @@ RSpec.describe Spree::UserRegistrationsController, type: :controller do
         subject
       end
 
-      it 'assigns resource and redirects to after_sign_up path' do
+      it 'redirects to after_sign_up path' do
         subject
         expect(response).to redirect_to spree.root_path(thing: 7)
-        expect(assigns(:user)).to be_a Spree::User
       end
     end
 
@@ -56,9 +55,8 @@ RSpec.describe Spree::UserRegistrationsController, type: :controller do
       let(:password_confirmation) { 'foobard123' }
 
       it 'resets password fields' do
+        expect(controller).to receive(:clean_up_passwords)
         subject
-        expect(assigns(:user).password).to eq nil
-        expect(assigns(:user).password_confirmation).to eq nil
       end
 
       it 'renders new view' do
