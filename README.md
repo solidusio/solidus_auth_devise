@@ -35,14 +35,14 @@ Devise.setup do |config|
 end
 ```
 
-Using in an existing Rails application
---------------------------------------
+Using in an existing application
+--------------------------------
 
-If you are installing Solidus inside of a host application in which you want your own permission setup, you can do this using solidus_auth_devise's `register_ability` method.
+If you are installing Solidus inside of a host application in which you want your own permission setup, you can do this using the `register_ability` method.
 
 First create your own CanCan Ability class following the CanCan documentation.
 
-For example: app/models/super_abilities.rb
+For example: `app/models/super_abilities.rb`
 
 ```ruby
 class SuperAbilities
@@ -63,14 +63,10 @@ Spree::Ability.register_ability(SuperAbilities)
 
 Inside of your host application you can then use CanCan like you normally would.
 ```erb
-<% if can? :show SomeRailsObject %>
+<% if can? :stop Bullet %>
   ...
 <% end %>
 ```
-
-### Adding Permissions to Gems
-
-This methodology can also be used by gems that extend spree and want/need to add permissions.
 
 Testing
 -------
