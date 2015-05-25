@@ -54,6 +54,7 @@ RSpec.feature 'Checkout', :js, type: :feature do
 
       click_button 'Save and Continue'
       click_button 'Save and Continue'
+      click_button 'Place Order'
 
       expect(page).to have_text 'Your order has been processed successfully'
     end
@@ -84,6 +85,7 @@ RSpec.feature 'Checkout', :js, type: :feature do
 
       click_button 'Save and Continue'
       click_button 'Save and Continue'
+      click_button 'Place Order'
 
       expect(page).to have_text 'Your order has been processed successfully'
       expect(Spree::Order.first.user).to eq user
@@ -154,6 +156,7 @@ RSpec.feature 'Checkout', :js, type: :feature do
 
       click_button 'Save and Continue'
       click_button 'Save and Continue'
+      click_button 'Place Order'
 
       expect(page).to have_text 'Your order has been processed successfully'
       expect(Spree::Order.first.user).to eq Spree::User.find_by_email('email@person.com')

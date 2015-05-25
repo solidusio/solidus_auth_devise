@@ -1,13 +1,15 @@
-require 'simplecov'
-SimpleCov.start 'rails'
+require "simplecov"
+SimpleCov.start "rails"
 
-ENV['RAILS_ENV'] ||= 'test'
+ENV["RAILS_ENV"] ||= "test"
 
-require File.expand_path('../dummy/config/environment', __FILE__)
+require File.expand_path("../dummy/config/environment.rb", __FILE__)
 
-require 'rspec/rails'
-require 'shoulda-matchers'
-require 'ffaker'
+require "rspec/rails"
+require "shoulda-matchers"
+require "ffaker"
+
+Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each { |f| require f }
 
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
@@ -21,5 +23,3 @@ RSpec.configure do |config|
     mock.syntax = [:should, :expect]
   end
 end
-
-Dir[File.join(File.dirname(__FILE__), 'support/**/*.rb')].each { |f| require f }
