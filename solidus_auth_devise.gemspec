@@ -7,6 +7,9 @@ Gem::Specification.new do |s|
   s.summary     = "Provides authentication and authorization services for use with Solidus by using Devise and CanCan."
   s.description = s.summary
 
+  s.author       = 'Solidus Team'
+  s.email        = 'contact@solidus.io'
+
   s.required_ruby_version = ">= 2.1"
   s.license     = %q{BSD-3}
 
@@ -15,17 +18,17 @@ Gem::Specification.new do |s|
   s.require_path = "lib"
   s.requirements << "none"
 
-  spree_version = "~> 2.4.0"
+  solidus_version = [">= 1.0.0.pre", "< 2"]
 
-  s.add_dependency "spree_core", spree_version
+  s.add_dependency "solidus_core", solidus_version
   s.add_dependency "devise", "~> 3.2.3"
   s.add_dependency "devise-encryptable", "0.1.2"
 
   s.add_dependency "json"
   s.add_dependency "multi_json"
 
-  s.add_development_dependency "spree_backend", spree_version
-  s.add_development_dependency "spree_frontend", spree_version
+  s.add_development_dependency "solidus_backend", solidus_version
+  s.add_development_dependency "solidus_frontend", solidus_version
   s.add_development_dependency "rspec-rails", "~> 3.0.0"
   s.add_development_dependency "simplecov", "~> 0.9.0"
   s.add_development_dependency "sqlite3"
