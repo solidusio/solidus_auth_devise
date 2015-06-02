@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "solidus", github: "solidusio/solidus", branch: "master"
+gem "solidus", git: "git@github.com:solidusio/solidus.git", branch: "master"
 
 group :development, :test do
   gem "pry-rails"
