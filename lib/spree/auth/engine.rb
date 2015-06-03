@@ -25,9 +25,6 @@ module Spree
       end
 
       def self.activate
-        Dir.glob(File.join(File.dirname(__FILE__), '../../app/**/*_decorator*.rb')) do |c|
-          Rails.configuration.cache_classes ? require(c) : load(c)
-        end
         if Spree::Auth::Engine.backend_available?
           Rails.application.config.assets.precompile += [
             'lib/assets/javascripts/spree/backend/solidus_auth.js',
