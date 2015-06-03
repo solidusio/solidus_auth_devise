@@ -30,12 +30,16 @@ class Spree::UserRegistrationsController < Devise::RegistrationsController
   end
 
   protected
-    def check_permissions
-      authorize!(:create, resource)
-    end
+  def translation_scope
+    'devise.user_registrations'
+  end
+
+  def check_permissions
+    authorize!(:create, resource)
+  end
 
   private
-    def spree_user_params
-      params.require(:spree_user).permit(Spree::PermittedAttributes.user_attributes)
-    end
+  def spree_user_params
+    params.require(:spree_user).permit(Spree::PermittedAttributes.user_attributes)
+  end
 end
