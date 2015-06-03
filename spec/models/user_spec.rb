@@ -8,7 +8,7 @@ RSpec.describe Spree::User, type: :model do
   end
 
   it 'generates the reset password token' do
-    user = build(:user)
+    user = create(:user)
     expect(Spree::UserMailer).to receive(:reset_password_instructions).with(user, anything, {}).and_return(double(deliver: true))
     user.send_reset_password_instructions
     expect(user.reset_password_token).not_to be_nil

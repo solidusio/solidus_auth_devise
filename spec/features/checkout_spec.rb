@@ -11,6 +11,7 @@ RSpec.feature 'Checkout', :js, type: :feature do
 
   given!(:zone)    { create(:zone) }
   given!(:address) { create(:address, state: state, country: country) }
+  given!(:payment_method){ create :check_payment_method }
 
   background do
     @product = create(:product, name: 'RoR Mug')
@@ -23,12 +24,6 @@ RSpec.feature 'Checkout', :js, type: :feature do
   end
 
   context 'without payment being required' do
-    background do
-      # So that we don't have to setup payment methods just for the sake of it
-      allow_any_instance_of(Spree::Order).to receive(:has_available_payment).and_return(true)
-      allow_any_instance_of(Spree::Order).to receive(:payment_required?).and_return(false)
-    end
-
     scenario 'allow a visitor to checkout as guest, without registration' do
       Spree::Auth::Config.set(registration_step: true)
       click_link 'RoR Mug'
@@ -52,6 +47,7 @@ RSpec.feature 'Checkout', :js, type: :feature do
       select "#{address.state.name}", from: "order_#{str_addr}_attributes_state_id"
       check 'order_use_billing'
 
+      click_button 'Save and Continue'
       click_button 'Save and Continue'
       click_button 'Save and Continue'
       click_button 'Place Order'
@@ -83,6 +79,7 @@ RSpec.feature 'Checkout', :js, type: :feature do
       select "#{address.state.name}", from: "order_#{str_addr}_attributes_state_id"
       check 'order_use_billing'
 
+      click_button 'Save and Continue'
       click_button 'Save and Continue'
       click_button 'Save and Continue'
       click_button 'Place Order'
@@ -154,6 +151,7 @@ RSpec.feature 'Checkout', :js, type: :feature do
       select "#{address.state.name}", from: "order_#{str_addr}_attributes_state_id"
       check 'order_use_billing'
 
+      click_button 'Save and Continue'
       click_button 'Save and Continue'
       click_button 'Save and Continue'
       click_button 'Place Order'
