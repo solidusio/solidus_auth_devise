@@ -1,4 +1,4 @@
-module Spree
+module Solidus
   module Auth
     module Generators
       class InstallGenerator < Rails::Generators::Base
