@@ -90,7 +90,6 @@ RSpec.feature 'Checkout', :js, type: :feature do
 
     # Regression test for #890
     scenario 'associate an incomplete guest order with user after successful password reset' do
-      create(:store)
       user = create(:user, email: 'email@person.com', password: 'password', password_confirmation: 'password')
       click_link 'RoR Mug'
       click_button 'Add To Cart'
@@ -103,7 +102,7 @@ RSpec.feature 'Checkout', :js, type: :feature do
       # Need to do this now because the token stored in the DB is the encrypted version
       # The 'plain-text' version is sent in the email and there's one way to get that!
       reset_password_email = ActionMailer::Base.deliveries.first
-      token_url_regex = /^http:\/\/www.example.com\/user\/spree_user\/password\/edit\?reset_password_token=(.*)$/
+      token_url_regex = /\/user\/spree_user\/password\/edit\?reset_password_token=(.*)$/
       token = token_url_regex.match(reset_password_email.body.to_s)[1]
 
       visit spree.edit_spree_user_password_path(reset_password_token: token)
