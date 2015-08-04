@@ -1,7 +1,5 @@
 module Spree
   class User < ActiveRecord::Base
-    include UserAddress
-    include UserPaymentSource
     include UserMethods
 
     devise :database_authenticatable, :registerable, :recoverable,
