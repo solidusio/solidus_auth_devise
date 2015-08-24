@@ -1,5 +1,5 @@
 module Spree
-  class User < ActiveRecord::Base
+  class User < Spree::Base
     include UserMethods
 
     devise :database_authenticatable, :registerable, :recoverable,
