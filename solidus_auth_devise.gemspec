@@ -3,7 +3,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = "solidus_auth_devise"
-  s.version     = "1.2.1"
+  s.version     = "1.2.2"
   s.summary     = "Provides authentication and authorization services for use with Solidus by using Devise and CanCan."
   s.description = s.summary
 
@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.require_path = "lib"
   s.requirements << "none"
 
-  solidus_version = [">= 1.0.0.pre2", "< 2"]
+  solidus_version = [">= 1.1.0.alpha", "< 2"]
 
   s.add_dependency "solidus_core", solidus_version
   s.add_dependency "devise", '~> 3.5.1'
