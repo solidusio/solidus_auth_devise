@@ -45,23 +45,27 @@ module Spree
         end
         ApplicationController.send :include, Spree::AuthenticationHelpers
 
-        Spree::BaseController.unauthorized_redirect = -> do
-          if try_spree_current_user
-            flash[:error] = Spree.t(:authorization_failure)
-            redirect_to spree.unauthorized_path
-          else
-            store_location
-            redirect_to spree.login_path
+        if self.frontend_available?
+          Spree::BaseController.unauthorized_redirect = -> do
+            if try_spree_current_user
+              flash[:error] = Spree.t(:authorization_failure)
+              redirect_to spree.unauthorized_path
+            else
+              store_location
+              redirect_to spree.login_path
+            end
           end
         end
 
-        Spree::Admin::BaseController.unauthorized_redirect = -> do
-          if try_spree_current_user
-            flash[:error] = Spree.t(:authorization_failure)
-            redirect_to spree.admin_unauthorized_path
-          else
-            store_location
-            redirect_to spree.admin_login_path
+        if self.backend_available?
+          Spree::Admin::BaseController.unauthorized_redirect = -> do
+            if try_spree_current_user
+              flash[:error] = Spree.t(:authorization_failure)
+              redirect_to spree.admin_unauthorized_path
+            else
+              store_location
+              redirect_to spree.admin_login_path
+            end
           end
         end
       end
