@@ -3,7 +3,7 @@
     <li data-hook="user-account-link">
       <%= link_to spree.edit_user_path(spree_current_user) do %>
         <i class='fa fa-user'></i>
-        <%= Spree.t(:logged_in_as) %>: <%= spree_current_user.email %><
+        <%= spree_current_user.email %>
       <% end %>
     </li>
     <li data-hook="user-logout-link">
