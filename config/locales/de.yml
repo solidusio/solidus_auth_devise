@@ -1,5 +1,7 @@
 ---
 de:
+  spree:
+    admin_login: Admin anmelden
   devise:
     confirmations:
       confirmed: Ihr Konto wurde erfolgreich aktiviert.
@@ -38,6 +40,7 @@ de:
     user_sessions:
       signed_in: Erfolgreich angemeldet.
       signed_out: Erfolgreich abgemeldet.
+      already_signed_in: Bereits angemeldet.
   errors:
     messages:
       already_confirmed: wurde berreits bestätigt
