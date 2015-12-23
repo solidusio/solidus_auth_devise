@@ -1,0 +1,25 @@
+<% if spree_current_user %>
+  <ul id="login-nav" class="admin-login-nav">
+    <li data-hook="user-account-link">
+      <%= link_to spree.edit_user_path(spree_current_user) do %>
+        <i class='fa fa-user'></i>
+        <%= spree_current_user.email %>
+      <% end %>
+    </li>
+    <li data-hook="user-logout-link">
+      <%= link_to spree.admin_logout_path do %>
+        <i class='fa fa-sign-out'></i>
+        <%= Spree.t(:logout) %>
+      <% end %>
+    </li>
+
+    <% if spree.respond_to? :root_path %>
+      <li data-hook="store-frontend-link">
+        <%= link_to spree.root_path, :target => '_blank' do %>
+          <i class='fa fa-external-link'></i>
+          <%= Spree.t(:back_to_store) %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

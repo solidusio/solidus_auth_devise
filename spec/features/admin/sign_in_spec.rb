@@ -38,7 +38,7 @@ RSpec.feature 'Admin - Sign In', type: :feature do
     fill_in 'Password', with: 'secret'
     click_button 'Login'
 
-    expect(page).to have_text 'Logged in as: admin@person.com'
+    expect(page).to have_text 'admin@person.com'
     expect(current_path).to eq '/admin/orders'
   end
 end
