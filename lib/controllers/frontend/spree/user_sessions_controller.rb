@@ -1,4 +1,8 @@
 class Spree::UserSessionsController < Devise::SessionsController
+
+  # Allow to create a new session via API without authenticity token
+  protect_from_forgery with: :null_session
+
   helper 'spree/base', 'spree/store'
   if Spree::Auth::Engine.dash_available?
     helper 'spree/analytics'
