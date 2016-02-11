@@ -3,7 +3,7 @@ module Spree
     include UserMethods
 
     devise :database_authenticatable, :registerable, :recoverable,
-           :rememberable, :trackable, :validatable, :encryptable, :encryptor => 'authlogic_sha512'
+           :rememberable, :trackable, :validatable, :encryptable
     devise :confirmable if Spree::Auth::Config[:confirmable]
 
     acts_as_paranoid
