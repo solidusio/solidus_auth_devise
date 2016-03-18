@@ -25,10 +25,19 @@ RSpec.describe Spree::CheckoutController, type: :controller do
         end
       end
 
-      context 'when authenticated as guest' do
+      context 'when not authenticated as guest' do
         it 'redirects to registration step' do
           spree_get :edit, { state: 'address' }
           expect(response).to redirect_to spree.checkout_registration_path
+        end
+      end
+
+      context 'when authenticated as guest' do
+        before { order.email = 'guest@solidus.io' }
+
+        it 'proceeds to the first checkout step' do
+          spree_get :edit, { state: 'address' }
+          expect(response).to render_template :edit
         end
       end
     end
