@@ -71,13 +71,7 @@ Inside of your host application you can then use CanCan like you normally would.
 Testing
 -------
 
-Until Solidus is publicly available, the easiest way to satisfy the Solidus dependancy is with a local Bundler override:
-
-```shell
-bundle config local.spree /path/to/local/solidus/repository
-```
-
-Then just run the following to automatically build a dummy app if necessary and run the tests:
+Run the following to automatically build a dummy app if necessary and run the tests:
 
 ```shell
 bundle exec rake
