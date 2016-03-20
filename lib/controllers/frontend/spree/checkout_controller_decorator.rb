@@ -32,17 +32,22 @@ Spree::CheckoutController.class_eval do
 
     # Introduces a registration step whenever the +registration_step+ preference is true.
     def check_registration
-      return unless Spree::Auth::Config[:registration_step]
-      return if (
-        spree_current_user ||
-        (guest_authenticated? && Spree::Config[:allow_guest_checkout])
-      )
+      return unless registration_required?
       store_location
       redirect_to spree.checkout_registration_path
     end
 
+    def registration_required?
+      Spree::Auth::Config[:registration_step] &&
+        !already_registered?
+    end
+
+    def already_registered?
+      spree_current_user || guest_authenticated?
+    end
+
     def guest_authenticated?
-      current_order.email.present?
+      current_order.email.present? && Spree::Config[:allow_guest_checkout]
     end
 
     # Overrides the equivalent method defined in Spree::Core.  This variation of the method will ensure that users
