@@ -1,6 +1,10 @@
-machine:
-  ruby:
-    version: 2.1.5
+dependencies:
+  override:
+    - 'rvm-exec 2.1.5 bundle install'
+    - 'rvm-exec 2.2.4 bundle install'
+    - 'rvm-exec 2.3.0 bundle install'
 test:
-  pre:
-    - bundle exec rake test_app
+  override:
+    - 'rvm-exec 2.1.5 bundle exec rake'
+    - 'rvm-exec 2.2.4 bundle exec rake'
+    - 'rvm-exec 2.3.0 bundle exec rake'
