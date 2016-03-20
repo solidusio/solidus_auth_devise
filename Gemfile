@@ -6,4 +6,8 @@ group :development, :test do
   gem "pry-rails"
 end
 
+group :test do
+  gem 'rspec_junit_formatter'
+end
+
 gemspec
