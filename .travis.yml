@@ -3,5 +3,10 @@ language: ruby
 rvm:
   - 2.1.8
 env:
-  - DB=mysql
-  - DB=postgres
+  matrix:
+    - SOLIDUS_BRANCH=v1.1 DB=postgres
+    - SOLIDUS_BRANCH=v1.2 DB=postgres
+    - SOLIDUS_BRANCH=master DB=postgres
+    - SOLIDUS_BRANCH=v1.1 DB=mysql
+    - SOLIDUS_BRANCH=v1.2 DB=mysql
+    - SOLIDUS_BRANCH=master DB=mysql
