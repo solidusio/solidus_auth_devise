@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.require_path = "lib"
   s.requirements << "none"
 
-  solidus_version = [">= 1.1.0.alpha", "< 2"]
+  solidus_version = [">= 1.0.6", "< 2"]
 
   s.add_dependency "solidus_core", solidus_version
   s.add_dependency "devise", '~> 3.5.1'
