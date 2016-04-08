@@ -47,7 +47,8 @@ Spree::CheckoutController.class_eval do
     end
 
     def guest_authenticated?
-      current_order.email.present? && Spree::Config[:allow_guest_checkout]
+      current_order.try!(:email).present? &&
+        Spree::Config[:allow_guest_checkout]
     end
 
     # Overrides the equivalent method defined in Spree::Core.  This variation of the method will ensure that users
