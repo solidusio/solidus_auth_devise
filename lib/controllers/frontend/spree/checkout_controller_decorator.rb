@@ -1,7 +1,8 @@
 require 'spree/core/validators/email'
 Spree::CheckoutController.class_eval do
-  before_filter :check_authorization
-  before_filter :check_registration, :except => [:registration, :update_registration]
+  prepend_before_filter :check_registration,
+    except: [:registration, :update_registration]
+  prepend_before_filter :check_authorization
 
   def registration
     @user = Spree::User.new
@@ -47,7 +48,8 @@ Spree::CheckoutController.class_eval do
     end
 
     def guest_authenticated?
-      current_order.email.present? && Spree::Config[:allow_guest_checkout]
+      current_order.try!(:email).present? &&
+        Spree::Config[:allow_guest_checkout]
     end
 
     # Overrides the equivalent method defined in Spree::Core.  This variation of the method will ensure that users
