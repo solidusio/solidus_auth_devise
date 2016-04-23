@@ -13,25 +13,25 @@ Spree::Core::Engine.add_routes do
       path_prefix: :user
     })
 
-    resources :users, :only => [:edit, :update]
+    resources :users, only: [:edit, :update]
 
     devise_scope :spree_user do
-      get '/login', :to => 'user_sessions#new', :as => :login
-      post '/login', :to => 'user_sessions#create', :as => :create_new_session
-      get '/logout', :to => 'user_sessions#destroy', :as => :logout
-      get '/signup', :to => 'user_registrations#new', :as => :signup
-      post '/signup', :to => 'user_registrations#create', :as => :registration
-      get '/password/recover', :to => 'user_passwords#new', :as => :recover_password
-      post '/password/recover', :to => 'user_passwords#create', :as => :reset_password
-      get '/password/change', :to => 'user_passwords#edit', :as => :edit_password
-      put '/password/change', :to => 'user_passwords#update', :as => :update_password
-      get '/confirm', :to => 'user_confirmations#show', :as => :confirmation if Spree::Auth::Config[:confirmable]
+      get '/login', to: 'user_sessions#new', as: :login
+      post '/login', to: 'user_sessions#create', as: :create_new_session
+      get '/logout', to: 'user_sessions#destroy', as: :logout
+      get '/signup', to: 'user_registrations#new', as: :signup
+      post '/signup', to: 'user_registrations#create', as: :registration
+      get '/password/recover', to: 'user_passwords#new', as: :recover_password
+      post '/password/recover', to: 'user_passwords#create', as: :reset_password
+      get '/password/change', to: 'user_passwords#edit', as: :edit_password
+      put '/password/change', to: 'user_passwords#update', as: :update_password
+      get '/confirm', to: 'user_confirmations#show', as: :confirmation if Spree::Auth::Config[:confirmable]
     end
 
-    get '/checkout/registration', :to => 'checkout#registration', :as => :checkout_registration
-    put '/checkout/registration', :to => 'checkout#update_registration', :as => :update_checkout_registration
+    get '/checkout/registration', to: 'checkout#registration', as: :checkout_registration
+    put '/checkout/registration', to: 'checkout#update_registration', as: :update_checkout_registration
 
-    resource :account, :controller => 'users'
+    resource :account, controller: 'users'
   end
 
   if Spree::Auth::Engine.backend_available?
@@ -48,10 +48,10 @@ Spree::Core::Engine.add_routes do
       })
 
       devise_scope :spree_user do
-        get '/authorization_failure', :to => 'user_sessions#authorization_failure', :as => :unauthorized
-        get '/login', :to => 'user_sessions#new', :as => :login
-        post '/login', :to => 'user_sessions#create', :as => :create_new_session
-        get '/logout', :to => 'user_sessions#destroy', :as => :logout
+        get '/authorization_failure', to: 'user_sessions#authorization_failure', as: :unauthorized
+        get '/login', to: 'user_sessions#new', as: :login
+        post '/login', to: 'user_sessions#create', as: :create_new_session
+        get '/logout', to: 'user_sessions#destroy', as: :logout
       end
     end
   end
