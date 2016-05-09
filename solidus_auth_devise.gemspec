@@ -21,8 +21,8 @@ Gem::Specification.new do |s|
   solidus_version = [">= 1.0.6", "< 2"]
 
   s.add_dependency "solidus_core", solidus_version
-  s.add_dependency "devise", '~> 3.5.1'
-  s.add_dependency "devise-encryptable", "0.1.2"
+  s.add_dependency "devise", '~> 4.1.0'
+  s.add_dependency "devise-encryptable", "0.2.0"
   s.add_dependency 'deface', '~> 1.0.0'
 
   s.add_dependency "json"
