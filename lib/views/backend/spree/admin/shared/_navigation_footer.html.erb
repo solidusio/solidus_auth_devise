@@ -15,7 +15,7 @@
 
     <% if spree.respond_to? :root_path %>
       <li data-hook="store-frontend-link">
-        <%= link_to spree.root_path, :target => '_blank' do %>
+        <%= link_to spree.root_path, target: '_blank' do %>
           <i class='fa fa-external-link'></i>
           <%= Spree.t(:back_to_store) %>
         <% end %>
