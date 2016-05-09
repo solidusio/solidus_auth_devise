@@ -20,7 +20,7 @@ class Spree::Admin::UserSessionsController < Devise::SessionsController
         }
         format.js {
           user = resource.record
-          render :json => {:ship_address => user.ship_address, :bill_address => user.bill_address}.to_json
+          render json: {ship_address: user.ship_address, bill_address: user.bill_address}.to_json
         }
       end
     else
