@@ -1,3 +1,5 @@
+## Solidus Auth Devise v1.5.0 (master, unreleased)
+
 ## Solidus Auth Devise v1.4.0 (2016-05-16)
 
 * Update hash syntax for routes.rb
