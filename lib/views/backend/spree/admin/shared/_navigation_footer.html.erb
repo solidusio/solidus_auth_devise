@@ -1,7 +1,7 @@
 <% if spree_current_user %>
   <ul id="login-nav" class="admin-login-nav">
     <li data-hook="user-account-link">
-      <%= link_to spree.edit_user_path(spree_current_user) do %>
+      <%= link_to spree.edit_admin_user_path(spree_current_user) do %>
         <i class='fa fa-user'></i>
         <%= spree_current_user.email %>
       <% end %>
