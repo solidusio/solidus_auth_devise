@@ -71,15 +71,15 @@ module Spree
       end
 
       def self.backend_available?
-        @@backend_available ||= ::Rails::Engine.subclasses.map(&:instance).map{ |e| e.class.to_s }.include?('Spree::Backend::Engine')
+        defined?(Spree::Backend::Engine) == "constant"
       end
 
       def self.dash_available?
-        @@dash_available ||= ::Rails::Engine.subclasses.map(&:instance).map{ |e| e.class.to_s }.include?('Spree::Dash::Engine')
+        defined?(Spree::Dash::Engine) == "constant"
       end
 
       def self.frontend_available?
-        @@frontend_available ||= ::Rails::Engine.subclasses.map(&:instance).map{ |e| e.class.to_s }.include?('Spree::Frontend::Engine')
+        defined?(Spree::Frontend::Engine) == "constant"
       end
 
       if self.backend_available?
