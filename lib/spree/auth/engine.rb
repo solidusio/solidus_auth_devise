@@ -87,12 +87,12 @@ module Spree
         defined?(Spree::Frontend::Engine) == "constant"
       end
 
-      if self.backend_available?
+      if backend_available?
         paths["app/controllers"] << "lib/controllers/backend"
         paths["app/views"] << "lib/views/backend"
       end
 
-      if self.frontend_available?
+      if frontend_available?
         paths["app/controllers"] << "lib/controllers/frontend"
         paths["app/views"] << "lib/views/frontend"
       end
