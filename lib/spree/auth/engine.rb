@@ -24,48 +24,53 @@ module Spree
         end
       end
 
-      def self.activate
-        if Spree::Auth::Engine.backend_available?
-          Rails.application.config.assets.precompile += [
-            'lib/assets/javascripts/spree/backend/solidus_auth.js',
-            'lib/assets/javascripts/spree/backend/solidus_auth.css'
-          ]
-          Dir.glob(File.join(File.dirname(__FILE__), "../../controllers/backend/*/*/*_decorator*.rb")) do |c|
-            Rails.configuration.cache_classes ? require(c) : load(c)
-          end
-        end
-        if Spree::Auth::Engine.frontend_available?
-          Rails.application.config.assets.precompile += [
-            'lib/assets/javascripts/spree/frontend/solidus_auth.js',
-            'lib/assets/javascripts/spree/frontend/solidus_auth.css'
-          ]
-          Dir.glob(File.join(File.dirname(__FILE__), "../../controllers/frontend/*/*_decorator*.rb")) do |c|
-            Rails.configuration.cache_classes ? require(c) : load(c)
-          end
-        end
+      config.to_prepare do
+        auth = Spree::Auth::Engine
+
+        auth.prepare_backend if auth.backend_available?
+        auth.prepare_frontend if auth.frontend_available?
+
         ApplicationController.send :include, Spree::AuthenticationHelpers
+      end
 
-        if self.frontend_available?
-          Spree::BaseController.unauthorized_redirect = -> do
-            if try_spree_current_user
-              flash[:error] = Spree.t(:authorization_failure)
-              redirect_to spree.unauthorized_path
-            else
-              store_location
-              redirect_to spree.login_path
-            end
-          end
+      def self.prepare_backend
+        Rails.application.config.assets.precompile += %w[
+          lib/assets/javascripts/spree/backend/solidus_auth.js
+          lib/assets/javascripts/spree/backend/solidus_auth.css
+        ]
+
+        Dir.glob(File.join(File.dirname(__FILE__), "../../controllers/backend/*/*/*_decorator*.rb")) do |c|
+          Rails.configuration.cache_classes ? require(c) : load(c)
         end
 
-        if self.backend_available?
-          Spree::Admin::BaseController.unauthorized_redirect = -> do
-            if try_spree_current_user
-              flash[:error] = Spree.t(:authorization_failure)
-              redirect_to spree.admin_unauthorized_path
-            else
-              store_location
-              redirect_to spree.admin_login_path
-            end
+        Spree::Admin::BaseController.unauthorized_redirect = -> do
+          if try_spree_current_user
+            flash[:error] = Spree.t(:authorization_failure)
+            redirect_to spree.admin_unauthorized_path
+          else
+            store_location
+            redirect_to spree.admin_login_path
+          end
+        end
+      end
+
+      def self.prepare_frontend
+        Rails.application.config.assets.precompile += %w[
+          lib/assets/javascripts/spree/frontend/solidus_auth.js
+          lib/assets/javascripts/spree/frontend/solidus_auth.css
+        ]
+
+        Dir.glob(File.join(File.dirname(__FILE__), "../../controllers/frontend/*/*_decorator*.rb")) do |c|
+          Rails.configuration.cache_classes ? require(c) : load(c)
+        end
+
+        Spree::BaseController.unauthorized_redirect = -> do
+          if try_spree_current_user
+            flash[:error] = Spree.t(:authorization_failure)
+            redirect_to spree.unauthorized_path
+          else
+            store_location
+            redirect_to spree.login_path
           end
         end
       end
@@ -91,8 +96,6 @@ module Spree
         paths["app/controllers"] << "lib/controllers/frontend"
         paths["app/views"] << "lib/views/frontend"
       end
-
-      config.to_prepare &method(:activate).to_proc
     end
   end
 end
