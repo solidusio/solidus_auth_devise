@@ -1,7 +1,7 @@
 class Spree::UsersController < Spree::StoreController
-  skip_before_filter :set_current_order, :only => :show
-  prepend_before_filter :load_object, :only => [:show, :edit, :update]
-  prepend_before_filter :authorize_actions, :only => :new
+  skip_before_filter :set_current_order, only: :show
+  prepend_before_filter :load_object, only: [:show, :edit, :update]
+  prepend_before_filter :authorize_actions, only: :new
 
   include Spree::Core::ControllerHelpers
 
@@ -28,9 +28,9 @@ class Spree::UsersController < Spree::StoreController
       if params[:user][:password].present?
         # this logic needed b/c devise wants to log us out after password changes
         user = Spree::User.reset_password_by_token(params[:user])
-        sign_in(@user, :event => :authentication, :bypass => !Spree::Auth::Config[:signout_after_password_change])
+        sign_in(@user, event: :authentication, bypass: !Spree::Auth::Config[:signout_after_password_change])
       end
-      redirect_to spree.account_url, :notice => Spree.t(:account_updated)
+      redirect_to spree.account_url, notice: Spree.t(:account_updated)
     else
       render :edit
     end
