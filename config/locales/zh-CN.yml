@@ -1,0 +1,53 @@
+---
+zh-CN:
+  spree:
+    admin_login:
+  devise:
+    confirmations:
+      confirmed: 账户确认成功，现已登录。
+      send_instructions: 稍后您将收到邮件，了解如何确认账户。
+    failure:
+      inactive: 您的账户尚未激活。
+      invalid: 邮箱或密码错误。
+      invalid_token: 验证凭证错误。
+      locked: 账户已锁定。
+      timeout: 账户闲置时间过长，请重新登录。
+      unauthenticated: 请注册或登录，然后继续。
+      unconfirmed: 请确认账户，然后继续。
+    mailer:
+      confirmation_instructions:
+        subject: 确认说明
+      reset_password_instructions:
+        subject: 密码重置说明
+      unlock_instructions:
+        subject: 解锁说明
+    oauth_callbacks:
+      failure: 无法从%{kind}授权，原因为 %{reason}。
+      success: 从%{kind}账户授权成功。
+    unlocks:
+      send_instructions: 稍后您将收到邮件，了解如何解锁账户。
+      unlocked: 账户解锁成功，现已登录。
+    user_passwords:
+      spree_user:
+        cannot_be_blank: 密码不能为空。
+        no_token: 若需访问本页面，请使用重置密码邮件中网址链接，并确保该网址完整。
+        send_instructions: 稍后您将收到邮件，了解如何重置密码。
+        updated: 密码修改成功，现已登录。
+    user_registrations:
+      destroyed: 账户已成功取消，再会啦，期待着您的早日回归！
+      inactive_signed_up: 注册成功！但暂时无法登录账户，原因为%{reason}。
+      signed_up: 祝贺您！注册成功。
+      updated: 账户更新成功。
+    user_sessions:
+      signed_in: 登录成功。
+      signed_out: 登出成功。
+      already_signed_in: 已登录。
+  errors:
+    messages:
+      already_confirmed: 已确认
+      email_is_invalid: 邮箱地址不能为空
+      not_found: 未找到
+      not_locked: 未锁定
+      not_saved:
+        one: '出现1处错误，%{resource}无法保存'
+        other: '出现%{count}处错误，%{resource}无法保存'
