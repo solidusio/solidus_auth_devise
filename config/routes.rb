@@ -1,4 +1,4 @@
-Spree::Core::Engine.add_routes do
+Spree::Core::Engine.routes.draw do
   if Spree::Auth::Engine.frontend_available?
     devise_for(:spree_user, {
       class_name: 'Spree::User',
