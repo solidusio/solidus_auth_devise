@@ -7,6 +7,7 @@ Installation
 ------------
 
 Just add this line to your `Gemfile`:
+
 ```ruby
 gem "solidus_auth_devise"
 ```
@@ -18,11 +19,13 @@ Then run `bundle install`.
 To enable Devise's Confirmable module, which will send the user an email with a link to confirm their account, you must do the following:
 
 * Add this line to an initializer in your Rails project (typically `config/initializers/spree.rb`):
+
 ```ruby
 Spree::Auth::Config[:confirmable] = true
 ```
 
 * Add a Devise initializer to your Rails project (typically `config/initializers/devise.rb`):
+
 ```ruby
 Devise.setup do |config|
   # Required so users don't lose their carts when they need to confirm.
@@ -57,11 +60,13 @@ end
 ```
 
 Then register your class in your spree initializer: config/initializers/spree.rb
+
 ```ruby
 Spree::Ability.register_ability(SuperAbilities)
 ```
 
 Inside of your host application you can then use CanCan like you normally would.
+
 ```erb
 <% if can? :stop Bullet %>
   ...
