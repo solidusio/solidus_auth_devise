@@ -12,7 +12,19 @@ Just add this line to your `Gemfile`:
 gem "solidus_auth_devise"
 ```
 
-Then run `bundle install`.
+Then, run `bundle install`.
+
+After that's done, you can install and run the necessary migrations, then seed the database:
+
+```shell
+bundle exec rake solidus_auth:install:migration
+bundle exec rake db:migrate
+bundle exec rake db:seed
+```
+
+### Default Username/Password
+
+As part of running the above installation steps, you will be asked to set an admin email/password combination. The default values are `admin@example.com` and `test123`, respectively.
 
 ### Confirmable
 
