@@ -24,6 +24,8 @@
   Similar changes in `devise-encryptable`, with details in the changelog:
   https://github.com/plataformatec/devise-encryptable/blob/master/Changelog.md
 
+* Addition of Chinese translations (#64)
+
 ## Solidus Auth Devise v1.4.0 (2016-05-16)
 
 * Update hash syntax for routes.rb
