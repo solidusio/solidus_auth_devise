@@ -1,4 +1,6 @@
-## Solidus Auth Devise v1.5.0 (master, unreleased)
+## Solidus Auth Devise v1.6.0 (master, unreleased)
+
+## Solidus Auth Devise v1.5.0 (2016-07-18)
 
 * Add call to set_current_order on sign in. This replaces a before filter that
   is being eliminated from Solidus controllers where set_current_order was
