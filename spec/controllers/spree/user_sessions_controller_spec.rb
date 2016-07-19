@@ -8,7 +8,7 @@ RSpec.describe Spree::UserSessionsController, type: :controller do
     let(:password) { 'secret' }
 
     subject do
-      spree_post(:create,
+      post(:create,
         spree_user: {
           email: user.email,
           password: password
