@@ -1,5 +1,7 @@
 ## Solidus Auth Devise v1.6.0 (master, unreleased)
 
+* Remove load-time manipulation of the Devise secret key (#67)
+
 ## Solidus Auth Devise v1.5.0 (2016-07-18)
 
 * Add call to set_current_order on sign in. This replaces a before filter that
