@@ -1,5 +1,9 @@
 Spree::Core::Engine.routes.draw do
-  if Spree::Auth::Engine.frontend_available?
+  if (
+    Spree::Auth::Engine.frontend_available? &&
+    Spree::Auth::Config.draw_frontend_routes
+  )
+
     devise_for(:spree_user, {
       class_name: 'Spree::User',
       controllers: {
@@ -34,7 +38,11 @@ Spree::Core::Engine.routes.draw do
     resource :account, controller: 'users'
   end
 
-  if Spree::Auth::Engine.backend_available?
+  if (
+    Spree::Auth::Engine.backend_available? &&
+    Spree::Auth::Config.draw_backend_routes
+  )
+
     namespace :admin do
       devise_for(:spree_user, {
         class_name: 'Spree::User',
