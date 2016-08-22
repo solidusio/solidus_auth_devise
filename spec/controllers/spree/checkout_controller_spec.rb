@@ -138,7 +138,7 @@ RSpec.describe Spree::CheckoutController, type: :controller do
       controller.stub :check_authorization
       order.stub update_attributes: true
       controller.should_not_receive :check_registration
-      put :update_registration, { order: { } }
+      put :update_registration, { order: { email: 'foo@example.com' } }
     end
 
     it 'renders the registration view if unable to save' do
