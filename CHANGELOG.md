@@ -1,5 +1,7 @@
 ## Solidus Auth Devise v1.6.0 (master, unreleased)
 
+* Loading of routes can be disabled through config (#71)
+
 * Support for Solidus 2.0 and Rails 5.0
 
 * Remove load-time manipulation of the Devise secret key (#67)
