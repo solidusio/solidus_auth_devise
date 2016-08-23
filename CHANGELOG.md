@@ -1,4 +1,6 @@
-## Solidus Auth Devise v1.6.0 (master, unreleased)
+## Master (unreleased)
+
+## Solidus Auth Devise v1.6.0 (2016-08-23)
 
 * Loading of routes can be disabled through config (#71)
 
