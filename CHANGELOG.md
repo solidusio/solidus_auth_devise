@@ -1,5 +1,7 @@
 ## Master (unreleased)
 
+## Solidus Auth Devise v1.6.1 (2016-08-24)
+
 * Replace usages of `before_filter` with `before_action` (#73)
 
 ## Solidus Auth Devise v1.6.0 (2016-08-23)
