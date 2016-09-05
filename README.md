@@ -17,7 +17,7 @@ Then, run `bundle install`.
 After that's done, you can install and run the necessary migrations, then seed the database:
 
 ```shell
-bundle exec rake solidus_auth:install:migration
+bundle exec rake solidus_auth:install:migrations
 bundle exec rake db:migrate
 bundle exec rake db:seed
 ```
