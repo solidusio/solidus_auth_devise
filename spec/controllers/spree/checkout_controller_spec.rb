@@ -140,6 +140,31 @@ RSpec.describe Spree::CheckoutController, type: :controller do
       expect(response).to redirect_to spree.checkout_path
     end
 
+    # Regression test for https://github.com/solidusio/solidus/issues/1588
+    context 'order in address state' do
+      let(:order) do
+        create(
+          :order_with_line_items,
+          email: nil,
+          user: nil,
+          guest_token: token,
+          bill_address: nil,
+          ship_address: nil,
+          state: 'address'
+        )
+      end
+
+      # This may seem out of left field, but previously there was an issue
+      # where address would be built in a before filter and then would be saved
+      # when trying to update the email.
+      it "doesn't create addresses" do
+        expect {
+          subject
+        }.not_to change { Spree::Address.count }
+        expect(response).to redirect_to spree.checkout_path
+      end
+    end
+
     context 'invalid email' do
       let(:email) { 'invalid' }
 
