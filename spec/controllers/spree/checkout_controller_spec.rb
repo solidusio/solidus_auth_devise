@@ -13,7 +13,6 @@ RSpec.describe Spree::CheckoutController, type: :controller do
     context 'when registration step enabled' do
       before do
         allow(controller).to receive(:check_authorization)
-        Spree::Auth::Config.set(registration_step: true)
       end
 
       context 'when authenticated as registered user' do
