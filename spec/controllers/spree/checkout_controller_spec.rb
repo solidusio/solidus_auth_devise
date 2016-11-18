@@ -1,20 +1,18 @@
 RSpec.describe Spree::CheckoutController, type: :controller do
 
-  let(:order) { create(:order_with_line_items, email: nil, user: nil) }
+  let(:order) { create(:order_with_line_items, email: nil, user: nil, guest_token: token) }
   let(:user)  { build(:user, spree_api_key: 'fake') }
   let(:token) { 'some_token' }
+  let(:cookie_token) { token }
 
   before do
+    request.cookie_jar.signed[:guest_token] = cookie_token
     allow(controller).to receive(:current_order) { order }
     allow(order).to receive(:confirmation_required?) { true }
   end
 
   context '#edit' do
     context 'when registration step enabled' do
-      before do
-        allow(controller).to receive(:check_authorization)
-      end
-
       context 'when authenticated as registered user' do
         before { allow(controller).to receive(:spree_current_user) { user } }
 
@@ -59,7 +57,6 @@ RSpec.describe Spree::CheckoutController, type: :controller do
     context 'when registration step disabled' do
       before do
         Spree::Auth::Config.set(registration_step: false)
-        allow(controller).to receive(:check_authorization)
       end
 
       context 'when authenticated as registered' do
@@ -118,7 +115,6 @@ RSpec.describe Spree::CheckoutController, type: :controller do
 
   context '#registration' do
     it 'does not check registration' do
-      allow(controller).to receive(:check_authorization)
       expect(controller).not_to receive(:check_registration)
       get :registration
     end
@@ -131,34 +127,70 @@ RSpec.describe Spree::CheckoutController, type: :controller do
   end
 
   context '#update_registration' do
-    let(:user) { build(:user) }
+    subject { put :update_registration, { order: { email: email } } }
+    let(:email) { 'foo@example.com' }
 
     it 'does not check registration' do
-      controller.stub :check_authorization
-      order.stub update_attributes: true
-      controller.should_not_receive :check_registration
-      put :update_registration, { order: { email: 'foo@example.com' } }
-    end
-
-    it 'renders the registration view if unable to save' do
-      allow(controller).to receive(:check_authorization)
-      put :update_registration, { order: { email: 'invalid' } }
-      expect(flash[:registration_error]).to eq I18n.t(:email_is_invalid, scope: [:errors, :messages])
-      expect(response).to render_template :registration
+      expect(controller).not_to receive(:check_registration)
+      subject
     end
 
     it 'redirects to the checkout_path after saving' do
-      allow(order).to receive(:update_attributes) { true }
-      allow(controller).to receive(:check_authorization)
-      put :update_registration, { order: { email: 'jobs@spreecommerce.com' } }
+      subject
       expect(response).to redirect_to spree.checkout_path
     end
 
-    it 'checks if the user is authorized for :edit' do
-      request.cookie_jar.signed[:guest_token] = token
-      allow(order).to receive(:update_attributes) { true }
-      expect(controller).to receive(:authorize!).with(:edit, order, token)
-      put :update_registration, { order: { email: 'jobs@spreecommerce.com' } }
+    # Regression test for https://github.com/solidusio/solidus/issues/1588
+    context 'order in address state' do
+      let(:order) do
+        create(
+          :order_with_line_items,
+          email: nil,
+          user: nil,
+          guest_token: token,
+          bill_address: nil,
+          ship_address: nil,
+          state: 'address'
+        )
+      end
+
+      # This may seem out of left field, but previously there was an issue
+      # where address would be built in a before filter and then would be saved
+      # when trying to update the email.
+      it "doesn't create addresses" do
+        expect {
+          subject
+        }.not_to change { Spree::Address.count }
+        expect(response).to redirect_to spree.checkout_path
+      end
+    end
+
+    context 'invalid email' do
+      let(:email) { 'invalid' }
+
+      it 'renders the registration view' do
+        subject
+        expect(flash[:registration_error]).to eq I18n.t(:email_is_invalid, scope: [:errors, :messages])
+        expect(response).to render_template :registration
+      end
+    end
+
+    context 'with wrong order token' do
+      let(:cookie_token) { 'lol_no_access' }
+
+      it 'redirects to login' do
+        put :update_registration, { order: { email: 'foo@example.com' } }
+        expect(response).to redirect_to(login_path)
+      end
+    end
+
+    context 'without order token' do
+      let(:cookie_token) { nil }
+
+      it 'redirects to login' do
+        put :update_registration, { order: { email: 'foo@example.com' } }
+        expect(response).to redirect_to(login_path)
+      end
     end
   end
 end

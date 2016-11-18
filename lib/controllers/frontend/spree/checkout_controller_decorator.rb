@@ -4,12 +4,16 @@ Spree::CheckoutController.class_eval do
     except: [:registration, :update_registration]
   prepend_before_action :check_authorization
 
+  # This action builds some associations on the order, ex. addresses, which we
+  # don't to build or save here.
+  skip_before_action :setup_for_current_state, only: [:registration, :update_registration]
+
   def registration
     @user = Spree::User.new
   end
 
   def update_registration
-    if params[:order][:email] =~ Devise.email_regexp && current_order.update_attribute(:email, params[:order][:email])
+    if params[:order][:email] =~ Devise.email_regexp && current_order.update_attributes(email: params[:order][:email])
       redirect_to spree.checkout_path
     else
       flash[:registration_error] = t(:email_is_invalid, scope: [:errors, :messages])

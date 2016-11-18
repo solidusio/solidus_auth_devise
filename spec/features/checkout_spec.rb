@@ -23,6 +23,26 @@ RSpec.feature 'Checkout', :js, type: :feature do
     visit spree.root_path
   end
 
+  # Regression test for https://github.com/solidusio/solidus/issues/1588
+  scenario 'leaving and returning to address step' do
+    Spree::Auth::Config.set(registration_step: true)
+    click_link 'RoR Mug'
+    click_button 'Add To Cart'
+    within('h1') { expect(page).to have_text 'Shopping Cart' }
+    click_button 'Checkout'
+
+    within '#guest_checkout' do
+      fill_in 'Email', with: 'test@example.com'
+    end
+    click_on 'Continue'
+
+    click_on 'Cart'
+
+    click_on 'Checkout'
+
+    expect(page).to have_content "Billing Address"
+  end
+
   context 'without payment being required' do
     scenario 'allow a visitor to checkout as guest, without registration' do
       click_link 'RoR Mug'
