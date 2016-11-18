@@ -3,7 +3,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = "solidus_auth_devise"
-  s.version     = "1.6.1"
+  s.version     = "1.6.2"
   s.summary     = "Provides authentication and authorization services for use with Solidus by using Devise and CanCan."
   s.description = s.summary
 
