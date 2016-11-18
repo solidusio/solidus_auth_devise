@@ -25,7 +25,6 @@ RSpec.feature 'Checkout', :js, type: :feature do
 
   context 'without payment being required' do
     scenario 'allow a visitor to checkout as guest, without registration' do
-      Spree::Auth::Config.set(registration_step: true)
       click_link 'RoR Mug'
       click_button 'Add To Cart'
       within('h1') { expect(page).to have_text 'Shopping Cart' }
