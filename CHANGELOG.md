@@ -1,5 +1,10 @@
 ## Master (unreleased)
 
+## Solidus Auth Devise v1.6.2 (2016-11-18)
+
+* Fix an issue where invalid addresses could be persisted after starting a
+  checkout as a guest and then returning to the cart page.
+
 ## Solidus Auth Devise v1.6.1 (2016-08-24)
 
 * Replace usages of `before_filter` with `before_action` (#73)
