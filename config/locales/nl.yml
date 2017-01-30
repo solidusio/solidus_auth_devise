@@ -5,6 +5,7 @@ nl:
       confirmed: Je account is succesvol bevestigd. Je bent nu ingelogd.
       send_instructions: Binnen enkele minuten ontvang je een e-mail om je account te bevestigen.
     failure:
+      already_authenticated: Je bent reeds aangemeld.
       inactive: Je account is nog niet geactiveerd.
       invalid: E-mailadres of wachtwoord is onjuist.
       invalid_token: Verkeerde authenticatie token.

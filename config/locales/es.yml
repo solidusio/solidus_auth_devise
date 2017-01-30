@@ -5,6 +5,7 @@ es:
       confirmed: Su cuenta ha sido confirmada. Ahora está conectado.
       send_instructions: Recibirá un email con instrucciones acerca de como confirmar su cuenta en pocos minutos.
     failure:
+      already_authenticated: Ya has iniciado sesión.
       inactive: Su cuenta no ha sido activada aún.
       invalid: Dirección de correo o contraseña no válidos.
       invalid_token: Token de autenticación no válido.

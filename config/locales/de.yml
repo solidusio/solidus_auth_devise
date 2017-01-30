@@ -7,6 +7,7 @@ de:
       confirmed: Ihr Konto wurde erfolgreich aktiviert.
       send_instructions: 'In ein paar Minuten erhalten Sie eine E-Mail mit Anweisungen, um Ihr Konto zu aktivieren.'
     failure:
+      already_authenticated: Sie sind bereits angemeldet.
       inactive: Ihr Konto wurde noch nicht aktiviert.
       invalid: Ungültige E-Mail-Adresse oder Passwort.
       invalid_token: Ungültiger Authentifizierungsschlüssel.

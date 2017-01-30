@@ -5,6 +5,7 @@ tr:
       confirmed: Hesabınız başarıyla doğrulandı. Oturumunuz açıldı.
       send_instructions: Birkaç dakika içinde hesabınızı nasıl doğrulayacağınızı anlatan bir e-posta alacaksınız.
     failure:
+      already_authenticated: Zaten giriş yaptınız.
       inactive: Hesabınız henüz faal değil.
       invalid: Geçersiz e-posta ya da şifre.
       invalid_token: Geçersiz anahtar.
