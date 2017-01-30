@@ -5,6 +5,7 @@ fr:
       confirmed: Votre compte a été confirmé. Vous êtes maintenant connecté(e).
       send_instructions: Vous recevrez dans quelques minutes un courriel avec les instructions sur la façon de confirmer votre compte.
     failure:
+      already_authenticated: Vous êtes déjà connecté(e).
       inactive: Votre compte n'a pas encore été activé.
       invalid: Courriel ou mot de passe non valide.
       invalid_token: Jeton d'authentification non valide.

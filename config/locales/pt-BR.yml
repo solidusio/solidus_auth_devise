@@ -7,6 +7,7 @@ pt-BR:
       confirmed: Sua conta foi confirmada com sucesso. Agora você está conectado.
       send_instructions: Você receberá um e-mail com instruções sobre como confirmar sua conta em poucos minutos.
     failure:
+      already_authenticated: Você já está autenticado.
       inactive: Sua conta não foi ativada ainda.
       invalid: Email ou senha inválida.
       invalid_token: Token de autenticação inválido.
