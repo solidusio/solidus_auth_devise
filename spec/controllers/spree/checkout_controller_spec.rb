@@ -17,14 +17,14 @@ RSpec.describe Spree::CheckoutController, type: :controller do
         before { allow(controller).to receive(:spree_current_user) { user } }
 
         it 'proceeds to the first checkout step' do
-          get :edit, { state: 'address' }
+          get :edit, params: { state: 'address' }
           expect(response).to render_template :edit
         end
       end
 
       context 'when not authenticated as guest' do
         it 'redirects to registration step' do
-          get :edit, { state: 'address' }
+          get :edit, params: { state: 'address' }
           expect(response).to redirect_to spree.checkout_registration_path
         end
       end
@@ -33,7 +33,7 @@ RSpec.describe Spree::CheckoutController, type: :controller do
         before { order.email = 'guest@solidus.io' }
 
         it 'proceeds to the first checkout step' do
-          get :edit, { state: 'address' }
+          get :edit, params: { state: 'address' }
           expect(response).to render_template :edit
         end
 
@@ -47,7 +47,7 @@ RSpec.describe Spree::CheckoutController, type: :controller do
           end
 
           it 'redirects to registration step' do
-            get :edit, { state: 'address' }
+            get :edit, params: { state: 'address' }
             expect(response).to redirect_to spree.checkout_registration_path
           end
         end
@@ -63,14 +63,14 @@ RSpec.describe Spree::CheckoutController, type: :controller do
         before { allow(controller).to receive(:spree_current_user) { user } }
 
         it 'proceeds to the first checkout step' do
-          get :edit, { state: 'address' }
+          get :edit, params: { state: 'address' }
           expect(response).to render_template :edit
         end
       end
 
       context 'when authenticated as guest' do
         it 'proceeds to the first checkout step' do
-          get :edit, { state: 'address' }
+          get :edit, params: { state: 'address' }
           expect(response).to render_template :edit
         end
       end
@@ -92,7 +92,7 @@ RSpec.describe Spree::CheckoutController, type: :controller do
 
         it 'redirects to the tokenized order view' do
           request.cookie_jar.signed[:guest_token] = 'ABC'
-          post :update, { state: 'confirm' }
+          post :update, params: { state: 'confirm' }
           expect(response).to redirect_to spree.token_order_path(order, 'ABC')
           expect(flash.notice).to eq Spree.t(:order_processed_successfully)
         end
@@ -106,7 +106,7 @@ RSpec.describe Spree::CheckoutController, type: :controller do
         end
 
         it 'redirects to the standard order view' do
-          post :update, { state: 'confirm' }
+          post :update, params: { state: 'confirm' }
           expect(response).to redirect_to spree.order_path(order)
         end
       end
@@ -122,12 +122,12 @@ RSpec.describe Spree::CheckoutController, type: :controller do
     it 'checks if the user is authorized for :edit' do
       expect(controller).to receive(:authorize!).with(:edit, order, token)
       request.cookie_jar.signed[:guest_token] = token
-      get :registration, {}
+      get :registration, params: {}
     end
   end
 
   context '#update_registration' do
-    subject { put :update_registration, { order: { email: email } } }
+    subject { put :update_registration, params: { order: { email: email } } }
     let(:email) { 'foo@example.com' }
 
     it 'does not check registration' do
@@ -179,7 +179,7 @@ RSpec.describe Spree::CheckoutController, type: :controller do
       let(:cookie_token) { 'lol_no_access' }
 
       it 'redirects to login' do
-        put :update_registration, { order: { email: 'foo@example.com' } }
+        put :update_registration, params: { order: { email: 'foo@example.com' } }
         expect(response).to redirect_to(login_path)
       end
     end
@@ -188,7 +188,7 @@ RSpec.describe Spree::CheckoutController, type: :controller do
       let(:cookie_token) { nil }
 
       it 'redirects to login' do
-        put :update_registration, { order: { email: 'foo@example.com' } }
+        put :update_registration, params: { order: { email: 'foo@example.com' } }
         expect(response).to redirect_to(login_path)
       end
     end

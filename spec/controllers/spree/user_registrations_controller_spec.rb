@@ -12,12 +12,15 @@ RSpec.describe Spree::UserRegistrationsController, type: :controller do
     let(:password_confirmation) { 'foobar123' }
 
     subject do
-      post(:create,
-        spree_user: {
-          email: 'foobar@example.com',
-          password: 'foobar123',
-          password_confirmation: password_confirmation
-        })
+      post(:create, {
+        params: {
+          spree_user: {
+            email: 'foobar@example.com',
+            password: 'foobar123',
+            password_confirmation: password_confirmation
+          }
+        }
+      })
     end
 
     context 'when user created successfuly' do

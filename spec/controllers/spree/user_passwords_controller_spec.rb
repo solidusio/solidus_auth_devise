@@ -24,7 +24,7 @@ RSpec.describe Spree::UserPasswordsController, type: :controller do
 
     context 'when the user token has been specified' do
       it 'does something' do
-        get :edit, reset_password_token: token
+        get :edit, params: { reset_password_token: token }
         expect(response.code).to eq('200')
       end
     end
@@ -33,7 +33,7 @@ RSpec.describe Spree::UserPasswordsController, type: :controller do
   context '#update' do
     context 'when updating password with blank password' do
       it 'shows error flash message, sets spree_user with token and re-displays password edit form' do
-        put :update, { spree_user: { password: '', password_confirmation: '', reset_password_token: token } }
+        put :update, params: { spree_user: { password: '', password_confirmation: '', reset_password_token: token } }
         expect(assigns(:spree_user).kind_of?(Spree::User)).to eq true
         expect(assigns(:spree_user).reset_password_token).to eq token
         expect(flash[:error]).to eq I18n.t(:cannot_be_blank, scope: [:devise, :user_passwords, :spree_user])
