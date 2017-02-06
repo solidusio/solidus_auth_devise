@@ -8,12 +8,15 @@ RSpec.describe Spree::UserSessionsController, type: :controller do
     let(:password) { 'secret' }
 
     subject do
-      post(:create,
-        spree_user: {
-          email: user.email,
-          password: password
-        },
-        format: format)
+      post(:create, {
+        params: {
+          spree_user: {
+            email: user.email,
+            password: password
+          },
+          format: format
+        }
+      })
     end
 
     context "when using correct login information" do
