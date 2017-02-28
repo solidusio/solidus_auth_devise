@@ -1,4 +1,4 @@
-class CreateUsers < ActiveRecord::Migration[4.2]
+class CreateUsers < Spree::Auth.rails_4_2_compatible_migration_class
   def up
     unless table_exists?("spree_users")
       create_table "spree_users", :force => true do |t|

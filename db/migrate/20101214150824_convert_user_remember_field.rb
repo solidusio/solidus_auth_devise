@@ -1,4 +1,4 @@
-class ConvertUserRememberField < ActiveRecord::Migration[4.2]
+class ConvertUserRememberField < Spree::Auth.rails_4_2_compatible_migration_class
   def up
     remove_column :spree_users, :remember_created_at
     add_column :spree_users, :remember_created_at, :datetime
