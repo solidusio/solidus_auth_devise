@@ -1,4 +1,4 @@
-class AddConfirmableToUsers < ActiveRecord::Migration
+class AddConfirmableToUsers < SolidusSupport::Migration[4.2]
   def change
     add_column :spree_users, :confirmation_token, :string
     add_column :spree_users, :confirmed_at, :datetime
