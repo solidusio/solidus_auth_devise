@@ -26,9 +26,6 @@ Gem::Specification.new do |s|
   s.add_dependency "devise-encryptable", "0.2.0"
   s.add_dependency 'deface', '~> 1.0'
 
-  s.add_dependency "json"
-  s.add_dependency "multi_json"
-
   s.add_development_dependency "solidus_backend", solidus_version
   s.add_development_dependency "solidus_frontend", solidus_version
   s.add_development_dependency "rspec-rails", "~> 3.3"
