@@ -1,5 +1,14 @@
 ## Master (unreleased)
 
+## Solidus Auth Devise v1.6.3 (2017-05-09)
+
+* Add missing translations for already_authenticated
+* Do not require core email validator
+* Remove dependency on `json`, `multi_json`
+* Remove unnecessary sass/coffeescript requires
+* Fix warnings on Rails 5, support Rails 5.1
+* Change deface dependency from `~> 1.0.0` to `~> 1.0`
+
 ## Solidus Auth Devise v1.6.2 (2016-11-18)
 
 * Fix an issue where invalid addresses could be persisted after starting a
