@@ -13,7 +13,7 @@ module Spree
     end
 
     def spree_current_user
-      current_spree_user
+      try(:current_spree_user) || try(:current_admin_spree_user)
     end
 
     if SolidusSupport.frontend_available?

@@ -55,11 +55,16 @@ Spree::Core::Engine.routes.draw do
         path_prefix: :user
       })
 
-      devise_scope :spree_user do
+      devise_scope :admin_spree_user do
         get '/authorization_failure', to: 'user_sessions#authorization_failure', as: :unauthorized
         get '/login', to: 'user_sessions#new', as: :login
         post '/login', to: 'user_sessions#create', as: :create_new_session
         get '/logout', to: 'user_sessions#destroy', as: :logout
+
+        get '/password/recover', to: 'user_passwords#new', as: :recover_password
+        post '/password/recover', to: 'user_passwords#create', as: :reset_password
+        get '/password/change', to: 'user_passwords#edit', as: :edit_password
+        put '/password/change', to: 'user_passwords#update', as: :update_password
       end
     end
   end
