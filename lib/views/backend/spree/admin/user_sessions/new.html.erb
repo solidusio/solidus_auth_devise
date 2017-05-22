@@ -6,7 +6,7 @@
 <div id="existing-customer">
   <h6><%= Spree.t(:admin_login) %></h6>
   <div data-hook="login">
-    <%= form_for Spree::User.new, as: :spree_user, url: spree.admin_create_new_session_path do |f| %>
+    <%= form_for Spree::User.new, as: :admin_spree_user, url: spree.admin_create_new_session_path do |f| %>
       <div id="password-credentials">
         <p>
           <%= f.label :email, Spree.t(:email) %><br />
@@ -25,7 +25,7 @@
       <p><%= f.submit Spree.t(:login), class: 'button primary', tabindex: 4 %></p>
     <% end %>
     <%= Spree.t(:or) %>
-    <%= link_to Spree.t(:forgot_password), spree.recover_password_path %>
+    <%= link_to Spree.t(:forgot_password), spree.admin_recover_password_path %>
   </div>
 </div>
 <div data-hook="login_extras"></div>

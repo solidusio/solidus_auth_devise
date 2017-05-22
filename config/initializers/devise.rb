@@ -135,4 +135,7 @@ Devise.setup do |config|
   config.sign_out_via = :get
 
   config.case_insensitive_keys = [:email]
+
+  # Direct Devise to use the Spree router when attempting to find resource routes.
+  config.router_name = :spree
 end
