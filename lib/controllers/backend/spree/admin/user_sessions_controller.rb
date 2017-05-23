@@ -10,9 +10,9 @@ class Spree::Admin::UserSessionsController < Devise::SessionsController
   layout 'spree/layouts/admin'
 
   def create
-    authenticate_admin_spree_user!
+    authenticate_spree_user!
 
-    if admin_spree_user_signed_in?
+    if spree_user_signed_in?
       respond_to do |format|
         format.html {
           flash[:success] = Spree.t(:logged_in_succesfully)

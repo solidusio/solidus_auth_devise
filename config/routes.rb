@@ -46,6 +46,7 @@ Spree::Core::Engine.routes.draw do
     namespace :admin do
       devise_for(:spree_user, {
         class_name: 'Spree::User',
+        singular: :spree_user,
         controllers: {
           sessions: 'spree/admin/user_sessions',
           passwords: 'spree/admin/user_passwords'
@@ -55,7 +56,7 @@ Spree::Core::Engine.routes.draw do
         path_prefix: :user
       })
 
-      devise_scope :admin_spree_user do
+      devise_scope :spree_user do
         get '/authorization_failure', to: 'user_sessions#authorization_failure', as: :unauthorized
         get '/login', to: 'user_sessions#new', as: :login
         post '/login', to: 'user_sessions#create', as: :create_new_session
