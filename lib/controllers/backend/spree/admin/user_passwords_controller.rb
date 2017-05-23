@@ -8,6 +8,8 @@ class Spree::Admin::UserPasswordsController < Devise::PasswordsController
   helper 'spree/admin/navigation'
   layout 'spree/layouts/admin'
 
+  skip_before_action :require_no_authentication, only: [:create]
+
   # Overridden due to bug in Devise.
   #   respond_with resource, location: new_session_path(resource_name)
   # is generating bad url /session/new.user
