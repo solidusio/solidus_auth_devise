@@ -47,13 +47,12 @@ Spree::Core::Engine.routes.draw do
       devise_for(:spree_user, {
         class_name: 'Spree::User',
         singular: :spree_user,
+        skip: :all,
+        path_names: { sign_out: 'logout' },
         controllers: {
           sessions: 'spree/admin/user_sessions',
           passwords: 'spree/admin/user_passwords'
         },
-        skip: [:unlocks, :omniauth_callbacks, :registrations],
-        path_names: { sign_out: 'logout' },
-        path_prefix: :user
       })
 
       devise_scope :spree_user do
