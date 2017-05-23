@@ -29,14 +29,14 @@ Gem::Specification.new do |s|
   s.add_development_dependency "solidus_backend", solidus_version
   s.add_development_dependency "solidus_frontend", solidus_version
   s.add_development_dependency "rspec-rails", "~> 3.3"
-  s.add_development_dependency "simplecov", "~> 0.11.2"
+  s.add_development_dependency "simplecov", "~> 0.14"
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "sass-rails"
   s.add_development_dependency "coffee-rails"
-  s.add_development_dependency "shoulda-matchers", "~> 3.1.1"
+  s.add_development_dependency "shoulda-matchers", "~> 3.1"
   s.add_development_dependency "factory_girl", "~> 4.4"
-  s.add_development_dependency "capybara", "~> 2.7.1"
+  s.add_development_dependency "capybara", "~> 2.14"
   s.add_development_dependency "poltergeist", "~> 1.5"
-  s.add_development_dependency "database_cleaner", "~> 1.5.3"
+  s.add_development_dependency "database_cleaner", "~> 1.6"
   s.add_development_dependency "capybara-screenshot"
 end
