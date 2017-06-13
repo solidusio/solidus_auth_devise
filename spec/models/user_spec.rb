@@ -18,18 +18,32 @@ RSpec.describe Spree::User, type: :model do
     it "regenerates a spree api key on successful password change" do
       user.generate_spree_api_key!
 
-      user.password = "123456678"
-      user.password_confirmation = "123456678"
-      expect { user.save! }.to change(user, :spree_api_key)
+      expect {
+        user.password = "123456678"
+        user.password_confirmation = "123456678"
+        user.save!
+      }.to change(user, :spree_api_key)
       expect(user.spree_api_key).to be_present
+    end
+
+    it "does not generate a spree api key if password is empty" do
+      user.generate_spree_api_key!
+
+      expect {
+        user.password = ""
+        user.password_confirmation = ""
+        user.save!
+      }.not_to change(user, :spree_api_key)
     end
 
     it "does not generate a spree api key on password change if no key existed previously" do
       user.clear_spree_api_key!
 
-      user.password = "123456678"
-      user.password_confirmation = "123456678"
-      expect { user.save! }.not_to change(user, :spree_api_key)
+      expect {
+        user.password = "123456678"
+        user.password_confirmation = "123456678"
+        user.save!
+      }.not_to change(user, :spree_api_key)
       expect(user.reload.spree_api_key).to be_nil
     end
   end
