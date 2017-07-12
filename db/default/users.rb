@@ -1,17 +1,11 @@
-require 'highline/import'
-
 # see last line where we create an admin if there is none, asking for email and password
 def prompt_for_admin_password
   if ENV['ADMIN_PASSWORD']
     password = ENV['ADMIN_PASSWORD'].dup
-    say "Admin Password #{password}"
+    puts "Admin Password #{password}"
   else
-    password = ask('Password [test123]: ') do |q|
-      q.echo = false
-      q.validate = /^(|.{5,40})$/
-      q.responses[:not_valid] = 'Invalid password. Must be at least 5 characters long.'
-      q.whitespace = :strip
-    end
+    print "Password [test123]: "
+    password = STDIN.gets.strip
     password = 'test123' if password.blank?
   end
 
@@ -21,12 +15,10 @@ end
 def prompt_for_admin_email
   if ENV['ADMIN_EMAIL']
     email = ENV['ADMIN_EMAIL'].dup
-    say "Admin User #{email}"
+    puts "Admin User #{email}"
   else
-    email = ask('Email [admin@example.com]: ') do |q|
-      q.echo = true
-      q.whitespace = :strip
-    end
+    print "Email [admin@example.com]: "
+    email = STDIN.gets.strip
     email = 'admin@example.com' if email.blank?
   end
 
@@ -53,7 +45,7 @@ def create_admin_user
   load 'spree/user.rb'
 
   if Spree::User.find_by_email(email)
-    say "\nWARNING: There is already a user with the email: #{email}, so no account changes were made.  If you wish to create an additional admin user, please run rake spree_auth:admin:create again with a different email.\n\n"
+    puts "\nWARNING: There is already a user with the email: #{email}, so no account changes were made.  If you wish to create an additional admin user, please run rake spree_auth:admin:create again with a different email.\n\n"
   else
     admin = Spree::User.new(attributes)
     if admin.save
@@ -61,11 +53,11 @@ def create_admin_user
       admin.spree_roles << role
       admin.save
       admin.generate_spree_api_key!
-      say "Done!"
+      puts "Done!"
     else
-      say "There was some problems with persisting new admin user:"
+      puts "There was some problems with persisting new admin user:"
       admin.errors.full_messages.each do |error|
-        say error
+        puts error
       end
     end
   end
@@ -75,7 +67,8 @@ if Spree::User.admin.empty?
   create_admin_user
 else
   puts 'Admin user has already been previously created.'
-  if agree('Would you like to create a new admin user? (yes/no)')
+  puts 'Would you like to create a new admin user? (yes/no)'
+  if ["yes", "y"].include? STDIN.gets.strip.downcase
     create_admin_user
   else
     puts 'No admin user created.'
