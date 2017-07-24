@@ -1,10 +1,6 @@
 class Spree::UserPasswordsController < Devise::PasswordsController
   helper 'spree/base', 'spree/store'
 
-  if Spree::Auth::Engine.dash_available?
-    helper 'spree/analytics'
-  end
-
   include Spree::Core::ControllerHelpers::Auth
   include Spree::Core::ControllerHelpers::Common
   include Spree::Core::ControllerHelpers::Order
