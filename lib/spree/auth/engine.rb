@@ -70,10 +70,6 @@ module Spree
         defined?(Spree::Backend::Engine) == "constant"
       end
 
-      def self.dash_available?
-        defined?(Spree::Dash::Engine) == "constant"
-      end
-
       def self.frontend_available?
         defined?(Spree::Frontend::Engine) == "constant"
       end
