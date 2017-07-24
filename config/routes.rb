@@ -1,6 +1,6 @@
 Spree::Core::Engine.routes.draw do
   if (
-    Spree::Auth::Engine.frontend_available? &&
+    SolidusSupport.frontend_available? &&
     Spree::Auth::Config.draw_frontend_routes
   )
 
@@ -39,7 +39,7 @@ Spree::Core::Engine.routes.draw do
   end
 
   if (
-    Spree::Auth::Engine.backend_available? &&
+    SolidusSupport.backend_available? &&
     Spree::Auth::Config.draw_backend_routes
   )
 
