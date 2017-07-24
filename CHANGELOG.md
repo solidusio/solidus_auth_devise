@@ -1,5 +1,13 @@
 ## Master (unreleased)
 
+## Solidus Auth Devise v1.6.4 (2017-07-24)
+
+* Fix error trying to call helper_method in api-only applications
+* Fix deprecated devise `bypass` option
+* Pin development dependencies to minor versions
+* Update outdated development dependencies
+* Remove implicit dependency on highline
+
 ## Solidus Auth Devise v1.6.3 (2017-05-09)
 
 * Add missing translations for already_authenticated
