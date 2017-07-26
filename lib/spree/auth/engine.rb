@@ -18,8 +18,8 @@ module Spree
       config.to_prepare do
         auth = Spree::Auth::Engine
 
-        auth.prepare_backend if auth.backend_available?
-        auth.prepare_frontend if auth.frontend_available?
+        auth.prepare_backend  if SolidusSupport.backend_available?
+        auth.prepare_frontend if SolidusSupport.frontend_available?
 
         ApplicationController.send :include, Spree::AuthenticationHelpers
       end
@@ -66,20 +66,12 @@ module Spree
         end
       end
 
-      def self.backend_available?
-        defined?(Spree::Backend::Engine) == "constant"
-      end
-
-      def self.frontend_available?
-        defined?(Spree::Frontend::Engine) == "constant"
-      end
-
-      if backend_available?
+      if SolidusSupport.backend_available?
         paths["app/controllers"] << "lib/controllers/backend"
         paths["app/views"] << "lib/views/backend"
       end
 
-      if frontend_available?
+      if SolidusSupport.frontend_available?
         paths["app/controllers"] << "lib/controllers/frontend"
         paths["app/views"] << "lib/views/frontend"
       end
