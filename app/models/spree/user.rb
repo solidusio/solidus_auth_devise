@@ -10,8 +10,6 @@ module Spree
     after_destroy :scramble_email_and_password
     before_update { generate_spree_api_key if encrypted_password_changed? && spree_api_key.present? }
 
-    has_many :orders
-
     before_validation :set_login
 
     users_table_name = User.table_name
