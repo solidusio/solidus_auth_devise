@@ -1,5 +1,7 @@
 ## Master (unreleased)
 
+* Drop support for Solidus v1.0 and v1.1
+
 ## Solidus Auth Devise v1.6.4 (2017-07-24)
 
 * Fix error trying to call helper_method in api-only applications
