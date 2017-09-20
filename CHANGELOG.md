@@ -1,5 +1,7 @@
 ## Master (unreleased)
 
+## Solidus Auth Devise v2.0.0 (2017-09-20)
+
 * Drop support for Solidus v1.0 and v1.1
 * Use `match` for Devise logout route
 * Remove references to dash
