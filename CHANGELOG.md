@@ -1,6 +1,11 @@
 ## Master (unreleased)
 
 * Drop support for Solidus v1.0 and v1.1
+* Use `match` for Devise logout route
+* Remove references to dash
+* Leverage `*_available?` helpers from `solidus-support`
+* Use `spec_helper` from `solidus-support`
+* Correct `set_current_order` callback for newer versions of Solidus
 
 ## Solidus Auth Devise v1.6.4 (2017-07-24)
 
