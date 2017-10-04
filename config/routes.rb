@@ -46,13 +46,13 @@ Spree::Core::Engine.routes.draw do
     namespace :admin do
       devise_for(:spree_user, {
         class_name: 'Spree::User',
+        singular: :spree_user,
+        skip: :all,
+        path_names: { sign_out: 'logout' },
         controllers: {
           sessions: 'spree/admin/user_sessions',
           passwords: 'spree/admin/user_passwords'
         },
-        skip: [:unlocks, :omniauth_callbacks, :registrations],
-        path_names: { sign_out: 'logout' },
-        path_prefix: :user
       })
 
       devise_scope :spree_user do
@@ -60,6 +60,11 @@ Spree::Core::Engine.routes.draw do
         get '/login', to: 'user_sessions#new', as: :login
         post '/login', to: 'user_sessions#create', as: :create_new_session
         get '/logout', to: 'user_sessions#destroy', as: :logout
+
+        get '/password/recover', to: 'user_passwords#new', as: :recover_password
+        post '/password/recover', to: 'user_passwords#create', as: :reset_password
+        get '/password/change', to: 'user_passwords#edit', as: :edit_password
+        put '/password/change', to: 'user_passwords#update', as: :update_password
       end
     end
   end

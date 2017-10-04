@@ -25,7 +25,7 @@
       <p><%= f.submit Spree.t(:login), class: 'button primary', tabindex: 4 %></p>
     <% end %>
     <%= Spree.t(:or) %>
-    <%= link_to Spree.t(:forgot_password), spree.recover_password_path %>
+    <%= link_to Spree.t(:forgot_password), spree.admin_recover_password_path %>
   </div>
 </div>
 <div data-hook="login_extras"></div>
