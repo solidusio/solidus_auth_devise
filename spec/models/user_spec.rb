@@ -34,31 +34,32 @@ RSpec.describe Spree::User, type: :model do
     end
   end
 
-  context '#destroy' do
-    it 'will soft delete' do
-      order = build(:order, completed_at: Time.now)
-      order.save
-      user = order.user
-      user.destroy
-      expect(Spree::User.find_by_id(user.id)).to be_nil
-      expect(Spree::User.with_deleted.find_by_id(user.id).id).to eq(user.id)
-      expect(Spree::User.with_deleted.find_by_id(user.id).orders.first).to eq(order)
+  describe '#destroy' do
+    # Users with orders are not deletable in Solidus core
+    # therefore we cannot test this behaviour here.
+    # Also there are already sufficient specs in core.
+    let(:user) { create(:user) }
 
-      expect(Spree::Order.find_by_user_id(user.id)).not_to be_nil
-      expect(Spree::Order.where(user_id: user.id).first).to eq(order)
+    it 'acts_as_paranoid' do
+      # Instead of testing implementation details of `acts_as_paranoid`
+      # we are testing that we are using `acts_as_paranoid` by using duck typing
+      expect(described_class).to respond_to(:with_deleted)
+      expect(user).to respond_to(:deleted_at)
     end
 
-    it 'will allow users to register later with same email address as previously deleted account' do
-      user1 = build(:user)
-      user1.save
+    context 'with same email address as previously deleted account' do
+      it 'will allow users to register later' do
+        user1 = build(:user)
+        user1.save
 
-      user2 = build(:user)
-      user2.email = user1.email
-      expect(user2.save).to be false
-      expect(user2.errors.messages[:email].first).to eq "has already been taken"
+        user2 = build(:user)
+        user2.email = user1.email
+        expect(user2.save).to be false
+        expect(user2.errors.messages[:email].first).to eq "has already been taken"
 
-      user1.destroy
-      expect(user2.save).to be true
+        user1.destroy
+        expect(user2.save).to be true
+      end
     end
   end
 
