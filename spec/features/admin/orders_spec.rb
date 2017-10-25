@@ -12,7 +12,7 @@ RSpec.feature 'Admin orders', type: :feature do
 
   # Regression #203
   scenario 'can new orders' do
-    FactoryGirl.create(:country)
+    FactoryBot.create(:country)
     expect { visit spree.new_admin_order_path }.not_to raise_error
   end
 
