@@ -1,5 +1,4 @@
-override_required = !Spree.respond_to?(:solidus_version) || Spree.solidus_version < '1.2'
-if override_required
+if SolidusSupport.solidus_gem_version < Gem::Version.new('1.2')
   Deface::Override.new(
     virtual_path: "spree/admin/shared/_header",
     name: "auth_admin_login_navigation_bar",
