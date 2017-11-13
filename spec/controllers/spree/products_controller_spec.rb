@@ -15,7 +15,13 @@ RSpec.describe Spree::ProductsController, type: :controller do
     allow(controller).to receive(:before_save_new_order)
     allow(controller).to receive(:spree_current_user) { user }
     allow(user).to receive(:has_spree_role?) { false }
-    get :show, params: { id: product.to_param }
-    expect(response.status).to eq(404)
+    if SolidusSupport.solidus_gem_version < Gem::Version.new('2.5.x')
+      get :show, params: { id: product.to_param }
+      expect(response.status).to eq(404)
+    else
+      expect {
+        get :show, params: { id: product.to_param }
+      }.to raise_error(ActiveRecord::RecordNotFound)
+    end
   end
 end
