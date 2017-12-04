@@ -5,7 +5,7 @@ Spree::Core::Engine.routes.draw do
   )
 
     devise_for(:spree_user, {
-      class_name: 'Spree::User',
+      class_name: Spree.user_class,
       controllers: {
         sessions: 'spree/user_sessions',
         registrations: 'spree/user_registrations',
@@ -45,7 +45,7 @@ Spree::Core::Engine.routes.draw do
 
     namespace :admin do
       devise_for(:spree_user, {
-        class_name: 'Spree::User',
+        class_name: Spree.user_class,
         singular: :spree_user,
         skip: :all,
         path_names: { sign_out: 'logout' },
