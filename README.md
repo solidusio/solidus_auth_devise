@@ -10,6 +10,9 @@ Just add this line to your `Gemfile`:
 
 ```ruby
 gem "solidus_auth_devise"
+
+# For Solidus versions < 2.5
+# gem 'deface'
 ```
 
 Then, run `bundle install`.
