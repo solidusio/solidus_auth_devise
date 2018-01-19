@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency "solidus_support", ">= 0.1.3"
   s.add_dependency "devise", '~> 4.1'
   s.add_dependency "devise-encryptable", "0.2.0"
+  s.add_dependency "devise-i18n"
 
   s.add_development_dependency "capybara", "~> 2.14"
   s.add_development_dependency "capybara-screenshot"
