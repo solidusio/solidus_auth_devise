@@ -1,6 +1,12 @@
 ## Master (unreleased)
 
-* Avoid requiring deface on Solidus 2.5+
+## Solidus Auth Devise v2.1.0 (2018-01-22)
+
+* Avoid requiring deface on Solidus 2.5+.
+
+  On older versions, you may need to add `gem 'deface'` to your gemfile.
+
+* Remove reference to unused admin tables helper removed from Solidus 2.5
 
 ## Solidus Auth Devise v2.0.0 (2017-09-20)
 
