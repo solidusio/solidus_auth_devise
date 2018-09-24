@@ -21,7 +21,9 @@ module Spree
         auth.prepare_backend  if SolidusSupport.backend_available?
         auth.prepare_frontend if SolidusSupport.frontend_available?
 
-        ApplicationController.send :include, Spree::AuthenticationHelpers
+        ActiveSupport.on_load(:action_controller) do
+          ApplicationController.include Spree::AuthenticationHelpers
+        end
       end
 
       def self.prepare_backend
@@ -34,13 +36,15 @@ module Spree
           Rails.configuration.cache_classes ? require(c) : load(c)
         end
 
-        Spree::Admin::BaseController.unauthorized_redirect = -> do
-          if try_spree_current_user
-            flash[:error] = Spree.t(:authorization_failure)
-            redirect_to spree.admin_unauthorized_path
-          else
-            store_location
-            redirect_to spree.admin_login_path
+        ActiveSupport.on_load(:action_controller) do
+          Spree::Admin::BaseController.unauthorized_redirect = -> do
+            if try_spree_current_user
+              flash[:error] = Spree.t(:authorization_failure)
+              redirect_to spree.admin_unauthorized_path
+            else
+              store_location
+              redirect_to spree.admin_login_path
+            end
           end
         end
       end
@@ -55,13 +59,15 @@ module Spree
           Rails.configuration.cache_classes ? require(c) : load(c)
         end
 
-        Spree::BaseController.unauthorized_redirect = -> do
-          if try_spree_current_user
-            flash[:error] = Spree.t(:authorization_failure)
-            redirect_to spree.unauthorized_path
-          else
-            store_location
-            redirect_to spree.login_path
+        ActiveSupport.on_load(:action_controller) do
+          Spree::BaseController.unauthorized_redirect = -> do
+            if try_spree_current_user
+              flash[:error] = Spree.t(:authorization_failure)
+              redirect_to spree.unauthorized_path
+            else
+              store_location
+              redirect_to spree.login_path
+            end
           end
         end
       end
