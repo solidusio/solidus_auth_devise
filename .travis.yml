@@ -14,6 +14,7 @@ env:
     - SOLIDUS_BRANCH=v2.4 DB=postgres
     - SOLIDUS_BRANCH=v2.5 DB=postgres
     - SOLIDUS_BRANCH=v2.6 DB=postgres
+    - SOLIDUS_BRANCH=v2.7 DB=postgres
     - SOLIDUS_BRANCH=master DB=postgres
     - SOLIDUS_BRANCH=v1.2 DB=mysql
     - SOLIDUS_BRANCH=v1.3 DB=mysql
@@ -25,4 +26,5 @@ env:
     - SOLIDUS_BRANCH=v2.4 DB=mysql
     - SOLIDUS_BRANCH=v2.5 DB=mysql
     - SOLIDUS_BRANCH=v2.6 DB=mysql
+    - SOLIDUS_BRANCH=v2.7 DB=mysql
     - SOLIDUS_BRANCH=master DB=mysql
