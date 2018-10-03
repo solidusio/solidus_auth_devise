@@ -9,10 +9,18 @@ group :test do
   else
     gem "rails_test_params_backport"
   end
+  if branch < "v2.5"
+    gem 'factory_bot', '4.10.0'
+  else
+    gem 'factory_bot', '> 4.10.0'
+  end
 end
 
-gem 'pg', '~> 0.21'
-gem 'mysql2', '~> 0.4.10'
+if ENV['DB'] == 'mysql'
+  gem 'mysql2', '~> 0.4.10'
+else
+  gem 'pg', '~> 0.21'
+end
 
 group :development, :test do
   gem "pry-rails"
