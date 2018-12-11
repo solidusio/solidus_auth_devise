@@ -14,7 +14,7 @@ class Spree::Admin::UserSessionsController < Devise::SessionsController
     if spree_user_signed_in?
       respond_to do |format|
         format.html {
-          flash[:success] = Spree.t(:logged_in_succesfully)
+          flash[:success] = I18n.t('spree.logged_in_succesfully')
           redirect_back_or_default(after_sign_in_path_for(spree_current_user))
         }
         format.js {
@@ -33,7 +33,7 @@ class Spree::Admin::UserSessionsController < Devise::SessionsController
 
   private
     def accurate_title
-      Spree.t(:login)
+      I18n.t('spree.login')
     end
 
     def redirect_back_or_default(default)
