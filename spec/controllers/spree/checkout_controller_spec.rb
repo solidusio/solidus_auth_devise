@@ -94,7 +94,7 @@ RSpec.describe Spree::CheckoutController, type: :controller do
           request.cookie_jar.signed[:guest_token] = 'ABC'
           post :update, params: { state: 'confirm' }
           expect(response).to redirect_to spree.token_order_path(order, 'ABC')
-          expect(flash.notice).to eq Spree.t(:order_processed_successfully)
+          expect(flash.notice).to eq I18n.t('spree.order_processed_successfully')
         end
       end
 

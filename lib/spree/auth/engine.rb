@@ -36,7 +36,7 @@ module Spree
 
         Spree::Admin::BaseController.unauthorized_redirect = -> do
           if try_spree_current_user
-            flash[:error] = Spree.t(:authorization_failure)
+            flash[:error] = I18n.t('spree.authorization_failure')
             redirect_to spree.admin_unauthorized_path
           else
             store_location
@@ -57,7 +57,7 @@ module Spree
 
         Spree::BaseController.unauthorized_redirect = -> do
           if try_spree_current_user
-            flash[:error] = Spree.t(:authorization_failure)
+            flash[:error] = I18n.t('spree.authorization_failure')
             redirect_to spree.unauthorized_path
           else
             store_location
