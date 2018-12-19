@@ -46,5 +46,5 @@ fr:
       not_found: "n'a pas été trouvé"
       not_locked: "n'a pas été bloqué"
       not_saved:
-        one: "1 erreur interdit cette %{ressource} d'être enregistrée :"
+        one: "1 erreur interdit cette %{resource} d'être enregistrée :"
         other: "%{count} erreurs interdisent cette %{resource} d'être enregistrée :"
