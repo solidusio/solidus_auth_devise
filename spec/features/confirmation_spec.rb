@@ -2,12 +2,10 @@ require 'spec_helper'
 
 feature 'Confirmation' do
   before do
-    set_confirmable_option(true)
+    set_confirmable_option(false)
     allow(Spree::UserMailer).to receive(:confirmation_instructions)
       .and_return(double(deliver: true))
   end
-
-  #after(:each) { set_confirmable_option(false) }
 
   let!(:store) { create(:store) }
 
