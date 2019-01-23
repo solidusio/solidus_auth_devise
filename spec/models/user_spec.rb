@@ -78,11 +78,9 @@ RSpec.describe Spree::User, type: :model do
   end
 
   describe "confirmable" do
-    before { skip "this introduces a run order dependency" }
-
     it "is confirmable if the confirmable option is enabled" do
       set_confirmable_option(true)
-      Spree::UserMailer.stub(:confirmation_instructions).and_return(double(deliver: true))
+      allow(Spree::UserMailer).to receive(:confirmation_instructions).and_return(double(deliver: true))
       expect(Spree::User.devise_modules).to include(:confirmable)
       set_confirmable_option(false)
     end
