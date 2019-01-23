@@ -29,6 +29,10 @@ module Spree
       has_spree_role?('admin')
     end
 
+    def confirmed?
+      !!confirmed_at
+    end
+
     protected
       def password_required?
         !persisted? || password.present? || password_confirmation.present?
