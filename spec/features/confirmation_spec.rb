@@ -2,15 +2,10 @@ require 'spec_helper'
 
 feature 'Confirmation' do
   before do
-   skip "this introduces a run order dependency"
+    set_confirmable_option(false)
+    allow(Spree::UserMailer).to receive(:confirmation_instructions)
+      .and_return(double(deliver: true))
   end
-
-  before do
-    set_confirmable_option(true)
-    Spree::UserMailer.stub(:confirmation_instructions).and_return(double(deliver: true))
-  end
-
-  #after(:each) { set_confirmable_option(false) }
 
   let!(:store) { create(:store) }
 
@@ -18,7 +13,7 @@ feature 'Confirmation' do
     ActionMailer::Base.default_url_options[:host] = 'http://example.com'
   end
 
-  scenario 'create a new user' do
+  scenario 'create a new user', :js do
     visit spree.signup_path
 
     fill_in 'Email', with: 'email@person.com'

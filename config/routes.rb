@@ -14,7 +14,8 @@ Spree::Core::Engine.routes.draw do
       },
       skip: [:unlocks, :omniauth_callbacks],
       path_names: { sign_out: 'logout' },
-      path_prefix: :user
+      path_prefix: :user,
+      router_name: :spree
     })
 
     resources :users, only: [:edit, :update]
@@ -53,6 +54,7 @@ Spree::Core::Engine.routes.draw do
           sessions: 'spree/admin/user_sessions',
           passwords: 'spree/admin/user_passwords'
         },
+        router_name: :spree
       })
 
       devise_scope :spree_user do
