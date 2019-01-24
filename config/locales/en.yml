@@ -2,6 +2,7 @@
 en:
   spree:
     admin_login: Admin Login
+    change_my_password: Change my password
   devise:
     confirmations:
       confirmed: Your account was successfully confirmed. You are now signed in.
