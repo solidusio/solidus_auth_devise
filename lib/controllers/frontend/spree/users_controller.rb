@@ -25,6 +25,8 @@ class Spree::UsersController < Spree::StoreController
 
   def update
     if @user.update_attributes(user_params)
+      spree_current_user.reload
+
       if params[:user][:password].present?
         # this logic needed b/c devise wants to log us out after password changes
         unless Spree::Auth::Config[:signout_after_password_change]
