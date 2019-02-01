@@ -4,11 +4,8 @@ RSpec.describe Spree::UsersController, type: :controller do
   let(:user) { create(:user) }
   let(:role) { create(:role) }
 
-  before { allow(controller).to receive(:spree_current_user) { user } }
-
   context '#load_object' do
     it 'redirects to signup path if user is not found' do
-      allow(controller).to receive(:spree_current_user) { nil }
       put :update, params: { user: { email: 'foobar@example.com' } }
       expect(response).to redirect_to spree.login_path
     end
@@ -22,11 +19,32 @@ RSpec.describe Spree::UsersController, type: :controller do
   end
 
   context '#update' do
+    before { sign_in(user) }
+
     context 'when updating own account' do
-      it 'performs update' do
-        put :update, params: { user: { email: 'mynew@email-address.com' } }
-        expect(assigns[:user].email).to eq 'mynew@email-address.com'
-        expect(response).to redirect_to spree.account_url(only_path: true)
+
+      context 'when user updated successfuly' do
+        before { put :update, params: { user: { email: 'mynew@email-address.com' } } }
+
+        it 'saves user' do
+          expect(assigns[:user].email).to eq 'mynew@email-address.com'
+        end
+
+        it 'updates spree_current_user' do
+          expect(subject.spree_current_user.email).to eq 'mynew@email-address.com'
+        end
+
+        it 'redirects to account url' do
+          expect(response).to redirect_to spree.account_url(only_path: true)
+        end
+      end
+
+      context 'when user not valid' do
+        before { put :update, params: { user: { email: '' } } }
+
+        it 'does not affect spree_current_user' do
+          expect(subject.spree_current_user.email).to eq user.email
+        end
       end
     end
 
