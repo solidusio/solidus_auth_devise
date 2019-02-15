@@ -1,0 +1,11 @@
+version: 2.1
+
+orbs:
+  solidusio_extensions: solidusio/extensions@0.0.1
+
+jobs:
+  build:
+    executor: solidusio_extensions/postgres
+    steps:
+      - solidusio_extensions/run-tests
+
