@@ -31,7 +31,6 @@ class RenameColumnsForDevise < SolidusSupport::Migration[4.2]
     rename_column :spree_users, :remember_created_at, :remember_token_expires_at
     rename_column :spree_users, :password_salt, :salt
     rename_column :spree_users, :encrypted_password, :crypted_password
-    add_column :spree_users, :unlock_token, :string
     add_column :spree_users, :openid_identifier, :string
   end
 end
