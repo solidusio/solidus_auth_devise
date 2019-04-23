@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 Spree::Core::Engine.routes.draw do
-  if (
+  if
     SolidusSupport.frontend_available? &&
     Spree::Auth::Config.draw_frontend_routes
-  )
 
     devise_for(:spree_user, {
       class_name: 'Spree::User',
@@ -39,10 +40,9 @@ Spree::Core::Engine.routes.draw do
     resource :account, controller: 'users'
   end
 
-  if (
+  if
     SolidusSupport.backend_available? &&
     Spree::Auth::Config.draw_backend_routes
-  )
 
     namespace :admin do
       devise_for(:spree_user, {

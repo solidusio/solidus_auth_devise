@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.configure do |config|
   config.after do
     Spree::Ability.abilities.delete(AbilityDecorator) if Spree::Ability.abilities.include?(AbilityDecorator)
@@ -8,7 +10,7 @@ if defined? CanCan::Ability
   class AbilityDecorator
     include CanCan::Ability
 
-    def initialize(user)
+    def initialize(_user)
       cannot :manage, Spree::Order
     end
   end

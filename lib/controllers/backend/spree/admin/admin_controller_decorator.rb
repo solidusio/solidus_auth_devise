@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Spree::Admin::BaseController.class_eval do
   protected
 
@@ -6,6 +8,7 @@ Spree::Admin::BaseController.class_eval do
     if Spree.const_defined?(const_name, false)
       return "Spree::#{const_name}".constantize
     end
+
     nil
   end
 end

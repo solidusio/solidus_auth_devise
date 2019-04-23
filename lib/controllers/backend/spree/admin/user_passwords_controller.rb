@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Spree::Admin::UserPasswordsController < Devise::PasswordsController
   helper 'spree/base'
 
@@ -39,5 +41,4 @@ class Spree::Admin::UserPasswordsController < Devise::PasswordsController
       super
     end
   end
-
 end

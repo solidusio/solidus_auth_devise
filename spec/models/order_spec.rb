@@ -1,5 +1,6 @@
-RSpec.describe Spree::Order, type: :model do
+# frozen_string_literal: true
 
+RSpec.describe Spree::Order, type: :model do
   let(:order) { described_class.new }
 
   context '#associate_user!' do

@@ -1,5 +1,6 @@
-RSpec.describe Spree::CheckoutController, type: :controller do
+# frozen_string_literal: true
 
+RSpec.describe Spree::CheckoutController, type: :controller do
   let(:order) { create(:order_with_line_items, email: nil, user: nil, guest_token: token) }
   let(:user)  { build(:user, spree_api_key: 'fake') }
   let(:token) { 'some_token' }

@@ -1,5 +1,6 @@
-RSpec.feature 'Orders', :js, type: :feature do
+# frozen_string_literal: true
 
+RSpec.feature 'Orders', :js, type: :feature do
   scenario 'allow a user to view their cart at any time' do
     visit spree.cart_path
     expect(page).to have_text 'Your cart is empty'

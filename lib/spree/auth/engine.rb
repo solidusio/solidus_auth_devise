@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'devise'
 require 'devise-encryptable'
 
@@ -7,7 +9,7 @@ module Spree
       isolate_namespace Spree
       engine_name 'solidus_auth'
 
-      initializer "spree.auth.environment", before: :load_config_initializers do |app|
+      initializer "spree.auth.environment", before: :load_config_initializers do |_app|
         Spree::Auth::Config = Spree::AuthConfiguration.new
       end
 

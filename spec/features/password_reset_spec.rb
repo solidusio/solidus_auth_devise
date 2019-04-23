@@ -1,5 +1,6 @@
-RSpec.feature 'Reset Password', type: :feature do
+# frozen_string_literal: true
 
+RSpec.feature 'Reset Password', type: :feature do
   let!(:store) { create(:store) }
 
   background do

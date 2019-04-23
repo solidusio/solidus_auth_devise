@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module Solidus
   module Auth
     module Generators
       class InstallGenerator < Rails::Generators::Base
         def self.source_paths
-          paths = self.superclass.source_paths
-          paths << File.expand_path('../templates', __FILE__)
+          paths = superclass.source_paths
+          paths << File.expand_path('templates', __dir__)
           paths.flatten
         end
 

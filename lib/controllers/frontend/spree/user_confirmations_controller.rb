@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Spree::UserConfirmationsController < Devise::ConfirmationsController
   helper 'spree/base', 'spree/store'
 

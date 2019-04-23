@@ -1,4 +1,4 @@
-# encoding: UTF-8
+# frozen_string_literal: true
 
 $:.unshift File.expand_path('lib', __dir__)
 require 'spree/auth/version'
@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.email        = 'contact@solidus.io'
 
   s.required_ruby_version = ">= 2.1"
-  s.license     = %q{BSD-3}
+  s.license = 'BSD-3'
 
   s.files        = `git ls-files`.split("\n")
   s.test_files   = `git ls-files -- spec/*`.split("\n")
@@ -23,10 +23,10 @@ Gem::Specification.new do |s|
 
   solidus_version = [">= 1.2.0", "< 3"]
 
-  s.add_dependency "solidus_core", solidus_version
-  s.add_dependency "solidus_support", ">= 0.1.3"
   s.add_dependency "devise", '~> 4.1'
   s.add_dependency "devise-encryptable", "0.2.0"
+  s.add_dependency "solidus_core", solidus_version
+  s.add_dependency "solidus_support", ">= 0.1.3"
 
   s.add_development_dependency "capybara", "~> 2.14"
   s.add_development_dependency "capybara-screenshot"

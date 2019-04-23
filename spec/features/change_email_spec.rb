@@ -1,5 +1,6 @@
-RSpec.feature 'Change email', type: :feature do
+# frozen_string_literal: true
 
+RSpec.feature 'Change email', type: :feature do
   background do
     Spree::Auth::Config.set(signout_after_password_change: false)
 
