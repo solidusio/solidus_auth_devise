@@ -18,10 +18,7 @@ module Spree
 
     before_validation :set_login
 
-    users_table_name = User.table_name
-    roles_table_name = Role.table_name
-
-    scope :admin, -> { includes(:spree_roles).where("#{roles_table_name}.name" => "admin") }
+    scope :admin, -> { includes(:spree_roles).where("#{Role.table_name}.name" => "admin") }
 
     def self.admin_created?
       User.admin.count > 0

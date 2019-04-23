@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.author       = 'Solidus Team'
   s.email        = 'contact@solidus.io'
 
-  s.required_ruby_version = ">= 2.1"
+  s.required_ruby_version = ">= 2.2"
   s.license = 'BSD-3'
 
   s.files        = `git ls-files`.split("\n")

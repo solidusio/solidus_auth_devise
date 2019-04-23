@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Spree::UsersController < Spree::StoreController
   skip_before_action :set_current_order, only: :show, raise: false
   prepend_before_action :load_object, only: [:show, :edit, :update]
@@ -40,20 +42,21 @@ class Spree::UsersController < Spree::StoreController
   end
 
   private
-    def user_params
-      params.require(:user).permit(Spree::PermittedAttributes.user_attributes | [:email])
-    end
 
-    def load_object
-      @user ||= Spree::User.find_by(id: spree_current_user&.id)
-      authorize! params[:action].to_sym, @user
-    end
+  def user_params
+    params.require(:user).permit(Spree::PermittedAttributes.user_attributes | [:email])
+  end
 
-    def authorize_actions
-      authorize! params[:action].to_sym, Spree::User.new
-    end
+  def load_object
+    @user ||= Spree::User.find_by(id: spree_current_user&.id)
+    authorize! params[:action].to_sym, @user
+  end
 
-    def accurate_title
-      I18n.t('spree.my_account')
-    end
+  def authorize_actions
+    authorize! params[:action].to_sym, Spree::User.new
+  end
+
+  def accurate_title
+    I18n.t('spree.my_account')
+  end
 end

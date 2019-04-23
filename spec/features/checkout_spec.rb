@@ -111,7 +111,7 @@ RSpec.feature 'Checkout', :js, type: :feature do
 
     # Regression test for #890
     scenario 'associate an incomplete guest order with user after successful password reset' do
-      user = create(:user, email: 'email@person.com', password: 'password', password_confirmation: 'password')
+      create(:user, email: 'email@person.com', password: 'password', password_confirmation: 'password')
       click_link 'RoR Mug'
       click_button 'Add To Cart'
 
