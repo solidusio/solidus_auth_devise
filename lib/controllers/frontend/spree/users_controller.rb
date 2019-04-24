@@ -48,7 +48,7 @@ class Spree::UsersController < Spree::StoreController
   end
 
   def load_object
-    @user ||= Spree::User.find_by(id: spree_current_user&.id)
+    @user ||= Spree::User.find_by(id: spree_current_user && spree_current_user.id)
     authorize! params[:action].to_sym, @user
   end
 
