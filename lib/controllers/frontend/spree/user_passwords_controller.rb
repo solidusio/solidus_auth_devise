@@ -6,24 +6,6 @@ class Spree::UserPasswordsController < Devise::PasswordsController
   include Spree::Core::ControllerHelpers::Order
   include Spree::Core::ControllerHelpers::Store
 
-  # Overridden due to bug in Devise.
-  #   respond_with resource, location: new_session_path(resource_name)
-  # is generating bad url /session/new.user
-  #
-  # overridden to:
-  #   respond_with resource, location: spree.login_path
-  #
-  def create
-    self.resource = resource_class.send_reset_password_instructions(params[resource_name])
-
-    if resource.errors.empty?
-      set_flash_message(:notice, :send_instructions) if is_navigational_format?
-      respond_with resource, location: spree.login_path
-    else
-      respond_with_navigational(resource) { render :new }
-    end
-  end
-
   # Devise::PasswordsController allows for blank passwords.
   # Silly Devise::PasswordsController!
   # Fixes spree/spree#2190.
@@ -39,6 +21,10 @@ class Spree::UserPasswordsController < Devise::PasswordsController
   end
 
   protected
+
+  def after_sending_reset_password_instructions_path_for(_)
+    spree.login_path
+  end
 
   def translation_scope
     'devise.user_passwords'
