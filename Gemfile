@@ -5,7 +5,7 @@ gem "solidus", github: "solidusio/solidus", branch: branch
 
 group :test do
   if branch == 'master' || branch >= "v2.0"
-    gem "rails-controller-testing"
+    gem 'rails-controller-testing', '~> 1.0'
   else
     gem "rails_test_params_backport"
   end
@@ -23,9 +23,9 @@ else
 end
 
 group :development, :test do
-  gem "pry-rails"
+  gem 'pry-rails', '~> 0.3.9'
 end
 
-gem 'deface', require: false
+gem 'deface', '~> 1.3', require: false
 
 gemspec
