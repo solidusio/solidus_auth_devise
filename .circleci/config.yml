@@ -1,11 +1,20 @@
 version: 2.1
 
 orbs:
-  solidusio_extensions: solidusio/extensions@0.1.0
+  solidusio_extensions: solidusio/extensions@0.1.1
 
 jobs:
-  build:
+  run-specs-with-postgres:
     executor: solidusio_extensions/postgres
     steps:
       - solidusio_extensions/run-tests
+  run-specs-with-mysql:
+    executor: solidusio_extensions/mysql
+    steps:
+      - solidusio_extensions/run-tests
 
+workflows:
+  "Run specs on supported Solidus versions":
+    jobs:
+      - run-specs-with-postgres
+      - run-specs-with-mysql
