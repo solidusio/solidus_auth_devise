@@ -1,9 +1,12 @@
 # encoding: UTF-8
 
+$:.unshift File.expand_path('lib', __dir__)
+require 'spree/auth/version'
+
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = "solidus_auth_devise"
-  s.version     = "2.1.0"
+  s.version     = Spree::Auth::VERSION
   s.summary     = "Provides authentication and authorization services for use with Solidus by using Devise and CanCan."
   s.description = s.summary
 
@@ -30,6 +33,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "coffee-rails"
   s.add_development_dependency "database_cleaner", "~> 1.6"
   s.add_development_dependency "ffaker"
+  s.add_development_dependency "gem-release", "~> 2.0"
   s.add_development_dependency "poltergeist", "~> 1.5"
   s.add_development_dependency "rspec-rails", "~> 3.3"
   s.add_development_dependency "sass-rails"
