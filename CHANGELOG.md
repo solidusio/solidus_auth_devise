@@ -1,5 +1,21 @@
 ## Master (unreleased)
 
+## Solidus Auth Devise v2.2.0 (2019-06-13)
+
+* Add DB index to `reset_password_token` field
+* Add missing pessimistic versioning
+* Add missing translation to `spree.change_my_password`
+* Allow Spree::Admin::UserPasswordsController to be accessed from admin
+* Disable backend footer profile edit link if role cannot edit users
+* Fix issue with redirections using routes like `new_spree_user_session_url`
+* Fix migration `20101026184950` `down` method
+* Fix to not reuse spree_current_user as `@user`
+* Replace Spree.t with I18n.t
+* Lock mysql2 to 0.4.x
+* Lock SQLite3 to version 1.3
+* Remove FactoryBot warnings
+* Configure CI to ensure support on ruby 2.3 + Solidus 2.4 - 2.8
+
 ## Solidus Auth Devise v2.1.0 (2018-01-22)
 
 * Avoid requiring deface on Solidus 2.5+.
