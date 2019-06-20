@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Spree::Admin::UserSessionsController < Devise::SessionsController
   helper 'spree/base'
 
@@ -19,7 +21,7 @@ class Spree::Admin::UserSessionsController < Devise::SessionsController
         }
         format.js {
           user = resource.record
-          render json: {ship_address: user.ship_address, bill_address: user.bill_address}.to_json
+          render json: { ship_address: user.ship_address, bill_address: user.bill_address }.to_json
         }
       end
     else
@@ -32,12 +34,13 @@ class Spree::Admin::UserSessionsController < Devise::SessionsController
   end
 
   private
-    def accurate_title
-      I18n.t('spree.login')
-    end
 
-    def redirect_back_or_default(default)
-      redirect_to(session["spree_user_return_to"] || default)
-      session["spree_user_return_to"] = nil
-    end
+  def accurate_title
+    I18n.t('spree.login')
+  end
+
+  def redirect_back_or_default(default)
+    redirect_to(session["spree_user_return_to"] || default)
+    session["spree_user_return_to"] = nil
+  end
 end

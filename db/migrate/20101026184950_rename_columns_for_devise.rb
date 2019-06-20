@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 class RenameColumnsForDevise < SolidusSupport::Migration[4.2]
   def up
     return if column_exists?(:spree_users, :password_salt)
+
     rename_column :spree_users, :crypted_password, :encrypted_password
     rename_column :spree_users, :salt, :password_salt
     rename_column :spree_users, :remember_token_expires_at, :remember_created_at

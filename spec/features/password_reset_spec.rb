@@ -1,5 +1,6 @@
-RSpec.feature 'Reset Password', type: :feature do
+# frozen_string_literal: true
 
+RSpec.feature 'Reset Password', type: :feature do
   let!(:store) { create(:store) }
 
   background do
@@ -7,7 +8,7 @@ RSpec.feature 'Reset Password', type: :feature do
   end
 
   scenario 'allow a user to supply an email for the password reset' do
-    user = create(:user, email: 'foobar@example.com', password: 'secret', password_confirmation: 'secret')
+    create(:user, email: 'foobar@example.com', password: 'secret', password_confirmation: 'secret')
     visit spree.login_path
     click_link 'Forgot Password?'
     fill_in 'Email', with: 'foobar@example.com'

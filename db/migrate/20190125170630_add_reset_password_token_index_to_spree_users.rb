@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class AddResetPasswordTokenIndexToSpreeUsers < SolidusSupport::Migration[4.2]
   # We're not using the standard Rails index name because somebody could have
-  # already added that index to the table. By using a custom name we ensure
+  #  already added that index to the table. By using a custom name we ensure
   # that the index can effectively be added and removed via migrations/rollbacks
-  # without having any impact on such installations. The index name is Rails
+  #  without having any impact on such installations. The index name is Rails
   # standard name + "_solidus_auth_devise"; the length is 61 chars which is
   # still OK for Sqlite, mySQL and Postgres.
   def custom_index_name

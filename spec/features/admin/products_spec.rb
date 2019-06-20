@@ -1,5 +1,6 @@
-RSpec.feature 'Admin products', type: :feature do
+# frozen_string_literal: true
 
+RSpec.feature 'Admin products', type: :feature do
   context 'as anonymous user' do
     # Regression test for #1250
     scenario 'redirects to login page when attempting to access product listing' do

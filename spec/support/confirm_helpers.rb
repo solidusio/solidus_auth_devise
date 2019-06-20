@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ConfirmHelpers
   def set_confirmable_option(value)
     if value

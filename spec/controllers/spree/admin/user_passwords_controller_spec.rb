@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Spree::Admin::UserPasswordsController, type: :controller do
   before { @request.env['devise.mapping'] = Devise.mappings[:spree_user] }
 

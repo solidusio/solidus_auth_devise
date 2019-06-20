@@ -1,5 +1,6 @@
-RSpec.feature 'Admin orders', type: :feature do
+# frozen_string_literal: true
 
+RSpec.feature 'Admin orders', type: :feature do
   background do
     create(:store)
     sign_in_as! create(:admin_user)

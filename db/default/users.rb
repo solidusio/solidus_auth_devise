@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # see last line where we create an admin if there is none, asking for email and password
 def prompt_for_admin_password
   if ENV['ADMIN_PASSWORD']
@@ -31,15 +33,15 @@ def create_admin_user
     email = 'admin@example.com'
   else
     puts 'Create the admin user (press enter for defaults).'
-    #name = prompt_for_admin_name unless name
+    # name = prompt_for_admin_name unless name
     email = prompt_for_admin_email
     password = prompt_for_admin_password
   end
   attributes = {
-    :password => password,
-    :password_confirmation => password,
-    :email => email,
-    :login => email
+    password: password,
+    password_confirmation: password,
+    email: email,
+    login: email
   }
 
   load 'spree/user.rb'

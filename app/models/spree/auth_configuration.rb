@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Spree
   class AuthConfiguration < Preferences::Configuration
     preference :registration_step, :boolean, default: true

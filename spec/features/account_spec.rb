@@ -1,5 +1,6 @@
-RSpec.feature 'Accounts', type: :feature do
+# frozen_string_literal: true
 
+RSpec.feature 'Accounts', type: :feature do
   context 'editing' do
     scenario 'can edit an admin user' do
       user = create(:admin_user, email: 'admin@person.com', password: 'password', password_confirmation: 'password')

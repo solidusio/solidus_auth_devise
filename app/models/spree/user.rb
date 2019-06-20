@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Spree
   class User < Spree::Base
     include UserMethods
@@ -16,10 +18,7 @@ module Spree
 
     before_validation :set_login
 
-    users_table_name = User.table_name
-    roles_table_name = Role.table_name
-
-    scope :admin, -> { includes(:spree_roles).where("#{roles_table_name}.name" => "admin") }
+    scope :admin, -> { includes(:spree_roles).where("#{Role.table_name}.name" => "admin") }
 
     def self.admin_created?
       User.admin.count > 0
@@ -34,23 +33,24 @@ module Spree
     end
 
     protected
-      def password_required?
-        !persisted? || password.present? || password_confirmation.present?
-      end
+
+    def password_required?
+      !persisted? || password.present? || password_confirmation.present?
+    end
 
     private
 
-      def set_login
-        # for now force login to be same as email, eventually we will make this configurable, etc.
-        self.login ||= self.email if self.email
-      end
+    def set_login
+      # for now force login to be same as email, eventually we will make this configurable, etc.
+      self.login ||= email if email
+    end
 
-      def scramble_email_and_password
-        self.email = SecureRandom.uuid + "@example.net"
-        self.login = self.email
-        self.password = SecureRandom.hex(8)
-        self.password_confirmation = self.password
-        self.save
-      end
+    def scramble_email_and_password
+      self.email = SecureRandom.uuid + "@example.net"
+      self.login = email
+      self.password = SecureRandom.hex(8)
+      self.password_confirmation = password
+      save
+    end
   end
 end

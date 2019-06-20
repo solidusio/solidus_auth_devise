@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Spree::UserRegistrationsController < Devise::RegistrationsController
   helper 'spree/base', 'spree/store'
 
@@ -25,6 +27,7 @@ class Spree::UserRegistrationsController < Devise::RegistrationsController
   end
 
   protected
+
   def translation_scope
     'devise.user_registrations'
   end
@@ -34,6 +37,7 @@ class Spree::UserRegistrationsController < Devise::RegistrationsController
   end
 
   private
+
   def spree_user_params
     params.require(:spree_user).permit(Spree::PermittedAttributes.user_attributes | [:email])
   end

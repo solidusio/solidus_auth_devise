@@ -1,5 +1,6 @@
-RSpec.describe Spree::UsersController, type: :controller do
+# frozen_string_literal: true
 
+RSpec.describe Spree::UsersController, type: :controller do
   let(:admin_user) { create(:user) }
   let(:user) { create(:user) }
   let(:role) { create(:role) }
@@ -22,7 +23,6 @@ RSpec.describe Spree::UsersController, type: :controller do
     before { sign_in(user) }
 
     context 'when updating own account' do
-
       context 'when user updated successfuly' do
         before { put :update, params: { user: { email: 'mynew@email-address.com' } } }
 

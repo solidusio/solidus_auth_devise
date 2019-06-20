@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ConvertUserRememberField < SolidusSupport::Migration[4.2]
   def up
     remove_column :spree_users, :remember_created_at

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Spree::UserSessionsController < Devise::SessionsController
   helper 'spree/base', 'spree/store'
 

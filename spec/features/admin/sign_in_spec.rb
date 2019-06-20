@@ -1,5 +1,6 @@
-RSpec.feature 'Admin - Sign In', type: :feature do
+# frozen_string_literal: true
 
+RSpec.feature 'Admin - Sign In', type: :feature do
   background do
     @user = create(:user, email: 'email@person.com')
     visit spree.admin_login_path

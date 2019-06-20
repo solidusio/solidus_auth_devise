@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Spree::UserPasswordsController < Devise::PasswordsController
   helper 'spree/base', 'spree/store'
 
