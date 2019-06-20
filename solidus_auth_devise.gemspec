@@ -23,6 +23,12 @@ Gem::Specification.new do |s|
 
   solidus_version = [">= 1.2.0", "< 3"]
 
+  s.post_install_message = "
+    NOTE: Rails 6 has removed secret_token in favor of secret_key_base, which was deprecated in
+    Rails 5.2. solidus_auth_devise will keep using secret_token, when present, as the pepper. If
+    secret_token is undefined or not available, secret_key_base will be used instead.
+  ".strip.gsub(/ +/, ' ')
+
   s.add_dependency "devise", '~> 4.1'
   s.add_dependency "devise-encryptable", "0.2.0"
   s.add_dependency "solidus_core", solidus_version
