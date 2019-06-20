@@ -22,8 +22,9 @@ class Spree::Admin::UserPasswordsController < Devise::PasswordsController
   def create
     self.resource = resource_class.send_reset_password_instructions(params[resource_name])
 
+    set_flash_message(:notice, :send_instructions) if is_navigational_format?
+
     if resource.errors.empty?
-      set_flash_message(:notice, :send_instructions) if is_navigational_format?
       respond_with resource, location: spree.admin_login_path
     else
       respond_with_navigational(resource) { render :new }
