@@ -1,5 +1,3 @@
-<%= render partial: 'spree/shared/error_messages', locals: { target: @spree_user } %>
-
 <div id="forgot-password">
   <h6><%= I18n.t('spree.forgot_password') %></h6>
 
@@ -8,7 +6,7 @@
   <%= form_for Spree::User.new, as: :spree_user, url: spree.reset_password_path do |f| %>
     <p>
       <%= f.label :email, I18n.t('spree.email') %><br />
-      <%= f.email_field :email %>
+      <%= f.email_field :email, required: true %>
     </p>
     <p>
       <%= f.submit I18n.t('spree.reset_password'), class: 'button primary' %>
