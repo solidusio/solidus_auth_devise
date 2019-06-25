@@ -36,7 +36,7 @@ en:
         send_instructions: You will receive an email with instructions about how to reset your password in a few minutes.
         updated: Your password was changed successfully. You are now signed in.
     passwords:
-      send_instructions: If an account with that email address exists, you will receive an email with instructions about how to unlock your account in a few minutes.
+      send_instructions: If an account with that email address exists, you will receive an email with instructions about how to reset your password in a few minutes.
     user_registrations:
       destroyed: Bye! Your account was successfully cancelled. We hope to see you again soon.
       inactive_signed_up: 'You have signed up successfully. However, we could not sign you in because your account is %{reason}.'
