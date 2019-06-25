@@ -2,7 +2,7 @@
 
 Spree::CheckoutController.class_eval do
   prepend_before_action :check_registration,
-    except: [:registration, :update_registration]
+                        except: [:registration, :update_registration]
   prepend_before_action :check_authorization
 
   # This action builds some associations on the order, ex. addresses, which we

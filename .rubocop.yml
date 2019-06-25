@@ -83,10 +83,10 @@ Layout/ClosingParenthesisIndentation:
 Layout/MultilineMethodCallIndentation:
   Enabled: false
 
-Layout/IndentArray:
+Layout/IndentFirstArrayElement:
   Enabled: false
 
-Layout/IndentHash:
+Layout/IndentFirstHashElement:
   Enabled: false
 
 Layout/AlignHash:
