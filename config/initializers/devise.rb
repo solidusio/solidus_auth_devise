@@ -43,7 +43,11 @@ Devise.setup do |config|
   config.encryptor = 'authlogic_sha512'
 
   # Setup a pepper to generate the encrypted password.
-  config.pepper = Rails.configuration.secret_token
+  config.pepper = if Rails.configuration.respond_to?(:secret_token) && Rails.configuration.secret_token.present?
+    Rails.configuration.secret_token
+  else
+    Rails.configuration.secret_key_base
+  end
 
   # ==> Configuration for :confirmable
   # The time you want to give your user to confirm his account. During this time
