@@ -120,6 +120,9 @@ Devise.setup do |config|
   # should add them to the navigational formats lists. Default is [:html]
   config.navigational_formats = [:html, :json, :xml]
 
+  # The default HTTP method used to sign out a resource. Default is :delete.
+  config.sign_out_via = :delete
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not (yet) supported by Devise,
   # you can configure them inside the config.warden block. The example below
@@ -138,7 +141,6 @@ Devise.setup do |config|
   # Don't put a too small interval or your users won't have the time to
   # change their passwords.
   config.reset_password_within = 6.hours
-  config.sign_out_via = :get
 
   config.case_insensitive_keys = [:email]
 end
