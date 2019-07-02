@@ -1,6 +1,6 @@
 <% if spree_current_user %>
   <li><%= link_to I18n.t('spree.my_account'), spree.account_path %></li>
-  <li><%= link_to I18n.t('spree.logout'), spree.logout_path %></li>
+  <li><%= link_to I18n.t('spree.logout'), spree.logout_path, method: Devise.sign_out_via %></li>
 <% else %>
   <li id="link-to-login"><%= link_to I18n.t('spree.login'), spree.login_path %></li>
 <% end %>
