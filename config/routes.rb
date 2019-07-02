@@ -55,7 +55,7 @@ Spree::Core::Engine.routes.draw do
         get '/authorization_failure', to: 'user_sessions#authorization_failure', as: :unauthorized
         get '/login', to: 'user_sessions#new', as: :login
         post '/login', to: 'user_sessions#create', as: :create_new_session
-        get '/logout', to: 'user_sessions#destroy', as: :logout
+        match '/logout', to: 'user_sessions#destroy', as: :logout, via: Devise.sign_out_via
 
         get '/password/recover', to: 'user_passwords#new', as: :recover_password
         post '/password/recover', to: 'user_passwords#create', as: :reset_password
