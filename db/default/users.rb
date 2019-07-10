@@ -57,7 +57,7 @@ def create_admin_user
       admin.generate_spree_api_key!
       puts "Done!"
     else
-      puts "There was some problems with persisting new admin user:"
+      puts "There were some problems with persisting a new admin user:"
       admin.errors.full_messages.each do |error|
         puts error
       end
@@ -68,7 +68,7 @@ end
 if Spree::User.admin.empty?
   create_admin_user
 else
-  puts 'Admin user has already been previously created.'
+  puts 'Admin user has already been created.'
   puts 'Would you like to create a new admin user? (yes/no)'
   if ["yes", "y"].include? STDIN.gets.strip.downcase
     create_admin_user
