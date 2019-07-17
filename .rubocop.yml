@@ -1,5 +1,6 @@
 require:
   - rubocop-performance
+  - rubocop-rails
 
 # Relaxed.Ruby.Style
 
@@ -9,6 +10,11 @@ AllCops:
     - 'app/overrides/*'
     - 'bin/**'
   TargetRubyVersion: 2.3
+
+
+Rails/Output:
+  Exclude:
+    - 'db/default/users.rb'
 
 # Sometimes I believe this reads better
 # This also causes spacing issues on multi-line fixes

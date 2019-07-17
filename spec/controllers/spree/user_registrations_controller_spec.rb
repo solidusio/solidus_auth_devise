@@ -57,7 +57,7 @@ RSpec.describe Spree::UserRegistrationsController, type: :controller do
         it 'assigns orders with the correct token and no user present' do
           order = create(:order, guest_token: 'ABC', user_id: nil, created_by_id: nil)
           subject
-          user = Spree::User.find_by_email('foobar@example.com')
+          user = Spree::User.find_by(email: 'foobar@example.com')
 
           order.reload
           expect(order.user_id).to eq user.id

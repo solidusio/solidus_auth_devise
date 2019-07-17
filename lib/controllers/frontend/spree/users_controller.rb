@@ -26,7 +26,7 @@ class Spree::UsersController < Spree::StoreController
   end
 
   def update
-    if @user.update_attributes(user_params)
+    if @user.update(user_params)
       spree_current_user.reload
 
       if params[:user][:password].present?
