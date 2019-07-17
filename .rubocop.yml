@@ -1,3 +1,6 @@
+require:
+  - rubocop-performance
+
 # Relaxed.Ruby.Style
 
 AllCops:
@@ -5,7 +8,7 @@ AllCops:
     - 'spec/dummy/**/*'
     - 'app/overrides/*'
     - 'bin/**'
-  TargetRubyVersion: 2.2
+  TargetRubyVersion: 2.3
 
 # Sometimes I believe this reads better
 # This also causes spacing issues on multi-line fixes
@@ -46,9 +49,6 @@ Style/WordArray:
   Enabled: false
 
 Style/ConditionalAssignment:
-  Enabled: false
-
-Performance/Count:
   Enabled: false
 
 Style/RaiseArgs:
