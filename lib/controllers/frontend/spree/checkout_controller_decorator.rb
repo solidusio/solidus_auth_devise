@@ -3,7 +3,7 @@
 module Spree
   module CheckoutControllerDecorator
     def self.prepended(base)
-      base.before_action :check_registration, except: [:registration, :update_registration] 
+      base.before_action :check_registration, except: [:registration, :update_registration]
       base.before_action :check_authorization
 
       # This action builds some associations on the order, ex. addresses, which we
