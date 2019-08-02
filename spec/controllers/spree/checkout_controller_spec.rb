@@ -81,8 +81,7 @@ RSpec.describe Spree::CheckoutController, type: :controller do
   context '#update' do
     context 'when in the confirm state' do
       before do
-        order.update_column(:email, 'spree@example.com')
-        order.update_column(:state, 'confirm')
+        order.update(email: 'spree@example.com', state: 'confirm')
 
         # So that the order can transition to complete successfully
         allow(order).to receive(:payment_required?) { false }

@@ -17,7 +17,7 @@ RSpec.feature 'Checkout', :js, type: :feature do
 
   background do
     @product = create(:product, name: 'RoR Mug')
-    @product.master.stock_items.first.update_column(:count_on_hand, 1)
+    @product.master.stock_items.first.set_count_on_hand(1)
 
     # Bypass gateway error on checkout | ..or stub a gateway
     Spree::Config[:allow_checkout_on_gateway_error] = true
@@ -177,7 +177,7 @@ RSpec.feature 'Checkout', :js, type: :feature do
       click_button 'Place Order'
 
       expect(page).to have_text 'Your order has been processed successfully'
-      expect(Spree::Order.first.user).to eq Spree::User.find_by_email('email@person.com')
+      expect(Spree::Order.first.user).to eq Spree::User.find_by(email: 'email@person.com')
     end
   end
 end

@@ -3,7 +3,7 @@
 module Spree
   module CheckoutControllerDecorator
     def self.prepended(base)
-      base.before_action :check_registration, except: [:registration, :update_registration] 
+      base.before_action :check_registration, except: [:registration, :update_registration]
       base.before_action :check_authorization
 
       # This action builds some associations on the order, ex. addresses, which we
@@ -16,7 +16,7 @@ module Spree
     end
 
     def update_registration
-      if params[:order][:email] =~ Devise.email_regexp && current_order.update_attributes(email: params[:order][:email])
+      if params[:order][:email] =~ Devise.email_regexp && current_order.update(email: params[:order][:email])
         redirect_to spree.checkout_path
       else
         flash[:registration_error] = t(:email_is_invalid, scope: [:errors, :messages])
@@ -59,7 +59,7 @@ module Spree
     end
 
     def guest_authenticated?
-      current_order.try!(:email).present? &&
+      current_order&.email.present? &&
         Spree::Config[:allow_guest_checkout]
     end
 
