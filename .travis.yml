@@ -1,10 +1,17 @@
 sudo: false
 language: ruby
+addons:
+  chrome: stable
+  apt:
+    packages:
+      - chromium-chromedriver
 rvm:
   - 2.3.1
 services:
   - mysql
   - postgresql
+before_install:
+  - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
 env:
   matrix:
     - SOLIDUS_BRANCH=v2.4 DB=postgres
