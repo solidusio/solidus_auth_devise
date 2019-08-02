@@ -2,6 +2,9 @@ sudo: false
 language: ruby
 rvm:
   - 2.3.1
+services:
+  - mysql
+  - postgresql
 env:
   matrix:
     - SOLIDUS_BRANCH=v2.4 DB=postgres
