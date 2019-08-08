@@ -20,14 +20,14 @@ RSpec.feature 'Checkout', :js, type: :feature do
     @product.master.stock_items.first.set_count_on_hand(1)
 
     # Bypass gateway error on checkout | ..or stub a gateway
-    Spree::Config[:allow_checkout_on_gateway_error] = true
+    stub_spree_preferences(allow_checkout_on_gateway_error: true)
 
     visit spree.root_path
   end
 
   # Regression test for https://github.com/solidusio/solidus/issues/1588
   scenario 'leaving and returning to address step' do
-    Spree::Auth::Config.set(registration_step: true)
+    stub_spree_preferences(Spree::Auth::Config, registration_step: true)
     click_link 'RoR Mug'
     click_button 'Add To Cart'
     within('h1') { expect(page).to have_text 'Shopping Cart' }
