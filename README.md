@@ -1,6 +1,8 @@
 Solidus Auth (Devise)
 =====================
 
+[![CircleCI](https://circleci.com/gh/solidusio/solidus_auth_devise.svg?style=svg)](https://circleci.com/gh/solidusio/solidus_auth_devise)
+
 Provides authentication services for Solidus, using the Devise gem.
 
 Installation
@@ -119,7 +121,7 @@ This command will:
 Or you can run these commands individually:
 
 ```
-gem bump --version minor 
+gem bump --version minor
 gem tag
 gem release
 ```
