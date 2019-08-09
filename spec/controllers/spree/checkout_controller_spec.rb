@@ -40,11 +40,7 @@ RSpec.describe Spree::CheckoutController, type: :controller do
 
         context 'when guest checkout not allowed' do
           before do
-            Spree::Config.set(allow_guest_checkout: false)
-          end
-
-          after do
-            Spree::Config.set(allow_guest_checkout: true)
+            stub_spree_preferences(allow_guest_checkout: false)
           end
 
           it 'redirects to registration step' do
@@ -57,7 +53,7 @@ RSpec.describe Spree::CheckoutController, type: :controller do
 
     context 'when registration step disabled' do
       before do
-        Spree::Auth::Config.set(registration_step: false)
+        stub_spree_preferences(Spree::Auth::Config, registration_step: false)
       end
 
       context 'when authenticated as registered' do
