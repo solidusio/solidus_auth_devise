@@ -112,4 +112,16 @@ RSpec.describe Spree::UserSessionsController, type: :controller do
       end
     end
   end
+
+  context "#destroy" do
+    subject do
+      delete(:destroy)
+    end
+
+    it "redirects to default after signing out" do
+      subject
+      expect(controller.spree_current_user).to be_nil
+      expect(response).to redirect_to spree.root_path
+    end
+  end
 end

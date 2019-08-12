@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Sign Out', type: :feature do
+RSpec.feature 'Sign Out', type: :feature, js: true do
   given!(:user) do
    create(:user,
           email: 'email@person.com',
@@ -20,7 +20,7 @@ RSpec.feature 'Sign Out', type: :feature do
   scenario 'allow a signed in user to logout' do
     click_link 'Logout'
     visit spree.root_path
-    expect(page).to have_text 'Login'
-    expect(page).not_to have_text 'Logout'
+    expect(page).to have_text 'LOGIN'
+    expect(page).not_to have_text 'LOGOUT'
   end
 end
