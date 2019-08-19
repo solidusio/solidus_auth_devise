@@ -1,8 +1,7 @@
 # Change Log
 
-## [Unreleased](https://github.com/solidusio/solidus_auth_devise/tree/HEAD)
-
-[Full Changelog](https://github.com/solidusio/solidus_auth_devise/compare/v2.2.0...HEAD)
+## [v2.3.0](https://github.com/solidusio/solidus_auth_devise/tree/v2.3.0) (2019-08-19)
+[Full Changelog](https://github.com/solidusio/solidus_auth_devise/compare/v2.2.0...v2.3.0)
 
 **Closed issues:**
 
@@ -10,6 +9,7 @@
 
 **Merged pull requests:**
 
+- Add GitHub changelog generator [\#168](https://github.com/solidusio/solidus_auth_devise/pull/168) ([kennyadsl](https://github.com/kennyadsl))
 - Fix CI issues [\#167](https://github.com/solidusio/solidus_auth_devise/pull/167) ([kennyadsl](https://github.com/kennyadsl))
 - Stub preferences in specs instead of resetting [\#166](https://github.com/solidusio/solidus_auth_devise/pull/166) ([kennyadsl](https://github.com/kennyadsl))
 - Add appropriate classes to admin login button [\#164](https://github.com/solidusio/solidus_auth_devise/pull/164) ([jacobeubanks](https://github.com/jacobeubanks))
@@ -17,7 +17,6 @@
 - Fix minor grammar concerns in console messages [\#162](https://github.com/solidusio/solidus_auth_devise/pull/162) ([jacobherrington](https://github.com/jacobherrington))
 - Logout with DELETE verb by default [\#161](https://github.com/solidusio/solidus_auth_devise/pull/161) ([kennyadsl](https://github.com/kennyadsl))
 - Use secret\_key\_base for Rails 6 compatibility [\#160](https://github.com/solidusio/solidus_auth_devise/pull/160) ([aldesantis](https://github.com/aldesantis))
-- Improve decorators [\#159](https://github.com/solidusio/solidus_auth_devise/pull/159) ([jacobherrington](https://github.com/jacobherrington))
 - Add rubocop as a development dependency [\#158](https://github.com/solidusio/solidus_auth_devise/pull/158) ([jacobherrington](https://github.com/jacobherrington))
 - Update confusing i18n translation [\#157](https://github.com/solidusio/solidus_auth_devise/pull/157) ([jacobherrington](https://github.com/jacobherrington))
 - Remove flash errors from password recovery [\#156](https://github.com/solidusio/solidus_auth_devise/pull/156) ([jacobherrington](https://github.com/jacobherrington))
@@ -39,6 +38,7 @@
 
 **Merged pull requests:**
 
+- Improve decorators [\#159](https://github.com/solidusio/solidus_auth_devise/pull/159) ([jacobherrington](https://github.com/jacobherrington))
 - Add v2.2.0 CHANGELOG entries [\#153](https://github.com/solidusio/solidus_auth_devise/pull/153) ([kennyadsl](https://github.com/kennyadsl))
 - Add gem-release support [\#152](https://github.com/solidusio/solidus_auth_devise/pull/152) ([kennyadsl](https://github.com/kennyadsl))
 - Add missing pessimistic versioning [\#149](https://github.com/solidusio/solidus_auth_devise/pull/149) ([aitbw](https://github.com/aitbw))
@@ -59,7 +59,6 @@
 - Add Solidus v2.7 to .travis.yml [\#127](https://github.com/solidusio/solidus_auth_devise/pull/127) ([jacobherrington](https://github.com/jacobherrington))
 - Fix spree routes [\#125](https://github.com/solidusio/solidus_auth_devise/pull/125) ([jtapia](https://github.com/jtapia))
 - Remove unnecessary decorator [\#122](https://github.com/solidusio/solidus_auth_devise/pull/122) ([jhawthorn](https://github.com/jhawthorn))
-- Disable backend footer profile edit link if role cannot edit users [\#120](https://github.com/solidusio/solidus_auth_devise/pull/120) ([gianlucarizzo](https://github.com/gianlucarizzo))
 
 ## [v2.1.0](https://github.com/solidusio/solidus_auth_devise/tree/v2.1.0) (2018-01-22)
 [Full Changelog](https://github.com/solidusio/solidus_auth_devise/compare/v2.0.0...v2.1.0)
@@ -114,6 +113,7 @@
 
 **Merged pull requests:**
 
+- Disable backend footer profile edit link if role cannot edit users [\#120](https://github.com/solidusio/solidus_auth_devise/pull/120) ([gianlucarizzo](https://github.com/gianlucarizzo))
 - Remove dependency on json, multi\_json [\#91](https://github.com/solidusio/solidus_auth_devise/pull/91) ([jhawthorn](https://github.com/jhawthorn))
 - Remove Unnecessary `require` statements. [\#89](https://github.com/solidusio/solidus_auth_devise/pull/89) ([stewart](https://github.com/stewart))
 - Do not require core email validator [\#87](https://github.com/solidusio/solidus_auth_devise/pull/87) ([tvdeyen](https://github.com/tvdeyen))
