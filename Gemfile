@@ -25,6 +25,4 @@ group :development, :test do
   gem 'pry-rails', '~> 0.3.9'
 end
 
-gem 'deface', '~> 1.3', require: false
-
 gemspec

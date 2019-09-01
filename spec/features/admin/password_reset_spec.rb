@@ -34,4 +34,47 @@ RSpec.feature 'Admin - Reset Password', type: :feature do
   def fill_in_email
     fill_in 'Email', with: 'foobar@example.com'
   end
+
+  context 'password management' do
+    let!(:admin) do
+      create(:admin_user,
+        email: 'admin@example.com',
+        password: 'secret',
+        password_confirmation: 'secret'
+      )
+    end
+
+    let!(:user) do
+      create(:user,
+        email: 'user@example.com',
+        password: 'test123',
+        password_confirmation: 'test123'
+      )
+    end
+
+    before do
+      visit spree.admin_login_path
+      fill_in 'Email', with: admin.email
+      fill_in 'Password', with: admin.password
+      click_button 'Login'
+      visit spree.admin_users_path
+    end
+
+    context 'if currently logged-in admin' do
+      context "clicks on an user's page" do
+        it 'can reset its password' do
+          within("#spree_user_#{user.id}") do
+            click_link user.email
+          end
+
+          click_button 'Reset password'
+          expect(page).to have_content(
+            'If an account with that email address exists,
+            you will receive an email with instructions about
+            how to reset your password in a few minutes.'
+          )
+        end
+      end
+    end
+  end
 end

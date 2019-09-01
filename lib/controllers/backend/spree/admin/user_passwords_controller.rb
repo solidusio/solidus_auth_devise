@@ -25,7 +25,7 @@ class Spree::Admin::UserPasswordsController < Devise::PasswordsController
     set_flash_message(:notice, :send_instructions) if is_navigational_format?
 
     if resource.errors.empty?
-      respond_with resource, location: spree.admin_login_path
+      respond_with resource, location: admin_user_path(resource)
     else
       respond_with_navigational(resource) { render :new }
     end
