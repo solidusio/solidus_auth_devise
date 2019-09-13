@@ -5,19 +5,23 @@ source "https://rubygems.org"
 branch = ENV.fetch('SOLIDUS_BRANCH', 'master')
 gem "solidus", github: "solidusio/solidus", branch: branch
 
-group :test do
-  if branch == 'master' || branch >= "v2.0"
-    gem 'rails-controller-testing', '~> 1.0'
-  else
-    gem "rails_test_params_backport"
-  end
-
-  gem 'factory_bot', (branch < 'v2.5' ? '4.10.0' : '> 4.10.0')
+# Needed to help Bundler figure out how to resolve dependencies,
+# otherwise it takes forever to resolve them
+if branch == 'master' || Gem::Version.new(branch[1..-1]) >= Gem::Version.new('2.10.0')
+  gem 'rails', '~> 6.0'
+else
+  gem 'rails', '~> 5.0'
 end
 
-if ENV['DB'] == 'mysql'
+group :test do
+  gem 'rails-controller-testing', '~> 1.0'
+  gem 'factory_bot', '> 4.10.0'
+end
+
+case ENV['DB']
+when 'mysql'
   gem 'mysql2', '~> 0.4.10'
-else
+when 'postgres'
   gem 'pg', '~> 0.21'
 end
 
