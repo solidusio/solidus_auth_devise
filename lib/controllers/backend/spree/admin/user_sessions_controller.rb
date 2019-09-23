@@ -16,7 +16,9 @@ class Spree::Admin::UserSessionsController < Devise::SessionsController
     if spree_user_signed_in?
       respond_to do |format|
         format.html {
-          flash[:success] = I18n.t('spree.logged_in_succesfully')
+          # Add default value to address spelling error and not break existing projects with incorrect spelling
+          # https://github.com/solidusio/solidus_auth_devise/pull/173
+          flash[:success] = I18n.t('spree.logged_in_succesfully', default: :'spree.logged_in_successfully')
           redirect_back_or_default(after_sign_in_path_for(spree_current_user))
         }
         format.js {
