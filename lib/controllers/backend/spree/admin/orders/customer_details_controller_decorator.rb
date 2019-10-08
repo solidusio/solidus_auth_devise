@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
-Spree::Admin::Orders::CustomerDetailsController.class_eval do
-  before_action :check_authorization
+module Spree::Admin::Orders::CustomerDetailsControllerDecorator
+  def self.prepended(base)
+    base.before_action :check_authorization
+  end
 
   private
 
@@ -15,4 +17,6 @@ Spree::Admin::Orders::CustomerDetailsController.class_eval do
 
     authorize! action, resource, session[:access_token]
   end
+
+  Spree::Admin::Orders::CustomerDetailsController.prepend self
 end
