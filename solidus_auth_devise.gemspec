@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.require_path = "lib"
   s.requirements << "none"
 
-  solidus_version = [">= 1.2.0", "< 3"]
+  solidus_version = [">= 2.6", "< 3"]
 
   s.post_install_message = "
     NOTE: Rails 6 has removed secret_token in favor of secret_key_base, which was deprecated in
