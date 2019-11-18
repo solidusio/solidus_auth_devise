@@ -21,7 +21,7 @@ end
 case ENV['DB']
 when 'mysql'
   gem 'mysql2', '~> 0.4.10'
-when 'postgres'
+when 'postgresql'
   gem 'pg', '~> 0.21'
 end
 
