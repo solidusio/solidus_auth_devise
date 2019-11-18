@@ -1,5 +1,33 @@
 # Change Log
 
+## [Unreleased](https://github.com/solidusio/solidus_auth_devise/tree/HEAD)
+
+[Full Changelog](https://github.com/solidusio/solidus_auth_devise/compare/v2.4.0...HEAD)
+
+**Closed issues:**
+
+- Bug: NameError [\#174](https://github.com/solidusio/solidus_auth_devise/issues/174)
+
+## [v2.4.0](https://github.com/solidusio/solidus_auth_devise/tree/v2.4.0) (2019-11-18)
+[Full Changelog](https://github.com/solidusio/solidus_auth_devise/compare/v2.3.0...v2.4.0)
+
+**Implemented enhancements:**
+
+- Add an automatic CHANGELOG generator [\#154](https://github.com/solidusio/solidus_auth_devise/issues/154)
+
+**Closed issues:**
+
+- Rails 6, Production only issue, works fine in dev, tripped up assets:precompile build process on Heroku, compiled fine locally. [\#175](https://github.com/solidusio/solidus_auth_devise/issues/175)
+- Spree.user\_class not using my specific class [\#169](https://github.com/solidusio/solidus_auth_devise/issues/169)
+- Missing `config.secret\_key\_base` from default devise.rb? [\#33](https://github.com/solidusio/solidus_auth_devise/issues/33)
+
+**Merged pull requests:**
+
+- Fixes for Zeitwerk [\#176](https://github.com/solidusio/solidus_auth_devise/pull/176) ([kennyadsl](https://github.com/kennyadsl))
+- Update it translations [\#172](https://github.com/solidusio/solidus_auth_devise/pull/172) ([delphaber](https://github.com/delphaber))
+- Relax sqlite3 dependency for Rails 6 support [\#170](https://github.com/solidusio/solidus_auth_devise/pull/170) ([aldesantis](https://github.com/aldesantis))
+- Allow admins to reset an user's password through the admin panel [\#146](https://github.com/solidusio/solidus_auth_devise/pull/146) ([aitbw](https://github.com/aitbw))
+
 ## [v2.3.0](https://github.com/solidusio/solidus_auth_devise/tree/v2.3.0) (2019-08-19)
 [Full Changelog](https://github.com/solidusio/solidus_auth_devise/compare/v2.2.0...v2.3.0)
 
@@ -17,6 +45,7 @@
 - Fix minor grammar concerns in console messages [\#162](https://github.com/solidusio/solidus_auth_devise/pull/162) ([jacobherrington](https://github.com/jacobherrington))
 - Logout with DELETE verb by default [\#161](https://github.com/solidusio/solidus_auth_devise/pull/161) ([kennyadsl](https://github.com/kennyadsl))
 - Use secret\_key\_base for Rails 6 compatibility [\#160](https://github.com/solidusio/solidus_auth_devise/pull/160) ([aldesantis](https://github.com/aldesantis))
+- Improve decorators [\#159](https://github.com/solidusio/solidus_auth_devise/pull/159) ([jacobherrington](https://github.com/jacobherrington))
 - Add rubocop as a development dependency [\#158](https://github.com/solidusio/solidus_auth_devise/pull/158) ([jacobherrington](https://github.com/jacobherrington))
 - Update confusing i18n translation [\#157](https://github.com/solidusio/solidus_auth_devise/pull/157) ([jacobherrington](https://github.com/jacobherrington))
 - Remove flash errors from password recovery [\#156](https://github.com/solidusio/solidus_auth_devise/pull/156) ([jacobherrington](https://github.com/jacobherrington))
@@ -38,7 +67,6 @@
 
 **Merged pull requests:**
 
-- Improve decorators [\#159](https://github.com/solidusio/solidus_auth_devise/pull/159) ([jacobherrington](https://github.com/jacobherrington))
 - Add v2.2.0 CHANGELOG entries [\#153](https://github.com/solidusio/solidus_auth_devise/pull/153) ([kennyadsl](https://github.com/kennyadsl))
 - Add gem-release support [\#152](https://github.com/solidusio/solidus_auth_devise/pull/152) ([kennyadsl](https://github.com/kennyadsl))
 - Add missing pessimistic versioning [\#149](https://github.com/solidusio/solidus_auth_devise/pull/149) ([aitbw](https://github.com/aitbw))
@@ -59,6 +87,8 @@
 - Add Solidus v2.7 to .travis.yml [\#127](https://github.com/solidusio/solidus_auth_devise/pull/127) ([jacobherrington](https://github.com/jacobherrington))
 - Fix spree routes [\#125](https://github.com/solidusio/solidus_auth_devise/pull/125) ([jtapia](https://github.com/jtapia))
 - Remove unnecessary decorator [\#122](https://github.com/solidusio/solidus_auth_devise/pull/122) ([jhawthorn](https://github.com/jhawthorn))
+- Disable backend footer profile edit link if role cannot edit users [\#120](https://github.com/solidusio/solidus_auth_devise/pull/120) ([gianlucarizzo](https://github.com/gianlucarizzo))
+- update spec according new solidus behaviour for 404 [\#115](https://github.com/solidusio/solidus_auth_devise/pull/115) ([ccarruitero](https://github.com/ccarruitero))
 
 ## [v2.1.0](https://github.com/solidusio/solidus_auth_devise/tree/v2.1.0) (2018-01-22)
 [Full Changelog](https://github.com/solidusio/solidus_auth_devise/compare/v2.0.0...v2.1.0)
@@ -70,7 +100,6 @@
 **Merged pull requests:**
 
 - Remove unused helper include [\#118](https://github.com/solidusio/solidus_auth_devise/pull/118) ([jhawthorn](https://github.com/jhawthorn))
-- update spec according new solidus behaviour for 404 [\#115](https://github.com/solidusio/solidus_auth_devise/pull/115) ([ccarruitero](https://github.com/ccarruitero))
 - Don't require deface for solidus 2.5+ [\#114](https://github.com/solidusio/solidus_auth_devise/pull/114) ([jhawthorn](https://github.com/jhawthorn))
 - Test that we are acting as paranoid not it's behaviour [\#113](https://github.com/solidusio/solidus_auth_devise/pull/113) ([tvdeyen](https://github.com/tvdeyen))
 - Reset api key when assigning password [\#99](https://github.com/solidusio/solidus_auth_devise/pull/99) ([jhawthorn](https://github.com/jhawthorn))
@@ -104,7 +133,6 @@
 - Seed improvements [\#102](https://github.com/solidusio/solidus_auth_devise/pull/102) ([cbrunsdon](https://github.com/cbrunsdon))
 - Only apply frontend override if frontend present [\#95](https://github.com/solidusio/solidus_auth_devise/pull/95) ([stewart](https://github.com/stewart))
 - Update outdated development dependencies [\#94](https://github.com/solidusio/solidus_auth_devise/pull/94) ([stewart](https://github.com/stewart))
-- Remove use of deprecated `bypass` opt for sign\_in [\#93](https://github.com/solidusio/solidus_auth_devise/pull/93) ([stewart](https://github.com/stewart))
 - Wrap use of `helper\_method` in `respond\_to?` [\#92](https://github.com/solidusio/solidus_auth_devise/pull/92) ([stewart](https://github.com/stewart))
 - Remove unused line [\#75](https://github.com/solidusio/solidus_auth_devise/pull/75) ([Murph33](https://github.com/Murph33))
 
@@ -113,7 +141,7 @@
 
 **Merged pull requests:**
 
-- Disable backend footer profile edit link if role cannot edit users [\#120](https://github.com/solidusio/solidus_auth_devise/pull/120) ([gianlucarizzo](https://github.com/gianlucarizzo))
+- Remove use of deprecated `bypass` opt for sign\_in [\#93](https://github.com/solidusio/solidus_auth_devise/pull/93) ([stewart](https://github.com/stewart))
 - Remove dependency on json, multi\_json [\#91](https://github.com/solidusio/solidus_auth_devise/pull/91) ([jhawthorn](https://github.com/jhawthorn))
 - Remove Unnecessary `require` statements. [\#89](https://github.com/solidusio/solidus_auth_devise/pull/89) ([stewart](https://github.com/stewart))
 - Do not require core email validator [\#87](https://github.com/solidusio/solidus_auth_devise/pull/87) ([tvdeyen](https://github.com/tvdeyen))
@@ -169,13 +197,11 @@
 - Flesh out installation instructions [\#66](https://github.com/solidusio/solidus_auth_devise/pull/66) ([stewart](https://github.com/stewart))
 - Correct Deprecation Errors in CI [\#65](https://github.com/solidusio/solidus_auth_devise/pull/65) ([stewart](https://github.com/stewart))
 - Add Chinese translations in zh-CN.yml [\#64](https://github.com/solidusio/solidus_auth_devise/pull/64) ([chrisradford](https://github.com/chrisradford))
-- Loosen devise dependency to ~\> 4.1 [\#63](https://github.com/solidusio/solidus_auth_devise/pull/63) ([jhawthorn](https://github.com/jhawthorn))
 - Use routes.draw [\#62](https://github.com/solidusio/solidus_auth_devise/pull/62) ([jhawthorn](https://github.com/jhawthorn))
 - Add guard for frontend-based AuthenticationHelpers [\#60](https://github.com/solidusio/solidus_auth_devise/pull/60) ([stewart](https://github.com/stewart))
 - Misc: Update Dependency Versions [\#58](https://github.com/solidusio/solidus_auth_devise/pull/58) ([stewart](https://github.com/stewart))
 - Backend views should only reference backend routes [\#57](https://github.com/solidusio/solidus_auth_devise/pull/57) ([bbuchalter](https://github.com/bbuchalter))
 - Refactor Spree::Auth::Engine [\#56](https://github.com/solidusio/solidus_auth_devise/pull/56) ([stewart](https://github.com/stewart))
-- Backend views should only reference backend routes [\#52](https://github.com/solidusio/solidus_auth_devise/pull/52) ([bbuchalter](https://github.com/bbuchalter))
 - Call set\_current\_order explicitly where we need it [\#51](https://github.com/solidusio/solidus_auth_devise/pull/51) ([Murph33](https://github.com/Murph33))
 - Misc: Syntax Cleanup [\#50](https://github.com/solidusio/solidus_auth_devise/pull/50) ([stewart](https://github.com/stewart))
 
@@ -184,6 +210,8 @@
 
 **Merged pull requests:**
 
+- Loosen devise dependency to ~\> 4.1 [\#63](https://github.com/solidusio/solidus_auth_devise/pull/63) ([jhawthorn](https://github.com/jhawthorn))
+- Backend views should only reference backend routes [\#52](https://github.com/solidusio/solidus_auth_devise/pull/52) ([bbuchalter](https://github.com/bbuchalter))
 - Conditional routing [\#49](https://github.com/solidusio/solidus_auth_devise/pull/49) ([bbuchalter](https://github.com/bbuchalter))
 - check\_authorization first in CheckoutController [\#47](https://github.com/solidusio/solidus_auth_devise/pull/47) ([bbuchalter](https://github.com/bbuchalter))
 - Revert "ChcktController checks auth and registration first" [\#46](https://github.com/solidusio/solidus_auth_devise/pull/46) ([bbuchalter](https://github.com/bbuchalter))
@@ -194,7 +222,6 @@
 - Update travis.yml [\#39](https://github.com/solidusio/solidus_auth_devise/pull/39) ([jhawthorn](https://github.com/jhawthorn))
 - Honor guest checkout config [\#36](https://github.com/solidusio/solidus_auth_devise/pull/36) ([bbuchalter](https://github.com/bbuchalter))
 - Update README testing section [\#35](https://github.com/solidusio/solidus_auth_devise/pull/35) ([bbuchalter](https://github.com/bbuchalter))
-- Fix specs now that order's store is required [\#34](https://github.com/solidusio/solidus_auth_devise/pull/34) ([jhawthorn](https://github.com/jhawthorn))
 - Moved the encryptor setting for the User model into the devise config [\#32](https://github.com/solidusio/solidus_auth_devise/pull/32) ([lukepfarrar](https://github.com/lukepfarrar))
 
 ## [v1.3.0](https://github.com/solidusio/solidus_auth_devise/tree/v1.3.0) (2016-01-12)
@@ -215,6 +242,7 @@
 
 **Merged pull requests:**
 
+- Fix specs now that order's store is required [\#34](https://github.com/solidusio/solidus_auth_devise/pull/34) ([jhawthorn](https://github.com/jhawthorn))
 - Add an explicit require to deface [\#27](https://github.com/solidusio/solidus_auth_devise/pull/27) ([jhawthorn](https://github.com/jhawthorn))
 - Check if front/backend are available before decorating the controllers [\#25](https://github.com/solidusio/solidus_auth_devise/pull/25) ([nwittstruck](https://github.com/nwittstruck))
 - Rename spree@example.com to admin@example.com [\#23](https://github.com/solidusio/solidus_auth_devise/pull/23) ([jhawthorn](https://github.com/jhawthorn))
