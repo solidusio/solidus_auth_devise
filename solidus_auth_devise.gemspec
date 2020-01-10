@@ -35,7 +35,7 @@ Gem::Specification.new do |s|
   s.add_dependency "solidus_support", ">= 0.1.3"
   s.add_dependency "deface", "~> 1.0"
 
-  s.add_development_dependency "capybara", "~> 2.14"
+  s.add_development_dependency "capybara", "~> 3.30"
   s.add_development_dependency "capybara-screenshot"
   s.add_development_dependency "coffee-rails"
   s.add_development_dependency "database_cleaner", "~> 1.6"
