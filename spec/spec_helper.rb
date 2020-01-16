@@ -7,7 +7,8 @@ ENV["RAILS_ENV"] ||= "test"
 
 require File.expand_path('dummy/config/environment.rb', __dir__)
 
-require "solidus_support/extension/feature_helper"
+require "solidus_dev_support"
+require "solidus_dev_support/rspec/feature_helper"
 
 Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each { |f| require f }
 

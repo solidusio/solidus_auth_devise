@@ -69,9 +69,9 @@ RSpec.feature 'Admin - Reset Password', type: :feature do
 
           click_button 'Reset password'
           expect(page).to have_content(
-            'If an account with that email address exists,
-            you will receive an email with instructions about
-            how to reset your password in a few minutes.'
+            'If an account with that email address exists, '\
+            'you will receive an email with instructions about '\
+            'how to reset your password in a few minutes.'
           )
         end
       end

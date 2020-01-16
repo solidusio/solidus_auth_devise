@@ -35,7 +35,7 @@ Gem::Specification.new do |s|
   s.add_dependency "solidus_support", ">= 0.1.3"
   s.add_dependency "deface", "~> 1.0"
 
-  s.add_development_dependency "capybara", "~> 2.14"
+  s.add_development_dependency "capybara", "~> 3.30"
   s.add_development_dependency "capybara-screenshot"
   s.add_development_dependency "coffee-rails"
   s.add_development_dependency "database_cleaner", "~> 1.6"
@@ -51,6 +51,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "shoulda-matchers", "~> 3.1"
   s.add_development_dependency "simplecov", "~> 0.14"
   s.add_development_dependency "solidus_backend", solidus_version
+  s.add_development_dependency "solidus_dev_support", ">= 0.3.0"
   s.add_development_dependency "solidus_frontend", solidus_version
   s.add_development_dependency "sqlite3"
 end
