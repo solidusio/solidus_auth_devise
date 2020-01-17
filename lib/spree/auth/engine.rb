@@ -20,20 +20,27 @@ module Spree
       config.to_prepare do
         auth = Spree::Auth::Engine
 
-        auth.prepare_backend  if SolidusSupport.backend_available?
-        auth.prepare_frontend if SolidusSupport.frontend_available?
+        if SolidusSupport.backend_available?
+          auth.load_decorators_for('backend')
+          auth.prepare_backend
+        end
+
+        if SolidusSupport.frontend_available?
+          auth.load_decorators_for('frontend')
+          auth.prepare_frontend
+        end
 
         ApplicationController.include Spree::AuthenticationHelpers
       end
 
-      def self.prepare_backend
-        base_path = root.join('lib/decorators/backend')
+      def self.load_decorators_for(component_name)
+        base_path = root.join('lib/decorators', component_name)
 
         if Rails.respond_to?(:autoloaders) && Rails.autoloaders.main
           # Add decorators folder to the Rails autoloader. This
           # allows Zeitwerk to resolve decorators paths correctly,
           # when used.
-          Dir.glob(base_path.join('*')) do |decorators_folder|
+          base_path.glob('*') do |decorators_folder|
             Rails.autoloaders.main.push_dir(decorators_folder)
           end
         end
@@ -42,10 +49,12 @@ module Spree
         # never explicitely referenced in the application code
         # and won't be loaded by default. We need them to be
         # executed anyway to extend exisiting classes.
-        Dir.glob(base_path.join('**/*_decorator*.rb')) do |decorator_path|
+        base_path.glob('**/*_decorator*.rb') do |decorator_path|
           require_dependency(decorator_path)
         end
+      end
 
+      def self.prepare_backend
         Spree::Admin::BaseController.unauthorized_redirect = -> do
           if try_spree_current_user
             flash[:error] = I18n.t('spree.authorization_failure')
@@ -58,25 +67,6 @@ module Spree
       end
 
       def self.prepare_frontend
-        base_path = root.join('lib/decorators/frontend')
-
-        if Rails.respond_to?(:autoloaders) && Rails.autoloaders.main
-          # Add decorators folder to the Rails autoloader. This
-          # allows Zeitwerk to resolve decorators paths correctly,
-          # when used.
-          Dir.glob(base_path.join('*')) do |decorators_folder|
-            Rails.autoloaders.main.push_dir(decorators_folder)
-          end
-        end
-
-        # Load decorator files. This is needed since they are
-        # never explicitely referenced in the application code
-        # and won't be loaded by default. We need them to be
-        # executed anyway to extend exisiting classes.
-        Dir.glob(base_path.join('**/*_decorator*.rb')) do |decorator_path|
-          require_dependency(decorator_path)
-        end
-
         Spree::BaseController.unauthorized_redirect = -> do
           if try_spree_current_user
             flash[:error] = I18n.t('spree.authorization_failure')
