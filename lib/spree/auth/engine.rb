@@ -32,8 +32,23 @@ module Spree
           lib/assets/javascripts/spree/backend/solidus_auth.css
         ]
 
-        Dir.glob(File.join(File.dirname(__FILE__), "../../controllers/backend/*/*/*_decorator*.rb")) do |c|
-          Rails.configuration.cache_classes ? require(c) : load(c)
+        base_path = root.join('lib/decorators/backend')
+
+        if Rails.respond_to?(:autoloaders) && Rails.autoloaders.main
+          # Add decorators folder to the Rails autoloader. This
+          # allows Zeitwerk to resolve decorators paths correctly,
+          # when used.
+          Dir.glob(base_path.join('*')) do |decorators_folder|
+            Rails.autoloaders.main.push_dir(decorators_folder)
+          end
+        end
+
+        # Load decorator files. This is needed since they are
+        # never explicitely referenced in the application code
+        # and won't be loaded by default. We need them to be
+        # executed anyway to extend exisiting classes.
+        Dir.glob(base_path.join('**/*_decorator*.rb')) do |decorator_path|
+          require_dependency(decorator_path)
         end
 
         Spree::Admin::BaseController.unauthorized_redirect = -> do
@@ -53,8 +68,23 @@ module Spree
           lib/assets/javascripts/spree/frontend/solidus_auth.css
         ]
 
-        Dir.glob(File.join(File.dirname(__FILE__), "../../controllers/frontend/*/*_decorator*.rb")) do |c|
-          Rails.configuration.cache_classes ? require(c) : load(c)
+        base_path = root.join('lib/decorators/frontend')
+
+        if Rails.respond_to?(:autoloaders) && Rails.autoloaders.main
+          # Add decorators folder to the Rails autoloader. This
+          # allows Zeitwerk to resolve decorators paths correctly,
+          # when used.
+          Dir.glob(base_path.join('*')) do |decorators_folder|
+            Rails.autoloaders.main.push_dir(decorators_folder)
+          end
+        end
+
+        # Load decorator files. This is needed since they are
+        # never explicitely referenced in the application code
+        # and won't be loaded by default. We need them to be
+        # executed anyway to extend exisiting classes.
+        Dir.glob(base_path.join('**/*_decorator*.rb')) do |decorator_path|
+          require_dependency(decorator_path)
         end
 
         Spree::BaseController.unauthorized_redirect = -> do
