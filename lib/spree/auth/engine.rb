@@ -27,11 +27,6 @@ module Spree
       end
 
       def self.prepare_backend
-        Rails.application.config.assets.precompile += %w[
-          lib/assets/javascripts/spree/backend/solidus_auth.js
-          lib/assets/javascripts/spree/backend/solidus_auth.css
-        ]
-
         base_path = root.join('lib/decorators/backend')
 
         if Rails.respond_to?(:autoloaders) && Rails.autoloaders.main
@@ -63,11 +58,6 @@ module Spree
       end
 
       def self.prepare_frontend
-        Rails.application.config.assets.precompile += %w[
-          lib/assets/javascripts/spree/frontend/solidus_auth.js
-          lib/assets/javascripts/spree/frontend/solidus_auth.css
-        ]
-
         base_path = root.join('lib/decorators/frontend')
 
         if Rails.respond_to?(:autoloaders) && Rails.autoloaders.main
