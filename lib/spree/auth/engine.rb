@@ -23,7 +23,7 @@ module Spree
         auth.prepare_backend  if SolidusSupport.backend_available?
         auth.prepare_frontend if SolidusSupport.frontend_available?
 
-        ApplicationController.send :include, Spree::AuthenticationHelpers
+        ApplicationController.include Spree::AuthenticationHelpers
       end
 
       def self.prepare_backend
