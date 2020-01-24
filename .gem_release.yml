@@ -1,10 +1,5 @@
 bump:
-  file: 'lib/spree/auth/version.rb'
-  message: Bump Solidus Auth Devise to %{version}
-  remote: upstream
-  commit: true
-  push: true
-
-tag:
-  push: true
-  remote: upstream
+  recurse: false
+  file: 'lib/solidus_auth_devise/version.rb'
+  message: Bump SolidusAuthDevise to %{version}
+  tag: true

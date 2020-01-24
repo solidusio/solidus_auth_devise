@@ -1,25 +1,33 @@
 # frozen_string_literal: true
 
-$:.unshift File.expand_path('lib', __dir__)
+$:.push File.expand_path('lib', __dir__)
 require 'spree/auth/version'
 
 Gem::Specification.new do |s|
-  s.platform    = Gem::Platform::RUBY
-  s.name        = "solidus_auth_devise"
-  s.version     = Spree::Auth::VERSION
-  s.summary     = "Provides authentication and authorization services for use with Solidus by using Devise and CanCan."
-  s.description = s.summary
+  s.platform = Gem::Platform::RUBY
+  s.name = "solidus_auth_devise"
+  s.version = Spree::Auth::VERSION
+  s.summary = "Provides authentication and authorization services for use with Solidus by using Devise and CanCan."
+  s.license = 'BSD-3-Clause'
 
-  s.author       = 'Solidus Team'
-  s.email        = 'contact@solidus.io'
+  s.author = 'Solidus Team'
+  s.email = 'contact@solidus.io'
+  s.homepage = 'https://github.com/solidusio/solidus_auth_devise'
 
-  s.required_ruby_version = ">= 2.3"
-  s.license = 'BSD-3'
+  if s.respond_to?(:metadata)
+    s.metadata["homepage_uri"] = s.homepage if s.homepage
+    s.metadata["source_code_uri"] = s.homepage if s.homepage
+  end
 
-  s.files        = `git ls-files`.split("\n")
-  s.test_files   = `git ls-files -- spec/*`.split("\n")
-  s.require_path = "lib"
-  s.requirements << "none"
+  s.required_ruby_version = '~> 2.4'
+
+  s.files = Dir.chdir(File.expand_path(__dir__)) do
+    `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  end
+  s.test_files = Dir['spec/**/*']
+  s.bindir = "exe"
+  s.executables = s.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  s.require_paths = ["lib"]
 
   solidus_version = [">= 2.6", "< 3"]
 
@@ -29,29 +37,13 @@ Gem::Specification.new do |s|
     secret_token is undefined or not available, secret_key_base will be used instead.
   ".strip.gsub(/ +/, ' ')
 
+  s.add_dependency "deface", "~> 1.0"
   s.add_dependency "devise", '~> 4.1'
   s.add_dependency "devise-encryptable", "0.2.0"
   s.add_dependency "solidus_core", solidus_version
   s.add_dependency "solidus_support", ">= 0.1.3"
-  s.add_dependency "deface", "~> 1.0"
 
-  s.add_development_dependency "capybara", "~> 3.30"
-  s.add_development_dependency "capybara-screenshot"
-  s.add_development_dependency "coffee-rails"
-  s.add_development_dependency "database_cleaner", "~> 1.6"
-  s.add_development_dependency "ffaker"
-  s.add_development_dependency "gem-release", "~> 2.0"
-  s.add_development_dependency "github_changelog_generator", "~> 1.14"
-  s.add_development_dependency "rspec-rails", "~> 4.0.0.beta2"
-  s.add_development_dependency "rubocop", "~> 0.71"
-  s.add_development_dependency "rubocop-performance", "~> 1.4"
-  s.add_development_dependency "rubocop-rails", "~> 2.2"
-  s.add_development_dependency "sass-rails"
-  s.add_development_dependency "selenium-webdriver", "~> 3.142"
-  s.add_development_dependency "shoulda-matchers", "~> 3.1"
-  s.add_development_dependency "simplecov", "~> 0.14"
   s.add_development_dependency "solidus_backend", solidus_version
   s.add_development_dependency "solidus_dev_support", ">= 0.3.0"
   s.add_development_dependency "solidus_frontend", solidus_version
-  s.add_development_dependency "sqlite3"
 end
