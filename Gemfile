@@ -1,32 +1,29 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
+source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 branch = ENV.fetch('SOLIDUS_BRANCH', 'master')
-gem "solidus", github: "solidusio/solidus", branch: branch
+gem 'solidus', github: 'solidusio/solidus', branch: branch
 
 # Needed to help Bundler figure out how to resolve dependencies,
-# otherwise it takes forever to resolve them
-if branch == 'master' || Gem::Version.new(branch[1..-1]) >= Gem::Version.new('2.10.0')
-  gem 'rails', '~> 6.0'
-else
-  gem 'rails', '~> 5.0'
-end
-
-group :test do
-  gem 'rails-controller-testing', '~> 1.0'
-  gem 'factory_bot', '> 4.10.0'
-end
+# otherwise it takes forever to resolve them.
+# See https://github.com/bundler/bundler/issues/6677
+gem 'rails', '>0.a'
 
 case ENV['DB']
 when 'mysql'
-  gem 'mysql2', '~> 0.4.10'
+  gem 'mysql2'
 when 'postgresql'
-  gem 'pg', '~> 0.21'
+  gem 'pg'
+else
+  gem 'sqlite3'
 end
 
-group :development, :test do
-  gem 'pry-rails', '~> 0.3.9'
-end
+gem 'rails-controller-testing', group: :test
 
 gemspec
+
+# Use a local Gemfile to include development dependencies that might not be
+# relevant for the project or for other contributors, e.g.: `gem 'pry-debug'`.
+eval_gemfile 'Gemfile-local' if File.exist? 'Gemfile-local'
