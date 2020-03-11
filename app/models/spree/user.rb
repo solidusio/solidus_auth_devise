@@ -46,6 +46,8 @@ module Spree
     end
 
     def scramble_email_and_password
+      return true if destroyed?
+
       self.email = SecureRandom.uuid + "@example.net"
       self.login = email
       self.password = SecureRandom.hex(8)
