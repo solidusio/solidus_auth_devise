@@ -78,6 +78,15 @@ RSpec.describe Spree::User, type: :model do
     end
   end
 
+  describe '#really_destroy!' do
+    let(:user) { create(:user) }
+
+    it 'removes the record from the database' do
+      user.really_destroy!
+      expect(Spree::User.with_deleted.exists?(id: user.id)).to eql false
+    end
+  end
+
   describe "confirmable" do
     it "is confirmable if the confirmable option is enabled" do
       set_confirmable_option(true)
