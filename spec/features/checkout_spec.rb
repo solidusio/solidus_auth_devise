@@ -60,15 +60,9 @@ RSpec.feature 'Checkout', :js, type: :feature do
       expect(page).to have_text(/Billing Address/i)
       expect(page).to have_text(/Shipping Address/i)
 
-      str_addr = 'bill_address'
-      select 'United States', from: "order_#{str_addr}_attributes_country_id"
-      %w(firstname lastname address1 city zipcode phone).each do |field|
-        fill_in "order_#{str_addr}_attributes_#{field}", with: address.send(field).to_s
-      end
-      select address.state.name.to_s, from: "order_#{str_addr}_attributes_state_id"
-      check 'order_use_billing'
-
+      fill_addresses_fields_with(address)
       click_button 'Save and Continue'
+
       click_button 'Save and Continue'
       click_button 'Save and Continue'
       click_button 'Place Order'
@@ -92,15 +86,9 @@ RSpec.feature 'Checkout', :js, type: :feature do
 
       click_button 'Checkout'
 
-      str_addr = 'bill_address'
-      select 'United States', from: "order_#{str_addr}_attributes_country_id"
-      %w(firstname lastname address1 city zipcode phone).each do |field|
-        fill_in "order_#{str_addr}_attributes_#{field}", with: address.send(field).to_s
-      end
-      select address.state.name.to_s, from: "order_#{str_addr}_attributes_state_id"
-      check 'order_use_billing'
-
+      fill_addresses_fields_with(address)
       click_button 'Save and Continue'
+
       click_button 'Save and Continue'
       click_button 'Save and Continue'
       click_button 'Place Order'
@@ -134,14 +122,7 @@ RSpec.feature 'Checkout', :js, type: :feature do
       click_link 'Cart'
       click_button 'Checkout'
 
-      str_addr = 'bill_address'
-      select 'United States', from: "order_#{str_addr}_attributes_country_id"
-      %w(firstname lastname address1 city zipcode phone).each do |field|
-        fill_in "order_#{str_addr}_attributes_#{field}", with: address.send(field).to_s
-      end
-      select address.state.name.to_s, from: "order_#{str_addr}_attributes_state_id"
-      check 'order_use_billing'
-
+      fill_addresses_fields_with(address)
       click_button 'Save and Continue'
 
       expect(page).not_to have_text 'Email is invalid'
@@ -163,15 +144,9 @@ RSpec.feature 'Checkout', :js, type: :feature do
 
       expect(page).to have_text 'You have signed up successfully.'
 
-      str_addr = 'bill_address'
-      select 'United States', from: "order_#{str_addr}_attributes_country_id"
-      %w(firstname lastname address1 city zipcode phone).each do |field|
-        fill_in "order_#{str_addr}_attributes_#{field}", with: address.send(field).to_s
-      end
-      select address.state.name.to_s, from: "order_#{str_addr}_attributes_state_id"
-      check 'order_use_billing'
-
+      fill_addresses_fields_with(address)
       click_button 'Save and Continue'
+
       click_button 'Save and Continue'
       click_button 'Save and Continue'
       click_button 'Place Order'
