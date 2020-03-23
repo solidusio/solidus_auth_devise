@@ -6,6 +6,8 @@ require 'devise-encryptable'
 module Spree
   module Auth
     class Engine < Rails::Engine
+      include SolidusSupport::EngineExtensions
+
       isolate_namespace Spree
       engine_name 'solidus_auth'
 
@@ -18,40 +20,10 @@ module Spree
       end
 
       config.to_prepare do
-        auth = Spree::Auth::Engine
-
-        if SolidusSupport.backend_available?
-          auth.load_decorators_for('backend')
-          auth.prepare_backend
-        end
-
-        if SolidusSupport.frontend_available?
-          auth.load_decorators_for('frontend')
-          auth.prepare_frontend
-        end
+        Spree::Auth::Engine.prepare_backend if SolidusSupport.backend_available?
+        Spree::Auth::Engine.prepare_frontend if SolidusSupport.frontend_available?
 
         ApplicationController.include Spree::AuthenticationHelpers
-      end
-
-      def self.load_decorators_for(component_name)
-        base_path = root.join('lib/decorators', component_name)
-
-        if Rails.respond_to?(:autoloaders) && Rails.autoloaders.main
-          # Add decorators folder to the Rails autoloader. This
-          # allows Zeitwerk to resolve decorators paths correctly,
-          # when used.
-          base_path.glob('*') do |decorators_folder|
-            Rails.autoloaders.main.push_dir(decorators_folder)
-          end
-        end
-
-        # Load decorator files. This is needed since they are
-        # never explicitely referenced in the application code
-        # and won't be loaded by default. We need them to be
-        # executed anyway to extend exisiting classes.
-        base_path.glob('**/*_decorator*.rb') do |decorator_path|
-          require_dependency(decorator_path)
-        end
       end
 
       def self.prepare_backend
@@ -76,16 +48,6 @@ module Spree
             redirect_to spree.login_path
           end
         end
-      end
-
-      if SolidusSupport.backend_available?
-        paths["app/controllers"] << "lib/controllers/backend"
-        paths["app/views"] << "lib/views/backend"
-      end
-
-      if SolidusSupport.frontend_available?
-        paths["app/controllers"] << "lib/controllers/frontend"
-        paths["app/views"] << "lib/views/frontend"
       end
     end
   end
