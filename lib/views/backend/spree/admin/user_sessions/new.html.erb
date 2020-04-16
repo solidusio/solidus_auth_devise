@@ -10,11 +10,11 @@
       <div id="password-credentials">
         <p>
           <%= f.label :email, I18n.t('spree.email') %><br />
-          <%= f.email_field :email, class: 'title', tabindex: 1 %>
+          <%= f.email_field :email, class: 'title', tabindex: 1, autocomplete: 'username' %>
         </p>
         <p>
           <%= f.label :password, I18n.t('spree.password') %><br />
-          <%= f.password_field :password, class: 'title', tabindex: 2 %>
+          <%= f.password_field :password, class: 'title', tabindex: 2, autocomplete: 'current-password' %>
         </p>
       </div>
       <p>
