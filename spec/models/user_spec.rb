@@ -88,16 +88,12 @@ RSpec.describe Spree::User, type: :model do
   end
 
   describe "confirmable" do
-    it "is confirmable if the confirmable option is enabled" do
-      set_confirmable_option(true)
-      allow(Spree::UserMailer).to receive(:confirmation_instructions).and_return(double(deliver: true))
-      expect(Spree::User.devise_modules).to include(:confirmable)
-      set_confirmable_option(false)
+    it "loads Devise's :confirmable module when :confirmable is true", confirmable: true do
+      expect(Spree::User.ancestors).to include(Devise::Models::Confirmable)
     end
 
-    it "is not confirmable if the confirmable option is disabled" do
-      set_confirmable_option(false)
-      expect(Spree::User.devise_modules).to_not include(:confirmable)
+    it "does not load Devise's :confirmable module when :confirmable is false", confirmable: false do
+      expect(Spree::User.ancestors).not_to include(Devise::Models::Confirmable)
     end
   end
 end
