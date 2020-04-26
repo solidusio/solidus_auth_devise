@@ -42,7 +42,7 @@ Gem::Specification.new do |s|
   s.add_dependency "devise-encryptable", "0.2.0"
   s.add_dependency "paranoia", "~> 2.4"
   s.add_dependency "solidus_core", solidus_version
-  s.add_dependency "solidus_support", ">= 0.1.3"
+  s.add_dependency "solidus_support", "~> 0.5"
 
   s.add_development_dependency "solidus_backend", solidus_version
   s.add_development_dependency "solidus_dev_support", ">= 0.3.0"
