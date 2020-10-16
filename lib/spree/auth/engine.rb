@@ -12,6 +12,8 @@ module Spree
       engine_name 'solidus_auth'
 
       initializer "spree.auth.environment", before: :load_config_initializers do |_app|
+        require 'spree/auth_configuration'
+
         Spree::Auth::Config = Spree::AuthConfiguration.new
       end
 
