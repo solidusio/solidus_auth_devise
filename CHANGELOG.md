@@ -1,5 +1,18 @@
 # Changelog
 
+## [v2.5.1](https://github.com/solidusio/solidus_auth_devise/tree/v2.5.1) (2020-10-23)
+
+[Full Changelog](https://github.com/solidusio/solidus_auth_devise/compare/v2.5.0...v2.5.1)
+
+**Closed issues:**
+
+- Asset compilation crashes on 2.5.0 [\#196](https://github.com/solidusio/solidus_auth_devise/issues/196)
+
+**Merged pull requests:**
+
+- Use proper name for add\_migrations [\#198](https://github.com/solidusio/solidus_auth_devise/pull/198) ([peterberkenbosch](https://github.com/peterberkenbosch))
+- Move AuthConfiguration out of autoloading paths [\#197](https://github.com/solidusio/solidus_auth_devise/pull/197) ([elia](https://github.com/elia))
+
 ## [v2.5.0](https://github.com/solidusio/solidus_auth_devise/tree/v2.5.0) (2020-10-07)
 
 [Full Changelog](https://github.com/solidusio/solidus_auth_devise/compare/v2.4.0...v2.5.0)
@@ -116,7 +129,6 @@
 - Add Solidus v2.7 to .travis.yml [\#127](https://github.com/solidusio/solidus_auth_devise/pull/127) ([jacobherrington](https://github.com/jacobherrington))
 - Fix spree routes [\#125](https://github.com/solidusio/solidus_auth_devise/pull/125) ([jtapia](https://github.com/jtapia))
 - Remove unnecessary decorator [\#122](https://github.com/solidusio/solidus_auth_devise/pull/122) ([jhawthorn](https://github.com/jhawthorn))
-- Test that we are acting as paranoid not it's behaviour [\#113](https://github.com/solidusio/solidus_auth_devise/pull/113) ([tvdeyen](https://github.com/tvdeyen))
 
 ## [v2.1.0](https://github.com/solidusio/solidus_auth_devise/tree/v2.1.0) (2018-01-22)
 
@@ -131,6 +143,7 @@
 - Remove unused helper include [\#118](https://github.com/solidusio/solidus_auth_devise/pull/118) ([jhawthorn](https://github.com/jhawthorn))
 - update spec according new solidus behaviour for 404 [\#115](https://github.com/solidusio/solidus_auth_devise/pull/115) ([ccarruitero](https://github.com/ccarruitero))
 - Don't require deface for solidus 2.5+ [\#114](https://github.com/solidusio/solidus_auth_devise/pull/114) ([jhawthorn](https://github.com/jhawthorn))
+- Test that we are acting as paranoid not it's behaviour [\#113](https://github.com/solidusio/solidus_auth_devise/pull/113) ([tvdeyen](https://github.com/tvdeyen))
 - Reset api key when assigning password [\#99](https://github.com/solidusio/solidus_auth_devise/pull/99) ([jhawthorn](https://github.com/jhawthorn))
 - RFC: Support Backend-Only Stores [\#96](https://github.com/solidusio/solidus_auth_devise/pull/96) ([stewart](https://github.com/stewart))
 
