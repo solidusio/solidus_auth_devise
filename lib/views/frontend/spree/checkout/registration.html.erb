@@ -1,21 +1,21 @@
 <%= render partial: 'spree/shared/error_messages', locals: { target: @user } %>
-<h1><%= I18n.t('spree.registration') %></h1>
+<h1><%= t('spree.registration') %></h1>
 <div id="registration" data-hook>
   <div id="account" class="columns alpha eight">
     <%= render template: 'spree/user_sessions/new' %>
   </div>
   <% if Spree::Config[:allow_guest_checkout] %>
     <div id="guest_checkout" data-hook class="columns omega eight">
-      <h6><%= I18n.t('spree.guest_user_account') %></h6>
+      <h6><%= t('spree.guest_user_account') %></h6>
       <% if flash[:registration_error] %>
         <div class='flash error'><%= flash[:registration_error] %></div>
       <% end %>
       <%= form_for @order, url: update_checkout_registration_path, method: :put, html: { id: 'checkout_form_registration' } do |f| %>
         <p>
-          <%= f.label :email, I18n.t('spree.email') %><br />
+          <%= f.label :email, t('spree.email') %><br />
           <%= f.email_field :email, class: 'title' %>
         </p>
-        <p><%= f.submit I18n.t('spree.continue'), class: 'button primary' %></p>
+        <p><%= f.submit t('spree.continue'), class: 'button primary' %></p>
       <% end %>
     </div>
   <% end %>
