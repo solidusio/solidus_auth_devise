@@ -1,15 +1,15 @@
 <div id="forgot-password">
-  <h6><%= I18n.t('spree.forgot_password') %></h6>
+  <h6><%= t('spree.forgot_password') %></h6>
 
-  <p><%= I18n.t('spree.instructions_to_reset_password') %></p>
+  <p><%= t('spree.instructions_to_reset_password') %></p>
 
   <%= form_for Spree::User.new, as: :spree_user, url: spree.reset_password_path do |f| %>
     <p>
-      <%= f.label :email, I18n.t('spree.email') %><br />
+      <%= f.label :email, t('spree.email') %><br />
       <%= f.email_field :email, required: true %>
     </p>
     <p>
-      <%= f.submit I18n.t('spree.reset_password'), class: 'button primary' %>
+      <%= f.submit t('spree.reset_password'), class: 'button primary' %>
     </p>
   <% end %>
 </div>

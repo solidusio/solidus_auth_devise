@@ -2,24 +2,24 @@
 
 <div data-hook="account_summary" class="account-summary">
   <dl id="user-info">
-    <dt><%= I18n.t('spree.email') %></dt>
-    <dd><%= @user.email %> (<%= link_to I18n.t('spree.edit'), spree.edit_account_path %>)</dd>
+    <dt><%= t('spree.email') %></dt>
+    <dd><%= @user.email %> (<%= link_to t('spree.edit'), spree.edit_account_path %>)</dd>
   </dl>
 </div>
 
 <div data-hook="account_my_orders" class="account-my-orders">
 
-  <h3><%= I18n.t('spree.my_orders') %></h3>
+  <h3><%= t('spree.my_orders') %></h3>
   <% if @orders.present? %>
     <table class="order-summary">
       <thead>
       <tr>
-        <th class="order-number"><%= I18n.t(:number, scope: 'activerecord.attributes.spree/order') %></th>
-        <th class="order-date"><%= I18n.t('spree.date') %></th>
-        <th class="order-status"><%= I18n.t('spree.status') %></th>
-        <th class="order-payment-state"><%= I18n.t('spree.payment_state') %></th>
-        <th class="order-shipment-state"><%= I18n.t('spree.shipment_state') %></th>
-        <th class="order-total"><%= I18n.t('spree.total') %></th>
+        <th class="order-number"><%= t(:number, scope: 'activerecord.attributes.spree/order') %></th>
+        <th class="order-date"><%= t('spree.date') %></th>
+        <th class="order-status"><%= t('spree.status') %></th>
+        <th class="order-payment-state"><%= t('spree.payment_state') %></th>
+        <th class="order-shipment-state"><%= t('spree.shipment_state') %></th>
+        <th class="order-total"><%= t('spree.total') %></th>
       </tr>
       </thead>
       <tbody>
@@ -27,16 +27,16 @@
         <tr class="<%= cycle('even', 'odd') %>">
           <td class="order-number"><%= link_to order.number, order_url(order) %></td>
           <td class="order-date"><%= l order.completed_at.to_date %></td>
-          <td class="order-status"><%= I18n.t("spree.order_state.#{order.state}").titleize %></td>
-          <td class="order-payment-state"><%= I18n.t("spree.payment_states.#{order.payment_state}").titleize if order.payment_state %></td>
-          <td class="order-shipment-state"><%= I18n.t("spree.shipment_states.#{order.shipment_state}").titleize if order.shipment_state %></td>
+          <td class="order-status"><%= t("spree.order_state.#{order.state}").titleize %></td>
+          <td class="order-payment-state"><%= t("spree.payment_states.#{order.payment_state}").titleize if order.payment_state %></td>
+          <td class="order-shipment-state"><%= t("spree.shipment_states.#{order.shipment_state}").titleize if order.shipment_state %></td>
           <td class="order-total"><%= order.display_total %></td>
         </tr>
       <% end %>
       </tbody>
     </table>
   <% else %>
-    <p><%= I18n.t('spree.you_have_no_orders_yet') %></p>
+    <p><%= t('spree.you_have_no_orders_yet') %></p>
   <% end %>
   <br />
 
