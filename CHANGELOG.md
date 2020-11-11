@@ -1,5 +1,18 @@
 # Changelog
 
+## [v2.5.2](https://github.com/solidusio/solidus_auth_devise/tree/v2.5.2) (2020-11-11)
+
+[Full Changelog](https://github.com/solidusio/solidus_auth_devise/compare/v2.5.1...v2.5.2)
+
+**Implemented enhancements:**
+
+-  Replace `I18n.t` with `t` in views [\#200](https://github.com/solidusio/solidus_auth_devise/pull/200) ([spaghetticode](https://github.com/spaghetticode))
+
+**Merged pull requests:**
+
+- Update migrations to support Rails 5.1 [\#201](https://github.com/solidusio/solidus_auth_devise/pull/201) ([brchristian](https://github.com/brchristian))
+- Point to Solidus wiki for gem release [\#199](https://github.com/solidusio/solidus_auth_devise/pull/199) ([spaghetticode](https://github.com/spaghetticode))
+
 ## [v2.5.1](https://github.com/solidusio/solidus_auth_devise/tree/v2.5.1) (2020-10-23)
 
 [Full Changelog](https://github.com/solidusio/solidus_auth_devise/compare/v2.5.0...v2.5.1)
@@ -129,6 +142,7 @@
 - Add Solidus v2.7 to .travis.yml [\#127](https://github.com/solidusio/solidus_auth_devise/pull/127) ([jacobherrington](https://github.com/jacobherrington))
 - Fix spree routes [\#125](https://github.com/solidusio/solidus_auth_devise/pull/125) ([jtapia](https://github.com/jtapia))
 - Remove unnecessary decorator [\#122](https://github.com/solidusio/solidus_auth_devise/pull/122) ([jhawthorn](https://github.com/jhawthorn))
+- Disable backend footer profile edit link if role cannot edit users [\#120](https://github.com/solidusio/solidus_auth_devise/pull/120) ([gianlucarizzo](https://github.com/gianlucarizzo))
 
 ## [v2.1.0](https://github.com/solidusio/solidus_auth_devise/tree/v2.1.0) (2018-01-22)
 
@@ -144,6 +158,7 @@
 - update spec according new solidus behaviour for 404 [\#115](https://github.com/solidusio/solidus_auth_devise/pull/115) ([ccarruitero](https://github.com/ccarruitero))
 - Don't require deface for solidus 2.5+ [\#114](https://github.com/solidusio/solidus_auth_devise/pull/114) ([jhawthorn](https://github.com/jhawthorn))
 - Test that we are acting as paranoid not it's behaviour [\#113](https://github.com/solidusio/solidus_auth_devise/pull/113) ([tvdeyen](https://github.com/tvdeyen))
+- Remove references to dash [\#104](https://github.com/solidusio/solidus_auth_devise/pull/104) ([jhawthorn](https://github.com/jhawthorn))
 - Reset api key when assigning password [\#99](https://github.com/solidusio/solidus_auth_devise/pull/99) ([jhawthorn](https://github.com/jhawthorn))
 - RFC: Support Backend-Only Stores [\#96](https://github.com/solidusio/solidus_auth_devise/pull/96) ([stewart](https://github.com/stewart))
 
@@ -153,14 +168,12 @@
 
 **Merged pull requests:**
 
-- Disable backend footer profile edit link if role cannot edit users [\#120](https://github.com/solidusio/solidus_auth_devise/pull/120) ([gianlucarizzo](https://github.com/gianlucarizzo))
 - Drop Solidus v1.0, v1.1 support [\#111](https://github.com/solidusio/solidus_auth_devise/pull/111) ([swcraig](https://github.com/swcraig))
 - Stop raising an exception when callback in UsersController is undefined [\#110](https://github.com/solidusio/solidus_auth_devise/pull/110) ([swcraig](https://github.com/swcraig))
 - Add ffaker dependency to gemspec [\#109](https://github.com/solidusio/solidus_auth_devise/pull/109) ([swcraig](https://github.com/swcraig))
 - Remove has\_many orders [\#107](https://github.com/solidusio/solidus_auth_devise/pull/107) ([jhawthorn](https://github.com/jhawthorn))
 - Use base spec\_helper from solidus\_support [\#106](https://github.com/solidusio/solidus_auth_devise/pull/106) ([jhawthorn](https://github.com/jhawthorn))
 - Extract \*\_available? to solidus\_support [\#105](https://github.com/solidusio/solidus_auth_devise/pull/105) ([jhawthorn](https://github.com/jhawthorn))
-- Remove references to dash [\#104](https://github.com/solidusio/solidus_auth_devise/pull/104) ([jhawthorn](https://github.com/jhawthorn))
 - match logout route to devise configuration [\#103](https://github.com/solidusio/solidus_auth_devise/pull/103) ([BenMorganIO](https://github.com/BenMorganIO))
 
 ## [v1.6.4](https://github.com/solidusio/solidus_auth_devise/tree/v1.6.4) (2017-07-24)
