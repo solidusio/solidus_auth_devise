@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
   s.executables = s.files.grep(%r{^exe/}) { |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  solidus_version = [">= 2.6", "< 3"]
+  solidus_version = [">= 2.6", "< 4"]
 
   s.post_install_message = "
     NOTE: Rails 6 has removed secret_token in favor of secret_key_base, which was deprecated in
