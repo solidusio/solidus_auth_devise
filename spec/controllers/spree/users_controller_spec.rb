@@ -46,6 +46,29 @@ RSpec.describe Spree::UsersController, type: :controller do
           expect(subject.spree_current_user.email).to eq user.email
         end
       end
+
+      context 'when updating password' do
+        before do
+          stub_spree_preferences(Spree::Auth::Config, signout_after_password_change: signout_after_change)
+          put :update, params: { user: { password: 'foobar123', password_confirmation: 'foobar123' } }
+        end
+
+        context 'when signout after password change is enabled' do
+          let(:signout_after_change) { true }
+
+          it 'redirects to login url' do
+            expect(response).to redirect_to spree.login_url(only_path: true)
+          end
+        end
+
+        context 'when signout after password change is disabled' do
+          let(:signout_after_change) { false }
+
+          it 'redirects to account url' do
+            expect(response).to redirect_to spree.account_url(only_path: true)
+          end
+        end
+      end
     end
 
     it 'does not update roles' do

@@ -28,14 +28,17 @@ class Spree::UsersController < Spree::StoreController
   def update
     if @user.update(user_params)
       spree_current_user.reload
+      redirect_url = spree.account_url
 
       if params[:user][:password].present?
         # this logic needed b/c devise wants to log us out after password changes
-        unless Spree::Auth::Config[:signout_after_password_change]
+        if Spree::Auth::Config[:signout_after_password_change]
+          redirect_url = spree.login_url
+        else
           bypass_sign_in(@user)
         end
       end
-      redirect_to spree.account_url, notice: I18n.t('spree.account_updated')
+      redirect_to redirect_url, notice: I18n.t('spree.account_updated')
     else
       render :edit
     end
