@@ -8,7 +8,7 @@ module FillAddressFields
       zipcode
       phone
     ]
-    fields += if Spree::Config.has_preference?(:use_combined_first_and_last_name_in_address) && Spree::Config.use_combined_first_and_last_name_in_address
+    fields += if SolidusSupport.combined_first_and_last_name_in_address?
       %w[name]
     else
       %w[firstname lastname]
