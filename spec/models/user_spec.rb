@@ -96,4 +96,14 @@ RSpec.describe Spree::User, type: :model do
       expect(Spree::User.ancestors).not_to include(Devise::Models::Confirmable)
     end
   end
+
+  describe "omniauthable" do
+    it "loads Devise's :omniauthable module when :omniauthable is set", omniauthable: %[twitter] do
+      expect(Spree::User.ancestors).to include(Devise::Models::Omniauthable)
+    end
+
+    it "does not load Devise's :omniauthable module when :omniauthable is nil", omniauthable: nil do
+      expect(Spree::User.ancestors).not_to include(Devise::Models::Omniauthable)
+    end
+  end
 end
