@@ -50,17 +50,7 @@ RSpec.describe Spree::User, type: :model do
   end
 
   describe '#destroy' do
-    # Users with orders are not deletable in Solidus core
-    # therefore we cannot test this behaviour here.
-    # Also there are already sufficient specs in core.
     let(:user) { create(:user) }
-
-    it 'acts_as_paranoid' do
-      # Instead of testing implementation details of `acts_as_paranoid`
-      # we are testing that we are using `acts_as_paranoid` by using duck typing
-      expect(described_class).to respond_to(:with_deleted)
-      expect(user).to respond_to(:deleted_at)
-    end
 
     context 'with same email address as previously deleted account' do
       it 'will allow users to register later' do
@@ -72,13 +62,27 @@ RSpec.describe Spree::User, type: :model do
         expect(user2.save).to be false
         expect(user2.errors.messages[:email].first).to eq "has already been taken"
 
-        user1.destroy
+        user1.discard
         expect(user2.save).to be true
       end
     end
   end
 
-  describe '#really_destroy!' do
+  describe '#destroy' do
+    let(:user) { create(:user) }
+
+    it 'removes the record from the database' do
+      user.destroy
+
+      if defined?(Spree::ParanoiaDeprecations)
+        expect(Spree::User.with_discarded.exists?(id: user.id)).to eql true
+      else
+        expect(Spree::User.with_discarded.exists?(id: user.id)).to eql false
+      end
+    end
+  end
+
+  describe '#really_destroy!', if: defined?(Spree::ParanoiaDeprecations) do
     let(:user) { create(:user) }
 
     it 'removes the record from the database' do
