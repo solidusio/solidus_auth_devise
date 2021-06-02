@@ -40,8 +40,7 @@ def create_admin_user
   attributes = {
     password: password,
     password_confirmation: password,
-    email: email,
-    login: email
+    email: email
   }
 
   load 'spree/user.rb'
