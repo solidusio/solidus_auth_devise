@@ -8,6 +8,7 @@ module Spree
            :rememberable, :trackable, :validatable, :encryptable
     devise :confirmable if Spree::Auth::Config[:confirmable]
     devise :omniauthable, omniauth_providers: Spree::Auth::Config[:omniauthable] if Spree::Auth::Config[:omniauthable].present?
+    devise :lockable if Spree::Auth::Config[:lockable].present?
 
     if defined?(Spree::SoftDeletable)
       include Spree::SoftDeletable
