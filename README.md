@@ -52,6 +52,19 @@ Devise.setup do |config|
 end
 ```
 
+### Omniauthable
+
+To enable Devise's Omniauthable module, you must follow the [devise wiki](https://github.com/heartcombo/devise/wiki/OmniAuth:-Overview) with _just one exception_:
+Instead of adding 
+```ruby
+devise :omniauthable, omniauth_providers: %i[...]
+```
+you should add this line to an initializer (typically `config/initializers/spree.rb`):
+
+```ruby
+Spree::Auth::Config[:omniauthable_providers] = %i[...]
+```
+
 Using in an existing application
 --------------------------------
 
