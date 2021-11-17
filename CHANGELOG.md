@@ -1,5 +1,12 @@
 # Changelog
 
+## [v2.5.4](https://github.com/solidusio/solidus_auth_devise/tree/v2.5.4) (2021-11-17)
+
+[Full Changelog](https://github.com/solidusio/solidus_auth_devise/compare/v2.5.3...v2.5.4)
+
+**Fixed bugs:**
+
+- Fix authentication bypass by CSRF weakness [GHSA-xm34-v85h-9pg2](https://github.com/solidusio/solidus_auth_devise/security/advisories/GHSA-xm34-v85h-9pg2)
 ## [v2.5.3](https://github.com/solidusio/solidus_auth_devise/tree/v2.5.3) (2021-01-29)
 
 [Full Changelog](https://github.com/solidusio/solidus_auth_devise/compare/v2.5.2...v2.5.3)
