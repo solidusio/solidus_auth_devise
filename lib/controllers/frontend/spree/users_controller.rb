@@ -2,10 +2,10 @@
 
 class Spree::UsersController < Spree::StoreController
   skip_before_action :set_current_order, only: :show, raise: false
-  prepend_before_action :load_object, only: [:show, :edit, :update]
   prepend_before_action :authorize_actions, only: :new
 
   def show
+    load_object
     @orders = @user.orders.complete.order('completed_at desc')
   end
 
@@ -23,7 +23,12 @@ class Spree::UsersController < Spree::StoreController
     end
   end
 
+  def edit
+    load_object
+  end
+
   def update
+    load_object
     if @user.update(user_params)
       spree_current_user.reload
       redirect_url = spree.account_url
