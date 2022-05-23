@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 branch = ENV.fetch('SOLIDUS_BRANCH', 'master')
 gem 'solidus', github: 'solidusio/solidus', branch: branch
 
-gem 'rails'
+gem 'rails', ENV.fetch('RAILS_VERSION', nil)
 
 case ENV['DB']
 when 'mysql'
