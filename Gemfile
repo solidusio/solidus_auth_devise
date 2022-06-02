@@ -4,7 +4,14 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 branch = ENV.fetch('SOLIDUS_BRANCH', 'master')
-gem 'solidus', github: 'solidusio/solidus', branch: branch
+
+git "https://github.com/solidusio/solidus.git", branch: branch do
+  gem 'solidus_api'
+  gem 'solidus_backend'
+  gem 'solidus_core'
+  gem 'solidus_frontend'
+  gem 'solidus_sample'
+end
 
 gem 'rails', ENV.fetch('RAILS_VERSION', nil)
 
