@@ -4,12 +4,16 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 branch = ENV.fetch('SOLIDUS_BRANCH', 'master')
-gem 'solidus', github: 'solidusio/solidus', branch: branch
 
-# Needed to help Bundler figure out how to resolve dependencies,
-# otherwise it takes forever to resolve them.
-# See https://github.com/bundler/bundler/issues/6677
-gem 'rails', '>0.a'
+git "https://github.com/solidusio/solidus.git", branch: branch do
+  gem 'solidus_api'
+  gem 'solidus_backend'
+  gem 'solidus_core'
+  gem 'solidus_frontend'
+  gem 'solidus_sample'
+end
+
+gem 'rails', ENV.fetch('RAILS_VERSION', nil)
 
 case ENV['DB']
 when 'mysql'
