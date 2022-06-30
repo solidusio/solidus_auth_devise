@@ -1,50 +1,41 @@
 # frozen_string_literal: true
 
-$:.push File.expand_path('lib', __dir__)
-require 'solidus_auth_devise/version'
+require_relative 'lib/solidus_auth_devise/version'
 
-Gem::Specification.new do |s|
-  s.platform = Gem::Platform::RUBY
-  s.name = "solidus_auth_devise"
-  s.version = Spree::Auth::VERSION
-  s.summary = "Provides authentication and authorization services for use with Solidus by using Devise and CanCan."
-  s.license = 'BSD-3-Clause'
+Gem::Specification.new do |spec|
+  spec.name = 'solidus_auth_devise'
+  spec.version = SolidusAuthDevise::VERSION
+  spec.authors = ['Solidus Team']
+  spec.email = 'contact@solidus.io'
 
-  s.author = 'Solidus Team'
-  s.email = 'contact@solidus.io'
-  s.homepage = 'https://github.com/solidusio/solidus_auth_devise'
+  spec.summary = 'Provides authentication and authorization services for use with Solidus by using Devise and CanCan.'
+  spec.homepage = 'https://github.com/solidusio/solidus_auth_devise'
+  spec.license = 'BSD-3-Clause'
 
-  if s.respond_to?(:metadata)
-    s.metadata["homepage_uri"] = s.homepage if s.homepage
-    s.metadata["source_code_uri"] = s.homepage if s.homepage
-  end
+  spec.metadata['homepage_uri'] = spec.homepage
+  spec.metadata['source_code_uri'] = 'https://github.com/solidusio/solidus_auth_devise'
+  spec.metadata['changelog_uri'] = 'https://github.com/solidusio/solidus_auth_devise/blob/master/CHANGELOG.md'
 
-  s.required_ruby_version = '>= 2.4.0'
+  spec.required_ruby_version = Gem::Requirement.new('>= 2.5', '< 4')
 
-  s.files = Dir.chdir(File.expand_path(__dir__)) do
-    `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
-  end
-  s.test_files = Dir['spec/**/*']
-  s.bindir = "exe"
-  s.executables = s.files.grep(%r{^exe/}) { |f| File.basename(f) }
-  s.require_paths = ["lib"]
+  # Specify which files should be added to the gem when it is released.
+  # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
+  files = Dir.chdir(__dir__) { `git ls-files -z`.split("\x0") }
 
-  solidus_version = [">= 2.6", "< 4"]
+  spec.files = files.grep_v(%r{^(test|spec|features)/})
+  spec.test_files = files.grep(%r{^(test|spec|features)/})
+  spec.bindir = "exe"
+  spec.executables = files.grep(%r{^exe/}) { |f| File.basename(f) }
+  spec.require_paths = ["lib"]
 
-  s.post_install_message = "
-    NOTE: Rails 6 has removed secret_token in favor of secret_key_base, which was deprecated in
-    Rails 5.2. solidus_auth_devise will keep using secret_token, when present, as the pepper. If
-    secret_token is undefined or not available, secret_key_base will be used instead.
-  ".strip.gsub(/ +/, ' ')
+  spec.add_dependency 'deface', '~> 1.0'
+  spec.add_dependency 'devise', '~> 4.1'
+  spec.add_dependency 'devise-encryptable', '0.2.0'
+  spec.add_dependency 'solidus_core', ['>= 3', '< 4']
+  spec.add_dependency 'solidus_support', '~> 0.5'
 
-  s.add_dependency "deface", "~> 1.0"
-  s.add_dependency "devise", '~> 4.1'
-  s.add_dependency "devise-encryptable", "0.2.0"
-  s.add_dependency "solidus_core", solidus_version
-  s.add_dependency "solidus_support", "~> 0.5"
-
-  s.add_development_dependency "solidus_backend", solidus_version
-  s.add_development_dependency "solidus_dev_support", ">= 0.3.0"
-  s.add_development_dependency "solidus_frontend", solidus_version
-  s.add_development_dependency "rails-controller-testing"
+  spec.add_development_dependency 'solidus_backend'
+  spec.add_development_dependency 'solidus_frontend'
+  spec.add_development_dependency 'solidus_dev_support', '~> 2.5'
+  spec.add_development_dependency 'rails-controller-testing'
 end
