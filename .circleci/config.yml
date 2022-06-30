@@ -20,6 +20,7 @@ jobs:
       - checkout
       - solidusio_extensions/run-tests-solidus-master
       - solidusio_extensions/store-test-results
+
   run-specs-with-mysql:
     executor:
       name: solidusio_extensions/mysql
@@ -40,6 +41,11 @@ jobs:
       - solidusio_extensions/run-tests-solidus-older
       - solidusio_extensions/store-test-results
 
+  lint-code:
+    executor: solidusio_extensions/sqlite-memory
+    steps:
+      - browser-tools/install-browser-tools
+      - solidusio_extensions/lint-code
 
 workflows:
   "Run specs on supported Solidus versions":
@@ -47,6 +53,8 @@ workflows:
       - run-specs-with-postgres
       - run-specs-with-mysql
       - run-specs-with-sqlite
+      - lint-code
+
   "Weekly run specs against master":
     triggers:
       - schedule:
