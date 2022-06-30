@@ -7,7 +7,7 @@ module Spree
       base.before_action :check_authorization
 
       # This action builds some associations on the order, ex. addresses, which we
-      # don't to build or save here.
+      # don't want to build or save here.
       base.skip_before_action :setup_for_current_state, only: [:registration, :update_registration]
     end
 
