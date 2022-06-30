@@ -48,7 +48,7 @@ module Spree
 
       def self.prepare_backend
         Spree::Admin::BaseController.unauthorized_redirect = -> do
-          if try_spree_current_user
+          if spree_current_user
             flash[:error] = I18n.t('spree.authorization_failure')
 
             if Spree::Auth::Engine.redirect_back_on_unauthorized?
@@ -71,7 +71,7 @@ module Spree
 
       def self.prepare_frontend
         Spree::BaseController.unauthorized_redirect = -> do
-          if try_spree_current_user
+          if spree_current_user
             flash[:error] = I18n.t('spree.authorization_failure')
 
             if Spree::Auth::Engine.redirect_back_on_unauthorized?
