@@ -3,20 +3,11 @@
 module Spree
   class User < Spree::Base
     include UserMethods
+    include Spree::SoftDeletable
 
     devise :database_authenticatable, :registerable, :recoverable,
            :rememberable, :trackable, :validatable, :encryptable
     devise :confirmable if Spree::Auth::Config[:confirmable]
-
-    if defined?(Spree::SoftDeletable)
-      include Spree::SoftDeletable
-    else
-      acts_as_paranoid
-      include Spree::ParanoiaDeprecations
-
-      include Discard::Model
-      self.discard_column = :deleted_at
-    end
 
     after_destroy :scramble_email_and_password
     after_discard :scramble_email_and_password
