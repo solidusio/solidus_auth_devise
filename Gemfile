@@ -5,13 +5,17 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 branch = ENV.fetch('SOLIDUS_BRANCH', 'master')
 
-git "https://github.com/solidusio/solidus.git", branch: branch do
-  gem 'solidus_api'
-  gem 'solidus_backend'
-  gem 'solidus_core'
-  gem 'solidus_frontend'
-  gem 'solidus_sample'
-end
+solidus_git, solidus_frontend_git = if (branch == 'master') || (branch >= 'v3.2')
+                                      %w[solidusio/solidus solidusio/solidus_frontend]
+                                    else
+                                      %w[solidusio/solidus] * 2
+                                    end
+
+gem 'solidus_api', github: solidus_git, branch: branch
+gem 'solidus_backend', github: solidus_git, branch: branch
+gem 'solidus_core', github: solidus_git, branch: branch
+gem 'solidus_frontend', github: solidus_frontend_git, branch: branch
+gem 'solidus_sample', github: solidus_git, branch: branch
 
 gem 'rails', ENV.fetch('RAILS_VERSION', nil)
 
