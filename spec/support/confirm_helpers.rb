@@ -8,6 +8,7 @@ RSpec.configure do |config|
       begin
         example.run
       ensure
+        Spree.send(:remove_const, :User)
         Spree.const_set('User', old_user)
       end
     else
