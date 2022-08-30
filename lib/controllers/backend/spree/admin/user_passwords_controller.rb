@@ -42,4 +42,15 @@ class Spree::Admin::UserPasswordsController < Devise::PasswordsController
       super
     end
   end
+
+  private
+
+  # NOTE: as soon as this gem stops supporting Solidus 3.1 if-else should be removed and left only include
+  if defined?(::Spree::Admin::SetsUserLanguageLocaleKey)
+    include ::Spree::Admin::SetsUserLanguageLocaleKey
+  else
+    def set_user_language_locale_key
+      :admin_locale
+    end
+  end
 end
