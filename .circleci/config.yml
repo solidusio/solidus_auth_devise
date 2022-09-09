@@ -1,6 +1,7 @@
 version: 2.1
 
 orbs:
+  # Required for feature specs.
   browser-tools: circleci/browser-tools@1.1
 
   # Always take the latest version of the orb, this allows us to
@@ -11,21 +12,41 @@ orbs:
 
 jobs:
   run-specs-with-postgres:
-    executor: solidusio_extensions/postgres
+    executor:
+      name: solidusio_extensions/postgres
+      ruby_version: '3.1'
     steps:
       - browser-tools/install-browser-tools
-      - solidusio_extensions/run-tests
+      - checkout
+      - solidusio_extensions/run-tests-solidus-master
+      - solidusio_extensions/store-test-results
   run-specs-with-mysql:
-    executor: solidusio_extensions/mysql
+    executor:
+      name: solidusio_extensions/mysql
+      ruby_version: '3.0'
     steps:
       - browser-tools/install-browser-tools
-      - solidusio_extensions/run-tests
+      - checkout
+      - solidusio_extensions/run-tests-solidus-current
+      - solidusio_extensions/store-test-results
+
+  run-specs-with-sqlite:
+    executor:
+      name: solidusio_extensions/sqlite
+      ruby_version: '2.7'
+    steps:
+      - browser-tools/install-browser-tools
+      - checkout
+      - solidusio_extensions/run-tests-solidus-older
+      - solidusio_extensions/store-test-results
+
 
 workflows:
   "Run specs on supported Solidus versions":
     jobs:
       - run-specs-with-postgres
       - run-specs-with-mysql
+      - run-specs-with-sqlite
   "Weekly run specs against master":
     triggers:
       - schedule:
@@ -37,3 +58,4 @@ workflows:
     jobs:
       - run-specs-with-postgres
       - run-specs-with-mysql
+      - run-specs-with-sqlite
