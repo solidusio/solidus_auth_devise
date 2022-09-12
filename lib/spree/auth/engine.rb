@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
+require 'solidus_auth_devise'
 require 'devise'
 require 'devise-encryptable'
+require 'spree/auth/version'
 
 module Spree
   module Auth

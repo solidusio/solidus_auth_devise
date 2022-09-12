@@ -7,7 +7,8 @@ require 'devise'
 require 'devise-encryptable'
 require 'cancan'
 
-require 'spree/auth/devise'
-require 'spree/auth/version'
-require 'spree/auth/engine'
+require 'solidus_auth_devise/configuration'
+require 'solidus_auth_devise/version'
+require 'solidus_auth_devise/engine'
+
 require 'spree/authentication_helpers'

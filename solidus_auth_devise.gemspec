@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 $:.push File.expand_path('lib', __dir__)
-require 'spree/auth/version'
+require 'solidus_auth_devise/version'
 
 Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY

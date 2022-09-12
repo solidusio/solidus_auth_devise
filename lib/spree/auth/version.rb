@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
+require 'solidus_auth_devise/version'
+
 module Spree
   module Auth
-    VERSION = '2.5.4'
+    VERSION = SolidusAuthDevise::VERSION
   end
 end
