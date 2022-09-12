@@ -30,6 +30,18 @@ end
 
 gem 'rails-controller-testing', group: :test
 
+if Gem::Version.new(RUBY_VERSION) < Gem::Version.new('3')
+  # While we still support Ruby < 3 we need to workaround a limitation in
+  # the 'async' gem that relies on the latest ruby, since RubyGems doesn't
+  # resolve gems based on the required ruby version.
+  gem 'async', '< 3', require: false
+
+  # 'net/smtp' is required by 'mail', see:
+  # - https://github.com/ruby/net-protocol/issues/10
+  # - https://stackoverflow.com/a/72474475
+  gem 'net-smtp', require: false
+end
+
 gemspec
 
 # Use a local Gemfile to include development dependencies that might not be
