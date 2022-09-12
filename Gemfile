@@ -28,8 +28,6 @@ else
   gem 'sqlite3'
 end
 
-gem 'rails-controller-testing', group: :test
-
 if Gem::Version.new(RUBY_VERSION) < Gem::Version.new('3')
   # While we still support Ruby < 3 we need to workaround a limitation in
   # the 'async' gem that relies on the latest ruby, since RubyGems doesn't

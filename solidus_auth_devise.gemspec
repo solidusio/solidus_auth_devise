@@ -46,4 +46,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "solidus_backend", solidus_version
   s.add_development_dependency "solidus_dev_support", ">= 0.3.0"
   s.add_development_dependency "solidus_frontend", solidus_version
+  s.add_development_dependency "rails-controller-testing"
 end

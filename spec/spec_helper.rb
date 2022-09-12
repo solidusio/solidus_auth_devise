@@ -3,6 +3,8 @@
 # Configure Rails Environment
 ENV['RAILS_ENV'] = 'test'
 
+require 'rails-controller-testing'
+
 # Run Coverage report
 require 'solidus_dev_support/rspec/coverage'
 
