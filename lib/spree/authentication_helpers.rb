@@ -23,5 +23,30 @@ module Spree
                to: :spree,
                prefix: :spree
     end
+
+    private
+
+    def authenticate_spree_user!
+      store_spree_user_location! if storable_spree_user_location?
+
+      super
+    end
+
+    # It's important that the location is NOT stored if:
+    # - The request method is not GET (non idempotent)
+    # - The request is handled by a Devise controller such as Devise::SessionsController as that could cause an
+    #    infinite redirect loop.
+    # - The request is an Ajax request as this can lead to very unexpected behaviour.
+    def storable_spree_user_location?
+      request.get? && is_navigational_format? && !devise_controller? && !request.xhr?
+    end
+
+    def store_spree_user_location!
+      store_location_for(:spree_current_user, request.fullpath)
+    end
+
+    def stored_spree_user_location_or(fallback_location)
+      stored_location_for(:spree_current_user) || fallback_location
+    end
   end
 end
