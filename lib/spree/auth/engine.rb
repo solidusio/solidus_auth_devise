@@ -70,7 +70,6 @@ module Spree
         end
       end
 
-
       def self.prepare_frontend
         Spree::BaseController.unauthorized_redirect = -> do
           if spree_current_user
