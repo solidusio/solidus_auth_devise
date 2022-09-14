@@ -59,7 +59,7 @@ module Spree
               redirect_to spree.admin_unauthorized_path
             end
           else
-            store_location
+            store_spree_user_location!
 
             if Spree::Auth::Engine.redirect_back_on_unauthorized?
               redirect_back(fallback_location: spree.admin_login_path)
@@ -81,7 +81,7 @@ module Spree
               redirect_to spree.unauthorized_path
             end
           else
-            store_location
+            store_spree_user_location!
 
             if Spree::Auth::Engine.redirect_back_on_unauthorized?
               redirect_back(fallback_location: spree.login_path)
