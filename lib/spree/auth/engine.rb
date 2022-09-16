@@ -59,7 +59,6 @@ module Spree
               redirect_to spree.admin_unauthorized_path
             end
           else
-            store_location
 
             if Spree::Auth::Engine.redirect_back_on_unauthorized?
               redirect_back(fallback_location: spree.admin_login_path)
@@ -69,7 +68,6 @@ module Spree
           end
         end
       end
-
 
       def self.prepare_frontend
         Spree::BaseController.unauthorized_redirect = -> do
@@ -82,7 +80,6 @@ module Spree
               redirect_to spree.unauthorized_path
             end
           else
-            store_location
 
             if Spree::Auth::Engine.redirect_back_on_unauthorized?
               redirect_back(fallback_location: spree.login_path)
