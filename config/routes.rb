@@ -16,22 +16,38 @@ Spree::Core::Engine.routes.draw do
     resources :users, only: [:edit, :update]
 
     devise_scope :spree_user do
-      # Legacy devise generated routes
-      get 'user/spree_user/sign_in', to: 'user_sessions#new', as: :new_spree_user_session
-      post 'user/spree_user/sign_in', to: 'user_sessions#create', as: :spree_user_session
-      match 'user/spree_user/logout', to: 'user_sessions#destroy', as: :destroy_spree_user_session, via: Devise.sign_out_via
-      get 'user/spree_user/password/new', to: 'user_passwords#new', as: :new_spree_user_password
-      get 'user/spree_user/password/edit', to: 'user_passwords#edit', as: :edit_spree_user_password
-      patch 'user/spree_user/password', to: 'user_passwords#update', as: :spree_user_password
-      put 'user/spree_user/password', to: 'user_passwords#update'
-      post 'user/spree_user/password', to: 'user_passwords#create'
-      get 'user/spree_user/cancel', to: 'user_registrations#cancel', as: :cancel_spree_user_registration
-      get 'user/spree_user/sign_up', to: 'user_registrations#new', as: :new_spree_user_registration
-      get 'user/spree_user/edit', to: 'user_registrations#edit', as: :edit_spree_user_registration
-      patch 'user/spree_user', to: 'user_registrations#update', as: :spree_user_registration
+      # Legacy devise generated paths
+      # These are deprecated but we still want to support the incoming routes,
+      # in order to give existing stores an upgrade path.
+      get 'user/spree_user/sign_in', to: 'user_sessions#new', as: nil
+      post 'user/spree_user/sign_in', to: 'user_sessions#create', as: nil
+      match 'user/spree_user/logout', to: 'user_sessions#destroy', via: Devise.sign_out_via, as: nil
+      get 'user/spree_user/password/new', to: 'user_passwords#new', as: nil
+      get 'user/spree_user/password/edit', to: 'user_passwords#edit', as: nil
+      patch 'user/spree_user/password', to: 'user_passwords#update', as: nil
+      put 'user/spree_user/password', to: 'user_passwords#update', as: nil
+      post 'user/spree_user/password', to: 'user_passwords#create', as: nil
+      get 'user/spree_user/cancel', to: 'user_registrations#cancel', as: nil
+      get 'user/spree_user/sign_up', to: 'user_registrations#new', as: nil
+      get 'user/spree_user/edit', to: 'user_registrations#edit', as: nil
+      patch 'user/spree_user', to: 'user_registrations#update', as: nil
       put 'user/spree_user', to: 'user_registrations#update', as: nil
       delete 'user/spree_user', to: 'user_registrations#destroy', as: nil
       post 'user/spree_user', to: 'user_registrations#create', as: nil
+
+      # Legacy devise generated helpers
+      # These helpers are deprecated but we still want to support them
+      # in order to give existing stores an upgrade path.
+      get '/login', to: 'user_sessions#new', as: :new_spree_user_session
+      post '/login', to: 'user_sessions#create', as: :spree_user_session
+      match '/logout', to: 'user_sessions#destroy', as: :destroy_spree_user_session, via: Devise.sign_out_via
+      get '/password/recover', to: 'user_passwords#new', as: :new_spree_user_password
+      get '/password/change', to: 'user_passwords#edit', as: :edit_spree_user_password
+      patch '/password/change', to: 'user_passwords#update', as: :spree_user_password
+      get '/spree_user/cancel', to: 'user_registrations#cancel', as: :cancel_spree_user_registration
+      get '/signup', to: 'user_registrations#new', as: :new_spree_user_registration
+      get '/spree_user/edit', to: 'user_registrations#edit', as: :edit_spree_user_registration
+      patch '/spree_user', to: 'user_registrations#update', as: :spree_user_registration
 
       # Custom devise routes
       get '/login', to: 'user_sessions#new', as: :login
