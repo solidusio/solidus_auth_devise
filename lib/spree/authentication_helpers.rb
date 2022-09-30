@@ -42,11 +42,11 @@ module Spree
     end
 
     def store_spree_user_location!
-      store_location_for(:spree_current_user, request.fullpath)
+      store_location_for(:spree_user, request.fullpath)
     end
 
     def stored_spree_user_location_or(fallback_location)
-      stored_location_for(:spree_current_user) || fallback_location
+      stored_location_for(:spree_user) || fallback_location
     end
   end
 end
