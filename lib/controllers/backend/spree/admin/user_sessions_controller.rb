@@ -17,7 +17,7 @@ class Spree::Admin::UserSessionsController < Devise::SessionsController
       respond_to do |format|
         format.html {
           flash[:success] = I18n.t('spree.logged_in_succesfully')
-          redirect_to stored_spree_user_location_or(after_sign_in_path_for(spree_current_user))
+          redirect_back_or_default(after_sign_in_path_for(spree_current_user))
         }
         format.js {
           user = resource.record
@@ -46,5 +46,10 @@ class Spree::Admin::UserSessionsController < Devise::SessionsController
 
   def accurate_title
     I18n.t('spree.login')
+  end
+
+  def redirect_back_or_default(default)
+    redirect_to(session["spree_user_return_to"] || default)
+    session["spree_user_return_to"] = nil
   end
 end
