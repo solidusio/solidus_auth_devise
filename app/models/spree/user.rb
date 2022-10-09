@@ -26,8 +26,6 @@ module Spree
       super
     end
 
-    before_validation :set_login
-
     scope :admin, -> { includes(:spree_roles).where("#{Role.table_name}.name" => "admin") }
 
     def self.admin_created?
@@ -50,16 +48,10 @@ module Spree
 
     private
 
-    def set_login
-      # for now force login to be same as email, eventually we will make this configurable, etc.
-      self.login ||= email if email
-    end
-
     def scramble_email_and_password
       return true if destroyed?
 
       self.email = SecureRandom.uuid + "@example.net"
-      self.login = email
       self.password = SecureRandom.hex(8)
       self.password_confirmation = password
       save
