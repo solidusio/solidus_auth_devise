@@ -294,12 +294,13 @@ RSpec/StubbedMock:
   Exclude:
     - 'spec/models/user_spec.rb'
 
-# Offense count: 2
+# Offense count: 3
 # Configuration parameters: IgnoreNameless, IgnoreSymbolicNames.
 RSpec/VerifiedDoubles:
   Exclude:
     - 'spec/features/confirmation_spec.rb'
     - 'spec/models/user_spec.rb'
+    - 'spec/controllers/spree/admin/user_unlocks_controller_spec.rb'
 
 # Offense count: 12
 # This cop supports unsafe autocorrection (--autocorrect-all).
