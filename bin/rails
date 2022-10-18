@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-if %w[g generate].include? ARGV.first
+if %w[g generate].include?(ARGV.first) && ARGV[1] !~ /^(solidus:auth:|solidus_auth_devise:)/
   exec "#{__dir__}/rails-engine", *ARGV
 else
   exec "#{__dir__}/rails-sandbox", *ARGV
