@@ -4,31 +4,38 @@ module Solidus
   module Auth
     module Generators
       class InstallGenerator < Rails::Generators::Base
-        class_option :auto_run_migrations, type: :boolean, default: false
-        class_option :skip_migrations, type: :boolean, default: false
+        class_option :auto_run_migrations, type: :boolean, desc: "Run migrations automatically"
+        class_option :skip_migrations, type: :boolean, desc: "Skip migrations"
 
-        def self.source_paths
-          paths = superclass.source_paths
-          paths << File.expand_path('templates', __dir__)
-          paths.flatten
-        end
+        class_option :interactive, type: :boolean, default: false, desc: "Enable interactive mode"
+        class_option :admin_email, type: :string
+        class_option :admin_password, type: :string
+
+        source_root "#{__dir__}/templates"
 
         def generate_devise_key
           template 'config/initializers/devise.rb', 'config/initializers/devise.rb', skip: true
         end
 
         def add_migrations
-          run 'bundle exec rake railties:install:migrations FROM=solidus_auth'
+          admin_email = options[:admin_email] || (options[:interactive] && ask("Email:", default: 'admin@example.com'))
+          admin_password = options[:admin_password] || (options[:interactive] && ask("Password:", default: 'test123'))
+
+          options = []
+          options << "ADMIN_EMAIL=#{admin_email}" if admin_email
+          options << "ADMIN_PASSWORD=#{admin_password}" if admin_password
+
+          rake "railties:install:migrations FROM=solidus_auth #{options.shelljoin}"
         end
 
         def run_migrations
-          return if options[:skip_migrations]
+          if options[:skip_migrations] ||
+            options[:auto_run_migrations] == false || # exclude nil
+            options[:interactive] && no?('Would you like to run the migrations now?')
 
-          run_migrations = options[:auto_run_migrations] || ['', 'y', 'Y'].include?(ask('Would you like to run the migrations now? [Y/n]'))
-          if run_migrations
-            run 'bundle exec rake db:migrate'
+            say_status :skip, 'Skipping rake db:migrate, don\'t forget to run it!', :yellow
           else
-            puts 'Skipping rake db:migrate, don\'t forget to run it!' # rubocop:disable Rails/Output
+            rake 'db:migrate'
           end
         end
       end
