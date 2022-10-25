@@ -25,12 +25,12 @@ if Gem::Version.new(RUBY_VERSION) < Gem::Version.new('3')
   # the 'async' gem that relies on the latest ruby, since RubyGems doesn't
   # resolve gems based on the required ruby version.
   gem 'async', '< 3', require: false
-
-  # 'net/smtp' is required by 'mail', see:
-  # - https://github.com/ruby/net-protocol/issues/10
-  # - https://stackoverflow.com/a/72474475
-  gem 'net-smtp', require: false
 end
+
+# 'net/smtp' is required by 'mail', see:
+# - https://github.com/ruby/net-protocol/issues/10
+# - https://stackoverflow.com/a/72474475
+gem 'net-smtp', require: false
 
 gemspec
 

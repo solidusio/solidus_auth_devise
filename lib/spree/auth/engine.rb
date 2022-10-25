@@ -95,3 +95,5 @@ module Spree
     end
   end
 end
+
+SolidusAuthDevise::Engine = Spree::Auth::Engine

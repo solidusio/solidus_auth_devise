@@ -16,8 +16,8 @@ jobs:
       name: solidusio_extensions/postgres
       ruby_version: '3.1'
     steps:
-      - browser-tools/install-browser-tools
       - checkout
+      - browser-tools/install-chrome
       - solidusio_extensions/run-tests-solidus-master
       - solidusio_extensions/store-test-results
 
@@ -26,8 +26,8 @@ jobs:
       name: solidusio_extensions/mysql
       ruby_version: '3.0'
     steps:
-      - browser-tools/install-browser-tools
       - checkout
+      - browser-tools/install-chrome
       - solidusio_extensions/run-tests-solidus-current
       - solidusio_extensions/store-test-results
 
@@ -36,15 +36,14 @@ jobs:
       name: solidusio_extensions/sqlite
       ruby_version: '2.7'
     steps:
-      - browser-tools/install-browser-tools
       - checkout
+      - browser-tools/install-chrome
       - solidusio_extensions/run-tests-solidus-older
       - solidusio_extensions/store-test-results
 
   lint-code:
-    executor: solidusio_extensions/sqlite-memory
+    executor: solidusio_extensions/sqlite
     steps:
-      - browser-tools/install-browser-tools
       - solidusio_extensions/lint-code
 
 workflows:
