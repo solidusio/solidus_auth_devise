@@ -1,11 +1,20 @@
 # Changelog
 
-## [v2.5.5](https://github.com/solidusio/solidus_auth_devise/tree/v2.5.5) (2022-09-19)
+## [v2.5.7](https://github.com/solidusio/solidus_auth_devise/tree/v2.5.7) (2022-10-31)
 
-[Full Changelog](https://github.com/solidusio/solidus_auth_devise/compare/v2.5.4...v2.5.5)
+[Full Changelog](https://github.com/solidusio/solidus_auth_devise/compare/v2.5.6...v2.5.7)
 
 **Merged pull requests:**
 
+- Fix the standard generator alias and remove interactivity from seeds [\#233](https://github.com/solidusio/solidus_auth_devise/pull/233) ([elia](https://github.com/elia))
+
+## [v2.5.6](https://github.com/solidusio/solidus_auth_devise/tree/v2.5.6) (2022-09-30)
+
+[Full Changelog](https://github.com/solidusio/solidus_auth_devise/compare/v2.5.5...v2.5.6)
+
+**Merged pull requests:**
+
+- Revert "Utilize Devise location helpers for redirecting" [\#232](https://github.com/solidusio/solidus_auth_devise/pull/232) ([elia](https://github.com/elia))
 - Run the CI on all supported ruby versions [\#229](https://github.com/solidusio/solidus_auth_devise/pull/229) ([elia](https://github.com/elia))
 - Utilize Devise location helpers for redirecting [\#228](https://github.com/solidusio/solidus_auth_devise/pull/228) ([cpfergus1](https://github.com/cpfergus1))
 - Update to use forked solidus\_frontend when needed [\#227](https://github.com/solidusio/solidus_auth_devise/pull/227) ([waiting-for-dev](https://github.com/waiting-for-dev))
@@ -16,11 +25,13 @@
 - Update to the latest solidus\_dev\_support defaults [\#220](https://github.com/solidusio/solidus_auth_devise/pull/220) ([elia](https://github.com/elia))
 - Fix build [\#219](https://github.com/solidusio/solidus_auth_devise/pull/219) ([gsmendoza](https://github.com/gsmendoza))
 
+## [v2.5.5](https://github.com/solidusio/solidus_auth_devise/tree/v2.5.5) (2022-09-19)
+
+[Full Changelog](https://github.com/solidusio/solidus_auth_devise/compare/v2.5.4...v2.5.5)
+
 ## [v2.5.4](https://github.com/solidusio/solidus_auth_devise/tree/v2.5.4) (2021-11-17)
 
 [Full Changelog](https://github.com/solidusio/solidus_auth_devise/compare/v2.5.3...v2.5.4)
-
-- Fix authentication bypass by CSRF weakness [GHSA-xm34-v85h-9pg2](https://github.com/solidusio/solidus_auth_devise/security/advisories/GHSA-xm34-v85h-9pg2)
 
 **Closed issues:**
 
