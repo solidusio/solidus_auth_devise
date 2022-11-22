@@ -10,6 +10,16 @@ orbs:
   # or goes EOL.
   solidusio_extensions: solidusio/extensions@volatile
 
+  slack: circleci/slack@4.9.3
+
+commands:
+  notify:
+      steps:
+        - slack/notify:
+            event: fail
+            template: basic_fail_1
+            branch_pattern: master
+
 jobs:
   run-specs-with-postgres:
     executor:
@@ -20,6 +30,7 @@ jobs:
       - browser-tools/install-chrome
       - solidusio_extensions/run-tests-solidus-master
       - solidusio_extensions/store-test-results
+      - notify
 
   run-specs-with-mysql:
     executor:
@@ -30,6 +41,7 @@ jobs:
       - browser-tools/install-chrome
       - solidusio_extensions/run-tests-solidus-current
       - solidusio_extensions/store-test-results
+      - notify
 
   run-specs-with-sqlite:
     executor:
@@ -40,19 +52,25 @@ jobs:
       - browser-tools/install-chrome
       - solidusio_extensions/run-tests-solidus-older
       - solidusio_extensions/store-test-results
+      - notify
 
   lint-code:
     executor: solidusio_extensions/sqlite
     steps:
       - solidusio_extensions/lint-code
+      - notify
 
 workflows:
   "Run specs on supported Solidus versions":
     jobs:
-      - run-specs-with-postgres
-      - run-specs-with-mysql
-      - run-specs-with-sqlite
-      - lint-code
+      - run-specs-with-postgres:
+          context: slack-secrets
+      - run-specs-with-mysql:
+          context: slack-secrets
+      - run-specs-with-sqlite:
+          context: slack-secrets
+      - lint-code:
+          context: slack-secrets
 
   "Weekly run specs against master":
     triggers:
@@ -63,6 +81,9 @@ workflows:
               only:
                 - master
     jobs:
-      - run-specs-with-postgres
-      - run-specs-with-mysql
-      - run-specs-with-sqlite
+      - run-specs-with-postgres:
+          context: slack-secrets
+      - run-specs-with-mysql:
+          context: slack-secrets
+      - run-specs-with-sqlite:
+          context: slack-secrets
