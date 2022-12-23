@@ -29,6 +29,9 @@ jobs:
       - checkout
       - browser-tools/install-chrome
       - solidusio_extensions/dependencies
+      - run:
+          name: 'fix ffi'
+          command: 'bundle pristine ffi'
       - solidusio_extensions/run-tests-solidus-master
       - solidusio_extensions/store-test-results
       - notify
