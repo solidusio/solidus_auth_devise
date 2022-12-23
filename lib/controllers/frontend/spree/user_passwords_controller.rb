@@ -8,6 +8,8 @@ class Spree::UserPasswordsController < Devise::PasswordsController
   include Spree::Core::ControllerHelpers::Order
   include Spree::Core::ControllerHelpers::Store
 
+  include SolidusAuthDevise::DeprecatedRoutes
+
   # Overridden due to bug in Devise.
   #   respond_with resource, location: new_session_path(resource_name)
   # is generating bad url /session/new.user
