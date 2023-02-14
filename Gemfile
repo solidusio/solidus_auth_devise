@@ -8,8 +8,13 @@ gem 'solidus', github: 'solidusio/solidus', branch: branch
 gem 'solidus_backend', github: 'solidusio/solidus', branch: branch
 
 # The solidus_frontend gem has been pulled out since v3.2
-gem 'solidus_frontend', github: 'solidusio/solidus_frontend' if branch == 'master'
-gem 'solidus_frontend' if branch >= 'v3.2' # rubocop:disable Bundler/DuplicatedGem
+if branch >= 'v3.2'
+  gem 'solidus_frontend'
+elsif branch == 'master'
+  gem 'solidus_frontend', github: 'solidusio/solidus_frontend'
+else
+  gem 'solidus_frontend', github: 'solidusio/solidus', branch: branch
+end
 
 case ENV.fetch('DB', nil)
 when 'mysql'
