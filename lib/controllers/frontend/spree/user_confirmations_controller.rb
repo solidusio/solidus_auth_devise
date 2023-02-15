@@ -8,6 +8,8 @@ class Spree::UserConfirmationsController < Devise::ConfirmationsController
   include Spree::Core::ControllerHelpers::Order
   include Spree::Core::ControllerHelpers::Store
 
+  include SolidusAuthDevise::DeprecatedRoutes
+
   protected
 
   def after_confirmation_path_for(resource_name, resource)

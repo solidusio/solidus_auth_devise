@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Spree::UsersController < Spree::StoreController
+  include SolidusAuthDevise::DeprecatedRoutes
+
   skip_before_action :set_current_order, only: :show, raise: false
   prepend_before_action :authorize_actions, only: :new
 

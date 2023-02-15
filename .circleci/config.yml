@@ -18,6 +18,10 @@ jobs:
     steps:
       - checkout
       - browser-tools/install-chrome
+      - solidusio_extensions/dependencies
+      - run:
+          name: 'fix ffi'
+          command: 'bundle install && bundle pristine ffi'
       - solidusio_extensions/run-tests-solidus-master
       - solidusio_extensions/store-test-results
 
@@ -28,6 +32,7 @@ jobs:
     steps:
       - checkout
       - browser-tools/install-chrome
+      - solidusio_extensions/dependencies
       - solidusio_extensions/run-tests-solidus-current
       - solidusio_extensions/store-test-results
 
@@ -38,6 +43,7 @@ jobs:
     steps:
       - checkout
       - browser-tools/install-chrome
+      - solidusio_extensions/dependencies
       - solidusio_extensions/run-tests-solidus-older
       - solidusio_extensions/store-test-results
 

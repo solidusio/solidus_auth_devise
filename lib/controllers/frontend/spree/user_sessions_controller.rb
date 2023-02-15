@@ -8,6 +8,8 @@ class Spree::UserSessionsController < Devise::SessionsController
   include Spree::Core::ControllerHelpers::Order
   include Spree::Core::ControllerHelpers::Store
 
+  include SolidusAuthDevise::DeprecatedRoutes
+
   # This is included in ControllerHelpers::Order.  We just want to call
   # it after someone has successfully logged in.
   after_action :set_current_order, only: :create
