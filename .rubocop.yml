@@ -5,3 +5,6 @@ require:
 
 AllCops:
   NewCops: disable
+
+Gemspec/RequiredRubyVersion:
+  Enabled: false
