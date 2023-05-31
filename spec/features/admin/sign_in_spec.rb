@@ -2,7 +2,7 @@
 
 RSpec.feature 'Admin - Sign In', type: :feature do
   background do
-    @user = create(:user, email: 'email@person.com')
+    @user = create(:admin_user, email: 'email@person.com')
     visit spree.admin_login_path
   end
 
@@ -19,7 +19,7 @@ RSpec.feature 'Admin - Sign In', type: :feature do
     expect(page).to have_text 'Logged in successfully'
     expect(page).not_to have_text 'Login'
     expect(page).to have_text 'Logout'
-    expect(current_path).to eq '/'
+    expect(current_path).to eq '/admin/orders'
   end
 
   scenario 'shows validation erros' do

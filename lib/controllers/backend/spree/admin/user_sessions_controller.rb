@@ -35,6 +35,10 @@ class Spree::Admin::UserSessionsController < Devise::SessionsController
 
   private
 
+  def signed_in_root_path(_resource)
+    spree.admin_path
+  end
+
   # NOTE: as soon as this gem stops supporting Solidus 3.1 if-else should be removed and left only include
   if defined?(::Spree::Admin::SetsUserLanguageLocaleKey)
     include ::Spree::Admin::SetsUserLanguageLocaleKey
