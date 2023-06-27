@@ -105,7 +105,7 @@ RSpec/BeforeAfterAll:
 
 # Offense count: 5
 # This cop supports safe autocorrection (--autocorrect).
-RSpec/Capybara/CurrentPathExpectation:
+Capybara/CurrentPathExpectation:
   Exclude:
     - 'spec/features/admin/sign_in_spec.rb'
     - 'spec/features/sign_in_spec.rb'
@@ -221,7 +221,6 @@ RSpec/InstanceVariable:
     - 'spec/controllers/spree/admin/user_passwords_controller_spec.rb'
     - 'spec/controllers/spree/user_passwords_controller_spec.rb'
     - 'spec/controllers/spree/user_registrations_controller_spec.rb'
-    - 'spec/controllers/spree/user_sessions_controller_spec.rb'
     - 'spec/features/admin/sign_in_spec.rb'
     - 'spec/features/checkout_spec.rb'
     - 'spec/features/sign_in_spec.rb'

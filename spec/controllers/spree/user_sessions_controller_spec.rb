@@ -3,22 +3,20 @@
 RSpec.describe Spree::UserSessionsController, type: :controller do
   let(:user) { create(:user) }
 
-  before { @request.env['devise.mapping'] = Devise.mappings[:spree_user] }
+  before { @request.env['devise.mapping'] = Devise.mappings[:spree_user] } # rubocop:disable RSpec/InstanceVariable
 
   context "#create" do
     let(:format) { :html }
     let(:password) { 'secret' }
 
     subject do
-      post(:create,
-        params: {
-          spree_user: {
-            email: user.email,
-            password: password
-          },
-          format: format
-        }
-      )
+      post(:create, params: {
+        spree_user: {
+          email: user.email,
+          password: password
+        },
+        format: format
+      })
     end
 
     context "when using correct login information" do
