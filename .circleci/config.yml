@@ -61,7 +61,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
     jobs:
       - run-specs:
           name: *name

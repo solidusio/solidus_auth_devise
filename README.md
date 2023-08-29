@@ -1,7 +1,7 @@
 # Solidus Auth Devise
 
 [![CircleCI](https://circleci.com/gh/solidusio/solidus_auth_devise.svg?style=shield)](https://circleci.com/gh/solidusio/solidus_auth_devise)
-[![codecov](https://codecov.io/gh/solidusio/solidus_auth_devise/branch/master/graph/badge.svg)](https://codecov.io/gh/solidusio/solidus_auth_devise)
+[![codecov](https://codecov.io/gh/solidusio/solidus_auth_devise/branch/main/graph/badge.svg)](https://codecov.io/gh/solidusio/solidus_auth_devise)
 
 Provides authentication services for Solidus, using the Devise gem.
 
