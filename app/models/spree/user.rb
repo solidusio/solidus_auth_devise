@@ -3,6 +3,7 @@
 module Spree
   class User < Spree::Base
     include UserMethods
+    has_one_attached :profile
 
     devise :database_authenticatable, :registerable, :recoverable,
            :rememberable, :trackable, :validatable, :encryptable
