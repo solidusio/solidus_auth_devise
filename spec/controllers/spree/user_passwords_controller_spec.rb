@@ -10,7 +10,7 @@ RSpec.describe Spree::UserPasswordsController, type: :controller do
       it 'redirects to the new session path' do
         get :edit
         expect(response).to redirect_to(
-          'http://test.host/user/spree_user/sign_in'
+          'http://test.host/login'
         )
       end
 

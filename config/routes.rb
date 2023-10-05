@@ -10,7 +10,7 @@ Spree::Core::Engine.routes.draw do
         passwords: 'spree/user_passwords',
         confirmations: 'spree/user_confirmations'
       },
-      skip: [:unlocks, :omniauth_callbacks],
+      skip: [:unlocks, :omniauth_callbacks, :sessions],
       path_names: { sign_out: 'logout' },
       path_prefix: :user,
       router_name: :spree
@@ -19,8 +19,21 @@ Spree::Core::Engine.routes.draw do
     resources :users, only: [:edit, :update]
 
     devise_scope :spree_user do
-      get '/login', to: 'user_sessions#new', as: :login
-      post '/login', to: 'user_sessions#create', as: :create_new_session
+      # Legacy devise generated paths
+      # These are deprecated but we still want to support the incoming routes,
+      # in order to give existing stores an upgrade path.
+      get 'user/spree_user/sign_in', to: 'user_sessions#new', as: nil
+      post 'user/spree_user/sign_in', to: 'user_sessions#create', as: nil
+
+      # Custom Devise routes
+      [:new_spree_user_session, :login].each do |helper|
+        get '/login', to: 'user_sessions#new', as: helper
+      end
+
+      [:spree_user_session, :create_new_session].each do |helper|
+        post '/login', to: 'user_sessions#create', as: helper
+      end
+
       match '/logout', to: 'user_sessions#destroy', as: :logout, via: Devise.sign_out_via
       get '/signup', to: 'user_registrations#new', as: :signup
       post '/signup', to: 'user_registrations#create', as: :registration
