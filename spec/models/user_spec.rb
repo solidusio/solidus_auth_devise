@@ -53,7 +53,7 @@ RSpec.describe Spree::User, type: :model do
     let(:user) { create(:user) }
 
     context 'with same email address as previously deleted account' do
-      it 'will allow users to register later' do
+      it 'allows users to register later' do
         user1 = build(:user)
         user1.save
 
