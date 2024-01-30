@@ -4,6 +4,8 @@ class Spree::UsersController < Spree::StoreController
   skip_before_action :set_current_order, only: :show, raise: false
   prepend_before_action :authorize_actions, only: :new
 
+  def new; end
+
   def show
     load_object
     @orders = @user.orders.complete.order('completed_at desc')
