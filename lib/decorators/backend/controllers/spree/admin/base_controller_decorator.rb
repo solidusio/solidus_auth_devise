@@ -3,6 +3,12 @@
 module Spree
   module Admin
     module BaseControllerDecorator
+      def self.prepended(base)
+        base.class_eval do
+          before_action :authenticate_spree_user!
+        end
+      end
+
       protected
 
       def model_class
