@@ -2,7 +2,7 @@
 
 module Spree
   module Admin
-    module BaseControllerDecorator
+    module BaseControllerPatch
       protected
 
       def model_class
