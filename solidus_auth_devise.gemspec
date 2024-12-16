@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'devise', '~> 4.1'
   spec.add_dependency 'devise-encryptable', '0.2.0'
   spec.add_dependency 'solidus_core', ['>= 3', '< 5']
-  spec.add_dependency 'solidus_support', '~> 0.5'
+  spec.add_dependency 'solidus_support', '~> 0.11'
 
   spec.add_development_dependency 'solidus_backend'
   spec.add_development_dependency 'solidus_frontend'

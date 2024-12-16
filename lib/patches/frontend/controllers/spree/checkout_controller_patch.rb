@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Spree
-  module CheckoutControllerDecorator
+  module CheckoutControllerPatch
     def self.prepended(base)
       base.before_action :check_registration, except: [:registration, :update_registration]
       base.before_action :check_authorization

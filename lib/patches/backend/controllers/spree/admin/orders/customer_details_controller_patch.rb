@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Spree::Admin::Orders::CustomerDetailsControllerDecorator
+module Spree::Admin::Orders::CustomerDetailsControllerPatch
   def self.prepended(base)
     base.before_action :check_authorization
   end
