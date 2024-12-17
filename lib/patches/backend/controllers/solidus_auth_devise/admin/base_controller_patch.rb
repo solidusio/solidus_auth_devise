@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Spree
+module SolidusAuthDevise
   module Admin
     module BaseControllerPatch
       protected
