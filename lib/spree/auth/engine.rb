@@ -13,14 +13,12 @@ module Spree
       isolate_namespace Spree
       engine_name 'solidus_auth'
 
+      Spree.user_class = "Spree::User"
+
       initializer "spree.auth.environment", before: :load_config_initializers do |_app|
         require 'spree/auth_configuration'
 
         Spree::Auth::Config = Spree::AuthConfiguration.new
-      end
-
-      initializer "solidus_auth_devise.set_user_class", after: :load_config_initializers do
-        Spree.user_class = "Spree::User"
       end
 
       config.to_prepare do
