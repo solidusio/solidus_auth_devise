@@ -30,29 +30,13 @@ module Spree
 
       def self.prepare_backend
         Spree::Admin::BaseController.unauthorized_redirect = -> do
-          if spree_current_user
-            flash[:error] = I18n.t('spree.authorization_failure')
-
-            redirect_to(spree.admin_unauthorized_path)
-          else
-            store_location
-
-            redirect_to(spree.admin_login_path)
-          end
+          Spree::Auth::UnauthorizedAdminAccessHandler.new(self).call
         end
       end
 
       def self.prepare_frontend
         Spree::BaseController.unauthorized_redirect = -> do
-          if spree_current_user
-            flash[:error] = I18n.t('spree.authorization_failure')
-
-            redirect_back(fallback_location: spree.unauthorized_path)
-          else
-            store_location
-
-            redirect_back(fallback_location: spree.login_path)
-          end
+          Spree::Auth::UnauthorizedCustomerAccessHandler.new(self).call
         end
       end
     end
