@@ -8,10 +8,6 @@ RSpec.describe Spree::BaseController, type: :controller do
       def index; authorize!(:read, :something); end
     end
 
-    before do
-      stub_spree_preferences(Spree::Config, redirect_back_on_unauthorized: true)
-    end
-
     context "when user is logged in" do
       before { sign_in(create(:user)) }
 
