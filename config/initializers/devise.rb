@@ -143,4 +143,6 @@ Devise.setup do |config|
   config.reset_password_within = 6.hours
 
   config.case_insensitive_keys = [:email]
+
+  config.reload_routes = false
 end
