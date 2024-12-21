@@ -21,10 +21,19 @@ module Spree
         Spree::Auth::Config = Spree::AuthConfiguration.new
       end
 
-      config.to_prepare do
-        Spree::Auth::Engine.prepare_backend if SolidusSupport.backend_available?
-        Spree::Auth::Engine.prepare_frontend if SolidusSupport.frontend_available?
+      if Spree::Config.respond_to?(:unauthorized_redirect_handler_class)
+        Spree::Config.unauthorized_redirect_handler_class = "Spree::Auth::UnauthorizedCustomerAccessHandler"
+        if SolidusSupport.backend_available?
+          Spree::Backend::Config.unauthorized_redirect_handler_class = "Spree::Auth::UnauthorizedAdminAccessHandler"
+        end
+      else
+        config.to_prepare do
+          Spree::Auth::Engine.prepare_backend if SolidusSupport.backend_available?
+          Spree::Auth::Engine.prepare_frontend if SolidusSupport.frontend_available?
+        end
+      end
 
+      config.to_prepare do
         ApplicationController.include Spree::AuthenticationHelpers
       end
 
