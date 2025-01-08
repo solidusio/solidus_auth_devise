@@ -45,7 +45,7 @@ module Spree
     def check_registration
       return unless registration_required?
 
-      store_location
+      store_spree_user_location!
       redirect_to spree.checkout_registration_path
     end
 
