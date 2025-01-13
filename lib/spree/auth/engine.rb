@@ -21,73 +21,31 @@ module Spree
         Spree::Auth::Config = Spree::AuthConfiguration.new
       end
 
-      config.to_prepare do
-        Spree::Auth::Engine.prepare_backend if SolidusSupport.backend_available?
-        Spree::Auth::Engine.prepare_frontend if SolidusSupport.frontend_available?
-
-        ApplicationController.include Spree::AuthenticationHelpers
+      if Spree::Config.respond_to?(:unauthorized_redirect_handler_class)
+        Spree::Config.unauthorized_redirect_handler_class = "Spree::Auth::UnauthorizedCustomerAccessHandler"
+        if SolidusSupport.backend_available?
+          Spree::Backend::Config.unauthorized_redirect_handler_class = "Spree::Auth::UnauthorizedAdminAccessHandler"
+        end
+      else
+        config.to_prepare do
+          Spree::Auth::Engine.prepare_backend if SolidusSupport.backend_available?
+          Spree::Auth::Engine.prepare_frontend if SolidusSupport.frontend_available?
+        end
       end
 
-      def self.redirect_back_on_unauthorized?
-        return false unless Spree::Config.respond_to?(:redirect_back_on_unauthorized)
-
-        if Spree::Config.redirect_back_on_unauthorized
-          true
-        else
-          Spree::Deprecation.warn <<-WARN.strip_heredoc, caller
-            Having Spree::Config.redirect_back_on_unauthorized set
-            to `false` is deprecated and will not be supported in Solidus 3.0.
-            Please change this configuration to `true` and be sure that your
-            application does not break trying to redirect back when there is
-            an unauthorized access.
-          WARN
-
-          false
-        end
+      config.to_prepare do
+        ApplicationController.include Spree::AuthenticationHelpers
       end
 
       def self.prepare_backend
         Spree::Admin::BaseController.unauthorized_redirect = -> do
-          if spree_current_user
-            flash[:error] = I18n.t('spree.authorization_failure')
-
-            if Spree::Auth::Engine.redirect_back_on_unauthorized?
-              redirect_back(fallback_location: spree.admin_unauthorized_path)
-            else
-              redirect_to spree.admin_unauthorized_path
-            end
-          else
-            store_location
-
-            if Spree::Auth::Engine.redirect_back_on_unauthorized?
-              redirect_back(fallback_location: spree.admin_login_path)
-            else
-              redirect_to spree.admin_login_path
-            end
-          end
+          Spree::Auth::UnauthorizedAdminAccessHandler.new(self).call
         end
       end
 
-
       def self.prepare_frontend
         Spree::BaseController.unauthorized_redirect = -> do
-          if spree_current_user
-            flash[:error] = I18n.t('spree.authorization_failure')
-
-            if Spree::Auth::Engine.redirect_back_on_unauthorized?
-              redirect_back(fallback_location: spree.unauthorized_path)
-            else
-              redirect_to spree.unauthorized_path
-            end
-          else
-            store_location
-
-            if Spree::Auth::Engine.redirect_back_on_unauthorized?
-              redirect_back(fallback_location: spree.login_path)
-            else
-              redirect_to spree.login_path
-            end
-          end
+          Spree::Auth::UnauthorizedCustomerAccessHandler.new(self).call
         end
       end
     end
