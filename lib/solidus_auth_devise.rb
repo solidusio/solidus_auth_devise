@@ -10,5 +10,3 @@ require 'cancan'
 require 'solidus_auth_devise/configuration'
 require 'solidus_auth_devise/version'
 require 'solidus_auth_devise/engine'
-
-require 'spree/authentication_helpers'

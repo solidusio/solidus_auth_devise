@@ -32,6 +32,9 @@ if Gem::Version.new(RUBY_VERSION) < Gem::Version.new('3')
   gem 'async', '< 3', require: false
 end
 
+# Temporarily use the `solidus_support` gem with Flickwerk support
+gem "solidus_support", github: "mamhoff/solidus_support", branch: "re-enable-flickwerk"
+
 # 'net/smtp' is required by 'mail', see:
 # - https://github.com/ruby/net-protocol/issues/10
 # - https://stackoverflow.com/a/72474475

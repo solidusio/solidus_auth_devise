@@ -21,7 +21,6 @@ Gemspec/OrderedDependencies:
 Layout/ArgumentAlignment:
   Exclude:
     - 'app/models/spree/user.rb'
-    - 'lib/spree/authentication_helpers.rb'
     - 'spec/controllers/spree/user_sessions_controller_spec.rb'
     - 'spec/features/sign_out_spec.rb'
 
@@ -351,7 +350,6 @@ Style/GuardClause:
     - 'db/migrate/20120203010234_add_reset_password_sent_at_to_spree_users.rb'
     - 'db/migrate/20190125170630_add_reset_password_token_index_to_spree_users.rb'
     - 'db/migrate/20200417153503_add_unconfirmed_email_to_spree_users.rb'
-    - 'lib/spree/authentication_helpers.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
