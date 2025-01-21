@@ -13,5 +13,13 @@ module Spree
       @confirmation_url = spree.spree_user_confirmation_url(confirmation_token: token, host: @store.url)
       mail to: user.email, from: from_address(@store), subject: "#{@store.name} #{I18n.t(:subject, scope: [:devise, :mailer, :confirmation_instructions])}"
     end
+
+    def unlock_instructions(user, token, _opts = {})
+      @store = Spree::Store.default
+      @user = user
+
+      @unlock_url = spree.admin_unlock_url(unlock_token: token, host: @store.url)
+      mail to: user.email, from: from_address(@store), subject: "#{@store.name} #{I18n.t(:subject, scope: [:devise, :mailer, :unlock_instructions])}"
+    end
   end
 end
