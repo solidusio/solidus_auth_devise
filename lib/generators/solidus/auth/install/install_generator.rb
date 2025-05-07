@@ -14,7 +14,7 @@ module Solidus
         source_root "#{__dir__}/templates"
 
         def generate_devise_key
-          template 'config/initializers/devise.rb', 'config/initializers/devise.rb', skip: true
+          template 'config/initializers/devise.rb.erb', 'config/initializers/devise.rb', skip: true
         end
 
         def add_migrations
