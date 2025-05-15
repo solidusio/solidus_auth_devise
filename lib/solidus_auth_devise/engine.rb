@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-require 'spree/auth/engine'
+require "spree/auth/engine"

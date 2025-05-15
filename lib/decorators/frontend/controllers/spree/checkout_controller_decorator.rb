@@ -21,20 +21,20 @@ module Spree
       else
         flash[:registration_error] = t(:email_is_invalid, scope: [:errors, :messages])
         @user = Spree::User.new
-        render 'registration'
+        render "registration"
       end
     end
 
     private
 
     def order_params
-      params.
-        fetch(:order, {}).
-        permit(:email)
+      params
+        .fetch(:order, {})
+        .permit(:email)
     end
 
     def skip_state_validation?
-      %w(registration update_registration).include?(params[:action])
+      %w[registration update_registration].include?(params[:action])
     end
 
     def check_authorization

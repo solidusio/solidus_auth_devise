@@ -4,11 +4,12 @@ class Spree::UsersController < Spree::StoreController
   skip_before_action :set_current_order, only: :show, raise: false
   prepend_before_action :authorize_actions, only: :new
 
-  def new; end
+  def new
+  end
 
   def show
     load_object
-    @orders = @user.orders.complete.order('completed_at desc')
+    @orders = @user.orders.complete.order("completed_at desc")
   end
 
   def create
@@ -43,7 +44,7 @@ class Spree::UsersController < Spree::StoreController
           bypass_sign_in(@user)
         end
       end
-      redirect_to redirect_url, notice: I18n.t('spree.account_updated')
+      redirect_to redirect_url, notice: I18n.t("spree.account_updated")
     else
       render :edit
     end
@@ -65,6 +66,6 @@ class Spree::UsersController < Spree::StoreController
   end
 
   def accurate_title
-    I18n.t('spree.my_account')
+    I18n.t("spree.my_account")
   end
 end

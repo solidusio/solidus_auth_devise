@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 class Spree::Admin::UserSessionsController < Devise::SessionsController
-  helper 'spree/base'
+  helper "spree/base"
 
   include Spree::Core::ControllerHelpers::Auth
   include Spree::Core::ControllerHelpers::Common
   include Spree::Core::ControllerHelpers::Store
 
-  helper 'spree/admin/navigation'
-  layout 'spree/layouts/admin'
+  helper "spree/admin/navigation"
+  layout "spree/layouts/admin"
 
   def create
     authenticate_spree_user!
@@ -16,16 +16,16 @@ class Spree::Admin::UserSessionsController < Devise::SessionsController
     if spree_user_signed_in?
       respond_to do |format|
         format.html {
-          flash[:success] = I18n.t('spree.logged_in_succesfully')
+          flash[:success] = I18n.t("spree.logged_in_succesfully")
           redirect_back_or_default(after_sign_in_path_for(spree_current_user))
         }
         format.js {
           user = resource.record
-          render json: { ship_address: user.ship_address, bill_address: user.bill_address }.to_json
+          render json: {ship_address: user.ship_address, bill_address: user.bill_address}.to_json
         }
       end
     else
-      flash.now[:error] = t('devise.failure.invalid')
+      flash.now[:error] = t("devise.failure.invalid")
       render :new
     end
   end
@@ -49,7 +49,7 @@ class Spree::Admin::UserSessionsController < Devise::SessionsController
   end
 
   def accurate_title
-    I18n.t('spree.login')
+    I18n.t("spree.login")
   end
 
   def redirect_back_or_default(default)

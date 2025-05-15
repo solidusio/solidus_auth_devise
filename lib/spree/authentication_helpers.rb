@@ -20,8 +20,8 @@ module Spree
 
     if SolidusSupport.frontend_available?
       delegate :login_path, :signup_path, :logout_path,
-               to: :spree,
-               prefix: :spree
+        to: :spree,
+        prefix: :spree
     end
   end
 end

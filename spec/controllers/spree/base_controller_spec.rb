@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require "spec_helper"
 
 RSpec.describe Spree::BaseController, type: :controller do
-  describe '#unauthorized_redirect' do
+  describe "#unauthorized_redirect" do
     controller(described_class) do
-      def index; authorize!(:read, :something); end
+      def index
+        authorize!(:read, :something)
+      end
     end
 
     before do
@@ -23,11 +25,11 @@ RSpec.describe Spree::BaseController, type: :controller do
       end
 
       context "when http_referrer is present" do
-        before { request.env['HTTP_REFERER'] = '/redirect' }
+        before { request.env["HTTP_REFERER"] = "/redirect" }
 
         it "redirects back" do
           get :index
-          expect(response).to redirect_to('/redirect')
+          expect(response).to redirect_to("/redirect")
         end
       end
     end
@@ -41,11 +43,11 @@ RSpec.describe Spree::BaseController, type: :controller do
       end
 
       context "when http_referrer is present" do
-        before { request.env['HTTP_REFERER'] = '/redirect' }
+        before { request.env["HTTP_REFERER"] = "/redirect" }
 
         it "redirects back" do
           get :index
-          expect(response).to redirect_to('/redirect')
+          expect(response).to redirect_to("/redirect")
         end
       end
     end

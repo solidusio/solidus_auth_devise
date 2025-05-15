@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Spree::UserRegistrationsController < Devise::RegistrationsController
-  helper 'spree/base', 'spree/store'
+  helper "spree/base", "spree/store"
 
   include Spree::Core::ControllerHelpers::Auth
   include Spree::Core::ControllerHelpers::Common
@@ -29,7 +29,7 @@ class Spree::UserRegistrationsController < Devise::RegistrationsController
   protected
 
   def translation_scope
-    'devise.user_registrations'
+    "devise.user_registrations"
   end
 
   def check_permissions

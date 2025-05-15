@@ -5,16 +5,16 @@
 Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in DeviseMailer.
-  config.mailer_sender = 'please-change-me@config-initializers-devise.com'
+  config.mailer_sender = "please-change-me@config-initializers-devise.com"
 
   # Configure the class responsible to send e-mails.
-  config.mailer = 'Spree::UserMailer'
+  config.mailer = "Spree::UserMailer"
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
-  require 'devise/orm/active_record'
+  require "devise/orm/active_record"
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating an user. By default is
@@ -34,13 +34,13 @@ Devise.setup do |config|
   # config.http_authenticatable_on_xhr = false
 
   # The realm used in Http Basic Authentication
-  config.http_authentication_realm = 'Spree Application'
+  config.http_authentication_realm = "Spree Application"
 
   # ==> Configuration for :database_authenticatable
   # For bcrypt, this is the cost for hashing the password and defaults to 10. If
   # using other encryptors, it sets how many times you want the password re-encrypted.
   config.stretches = 20
-  config.encryptor = 'authlogic_sha512'
+  config.encryptor = "authlogic_sha512"
 
   # Setup a pepper to generate the encrypted password.
   config.pepper = if Rails.configuration.respond_to?(:secret_token) && Rails.configuration.secret_token.present?

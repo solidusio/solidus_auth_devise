@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../../solidus/auth/install/install_generator'
+require_relative "../../solidus/auth/install/install_generator"
 
 module SolidusAuthDevise
   module Generators
@@ -11,7 +11,7 @@ module SolidusAuthDevise
       end
 
       def forward_to_spree_auth_install
-        generate 'solidus:auth:install', *ARGV
+        generate "solidus:auth:install", *ARGV
       end
     end
   end
