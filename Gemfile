@@ -7,6 +7,9 @@ branch = ENV.fetch('SOLIDUS_BRANCH', 'main')
 gem 'solidus', github: 'solidusio/solidus', branch: branch
 gem 'solidus_backend', github: 'solidusio/solidus', branch: branch
 
+rails_requirement_string = ENV.fetch('RAILS_VERSION', '~> 7.0')
+gem 'rails', rails_requirement_string
+
 # The solidus_frontend gem has been pulled out since v3.2
 if branch >= 'v3.2'
   gem 'solidus_frontend'
@@ -22,7 +25,10 @@ when 'mysql'
 when 'postgresql'
   gem 'pg'
 else
-  gem 'sqlite3', '~> 1.4'
+  rails_version = Gem::Requirement.new(rails_requirement_string).requirements[0][1]
+  sqlite_version = rails_version < Gem::Version.new(7.2) ? "~> 1.4" : "~> 2.0"
+
+  gem 'sqlite3', sqlite_version
 end
 
 if Gem::Version.new(RUBY_VERSION) < Gem::Version.new('3')
