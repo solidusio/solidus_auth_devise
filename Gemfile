@@ -37,7 +37,7 @@ if Gem::Version.new(RUBY_VERSION) < Gem::Version.new('3')
   # resolve gems based on the required ruby version.
   gem 'async', '< 3', require: false
 end
-
+gem "solidus_dev_support", github: "solidusio/solidus_dev_support", branch: "main"
 # 'net/smtp' is required by 'mail', see:
 # - https://github.com/ruby/net-protocol/issues/10
 # - https://stackoverflow.com/a/72474475
