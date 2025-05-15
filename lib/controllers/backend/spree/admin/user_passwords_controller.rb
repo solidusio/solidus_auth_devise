@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 class Spree::Admin::UserPasswordsController < Devise::PasswordsController
-  helper 'spree/base'
+  helper "spree/base"
 
   include Spree::Core::ControllerHelpers::Auth
   include Spree::Core::ControllerHelpers::Common
   include Spree::Core::ControllerHelpers::Store
 
-  helper 'spree/admin/navigation'
-  layout 'spree/layouts/admin'
+  helper "spree/admin/navigation"
+  layout "spree/layouts/admin"
 
   skip_before_action :require_no_authentication, only: [:create]
 

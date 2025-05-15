@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Spree::UserPasswordsController < Devise::PasswordsController
-  helper 'spree/base', 'spree/store'
+  helper "spree/base", "spree/store"
 
   include Spree::Core::ControllerHelpers::Auth
   include Spree::Core::ControllerHelpers::Common
@@ -44,7 +44,7 @@ class Spree::UserPasswordsController < Devise::PasswordsController
   protected
 
   def translation_scope
-    'devise.user_passwords'
+    "devise.user_passwords"
   end
 
   def new_session_path(resource_name)

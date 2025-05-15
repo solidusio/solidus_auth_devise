@@ -14,12 +14,12 @@ module Solidus
         source_root "#{__dir__}/templates"
 
         def generate_devise_key
-          template 'config/initializers/devise.rb', 'config/initializers/devise.rb', skip: true
+          template "config/initializers/devise.rb", "config/initializers/devise.rb", skip: true
         end
 
         def add_migrations
-          admin_email = options[:admin_email] || (options[:interactive] && ask("Email:", default: 'admin@example.com'))
-          admin_password = options[:admin_password] || (options[:interactive] && ask("Password:", default: 'test123'))
+          admin_email = options[:admin_email] || (options[:interactive] && ask("Email:", default: "admin@example.com"))
+          admin_password = options[:admin_password] || (options[:interactive] && ask("Password:", default: "test123"))
 
           options = []
           options << "ADMIN_EMAIL=#{admin_email}" if admin_email
@@ -30,12 +30,12 @@ module Solidus
 
         def run_migrations
           if options[:skip_migrations] ||
-            options[:auto_run_migrations] == false || # exclude nil
-            options[:interactive] && no?('Would you like to run the migrations now?')
+              options[:auto_run_migrations] == false || # exclude nil
+              options[:interactive] && no?("Would you like to run the migrations now?")
 
-            say_status :skip, 'Skipping rake db:migrate, don\'t forget to run it!', :yellow
+            say_status :skip, "Skipping rake db:migrate, don't forget to run it!", :yellow
           else
-            rake 'db:migrate'
+            rake "db:migrate"
           end
         end
       end

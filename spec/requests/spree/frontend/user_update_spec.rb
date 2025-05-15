@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.feature 'User update', type: :request do
-  context 'CSRF protection' do
+RSpec.feature "User update", type: :request do
+  context "CSRF protection" do
     %i[exception reset_session null_session].each do |strategy|
       # Completely clean the configuration of forgery protection for the
       # controller and reset it after the expectations. However, besides `:with`,
@@ -25,17 +25,17 @@ RSpec.feature 'User update', type: :request do
       end
 
       it "is not possible to take account over with the #{strategy} forgery protection strategy" do
-        user = create(:user, email: 'legit@mail.com', password: 'password')
+        user = create(:user, email: "legit@mail.com", password: "password")
 
-        post '/login', params: "spree_user[email]=legit@mail.com&spree_user[password]=password"
+        post "/login", params: "spree_user[email]=legit@mail.com&spree_user[password]=password"
         begin
-          put '/users/123456', params: 'user[email]=hacked@example.com'
+          put "/users/123456", params: "user[email]=hacked@example.com"
         rescue
           # testing that the account is not compromised regardless of any raised
           # exception
         end
 
-        expect(user.reload.email).to eq('legit@mail.com')
+        expect(user.reload.email).to eq("legit@mail.com")
       end
     end
   end

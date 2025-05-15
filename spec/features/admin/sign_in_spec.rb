@@ -1,45 +1,45 @@
 # frozen_string_literal: true
 
-RSpec.feature 'Admin - Sign In', type: :feature do
+RSpec.feature "Admin - Sign In", type: :feature do
   background do
-    @user = create(:admin_user, email: 'email@person.com')
+    @user = create(:admin_user, email: "email@person.com")
     visit spree.admin_login_path
   end
 
-  scenario 'asks user to sign in' do
+  scenario "asks user to sign in" do
     visit spree.admin_path
-    expect(page).not_to have_text 'Authorization Failure'
+    expect(page).not_to have_text "Authorization Failure"
   end
 
-  scenario 'lets a user sign in successfully' do
-    fill_in 'Email', with: @user.email
-    fill_in 'Password', with: 'secret'
-    click_button 'Login'
+  scenario "lets a user sign in successfully" do
+    fill_in "Email", with: @user.email
+    fill_in "Password", with: "secret"
+    click_button "Login"
 
-    expect(page).to have_text 'Logged in successfully'
-    expect(page).not_to have_text 'Login'
-    expect(page).to have_text 'Logout'
-    expect(current_path).to eq '/admin/orders'
+    expect(page).to have_text "Logged in successfully"
+    expect(page).not_to have_text "Login"
+    expect(page).to have_text "Logout"
+    expect(current_path).to eq "/admin/orders"
   end
 
-  scenario 'shows validation erros' do
-    fill_in 'Email', with: @user.email
-    fill_in 'Password', with: 'wrong_password'
-    click_button 'Login'
+  scenario "shows validation erros" do
+    fill_in "Email", with: @user.email
+    fill_in "Password", with: "wrong_password"
+    click_button "Login"
 
-    expect(page).to have_text 'Invalid email or password'
-    expect(page).to have_text 'Login'
+    expect(page).to have_text "Invalid email or password"
+    expect(page).to have_text "Login"
   end
 
-  scenario 'allows a user to access a restricted page after logging in' do
-    user = create(:admin_user, email: 'admin@person.com')
+  scenario "allows a user to access a restricted page after logging in" do
+    user = create(:admin_user, email: "admin@person.com")
     visit spree.admin_path
 
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: 'secret'
-    click_button 'Login'
+    fill_in "Email", with: user.email
+    fill_in "Password", with: "secret"
+    click_button "Login"
 
-    expect(page).to have_text 'admin@person.com'
-    expect(current_path).to eq '/admin/orders'
+    expect(page).to have_text "admin@person.com"
+    expect(current_path).to eq "/admin/orders"
   end
 end

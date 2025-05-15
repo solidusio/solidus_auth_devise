@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-admin_role = Spree::Role.find_or_create_by(name: 'admin')
+admin_role = Spree::Role.find_or_create_by(name: "admin")
 
 if Spree::User.admin.any?
-  puts 'No admin user created.'
+  puts "No admin user created."
   return
 end
 
-email = ENV['ADMIN_EMAIL'] || 'admin@example.com'
-password = ENV['ADMIN_PASSWORD'] || 'test123'
+email = ENV["ADMIN_EMAIL"] || "admin@example.com"
+password = ENV["ADMIN_PASSWORD"] || "test123"
 
 puts "Creating admin user with:"
 puts "  - email: #{email}"
@@ -24,7 +24,7 @@ admin = Spree::User.new(
   password: password,
   password_confirmation: password,
   email: email,
-  login: email,
+  login: email
 )
 
 if admin.save
