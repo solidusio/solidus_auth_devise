@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 RSpec.describe Spree::User, type: :model do
-  before(:all) { Spree::Role.create name: 'admin' }
+  before(:all) { Spree::Role.create name: "admin" }
 
-  it '#admin?' do
+  it "#admin?" do
     expect(create(:admin_user).admin?).to be true
     expect(create(:user).admin?).to be false
   end
@@ -11,7 +11,7 @@ RSpec.describe Spree::User, type: :model do
   context "recoverable" do
     let(:user) { create(:user) }
 
-    it 'generates the reset password token' do
+    it "generates the reset password token" do
       expect(Spree::UserMailer).to receive(:reset_password_instructions).with(user, anything, {}).and_return(double(deliver: true))
       expect { user.send_reset_password_instructions }.to change(user, :reset_password_token).to be_present
     end
@@ -49,11 +49,11 @@ RSpec.describe Spree::User, type: :model do
     end
   end
 
-  describe '#destroy' do
+  describe "#destroy" do
     let(:user) { create(:user) }
 
-    context 'with same email address as previously deleted account' do
-      it 'allows users to register later' do
+    context "with same email address as previously deleted account" do
+      it "allows users to register later" do
         user1 = build(:user)
         user1.save
 
@@ -68,10 +68,10 @@ RSpec.describe Spree::User, type: :model do
     end
   end
 
-  describe '#destroy' do
+  describe "#destroy" do
     let(:user) { create(:user) }
 
-    it 'removes the record from the database' do
+    it "removes the record from the database" do
       user.destroy
 
       if defined?(Spree::ParanoiaDeprecations)
@@ -82,10 +82,10 @@ RSpec.describe Spree::User, type: :model do
     end
   end
 
-  describe '#really_destroy!', if: defined?(Spree::ParanoiaDeprecations) do
+  describe "#really_destroy!", if: defined?(Spree::ParanoiaDeprecations) do
     let(:user) { create(:user) }
 
-    it 'removes the record from the database' do
+    it "removes the record from the database" do
       user.really_destroy!
       expect(Spree::User.with_deleted.exists?(id: user.id)).to eql false
     end

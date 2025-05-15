@@ -8,7 +8,7 @@ class AddResetPasswordTokenIndexToSpreeUsers < SolidusSupport::Migration[4.2]
   # standard name + "_solidus_auth_devise"; the length is 61 chars which is
   # still OK for Sqlite, mySQL and Postgres.
   def custom_index_name
-    'index_spree_users_on_reset_password_token_solidus_auth_devise'
+    "index_spree_users_on_reset_password_token_solidus_auth_devise"
   end
 
   def default_index_exists?
@@ -21,7 +21,7 @@ class AddResetPasswordTokenIndexToSpreeUsers < SolidusSupport::Migration[4.2]
 
   def up
     Spree::User.reset_column_information
-    if Spree::User.column_names.include?('reset_password_token') && !default_index_exists? && !custom_index_exists?
+    if Spree::User.column_names.include?("reset_password_token") && !default_index_exists? && !custom_index_exists?
       add_index :spree_users, :reset_password_token, unique: true, name: custom_index_name
     end
   end

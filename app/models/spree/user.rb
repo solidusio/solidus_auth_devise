@@ -5,7 +5,7 @@ module Spree
     include UserMethods
 
     devise :database_authenticatable, :registerable, :recoverable,
-           :rememberable, :trackable, :validatable, :encryptable
+      :rememberable, :trackable, :validatable, :encryptable
     devise :confirmable if Spree::Auth::Config[:confirmable]
 
     if defined?(Spree::SoftDeletable)
@@ -35,7 +35,7 @@ module Spree
     end
 
     def admin?
-      has_spree_role?('admin')
+      has_spree_role?("admin")
     end
 
     def confirmed?
