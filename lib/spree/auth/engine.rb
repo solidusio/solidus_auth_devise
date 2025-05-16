@@ -24,8 +24,6 @@ module Spree
       config.to_prepare do
         Spree::Auth::Engine.prepare_backend if SolidusSupport.backend_available?
         Spree::Auth::Engine.prepare_frontend if SolidusSupport.frontend_available?
-
-        ApplicationController.include Spree::AuthenticationHelpers
       end
 
       def self.redirect_back_on_unauthorized?
