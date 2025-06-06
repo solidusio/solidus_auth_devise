@@ -63,7 +63,12 @@ RSpec.feature 'Checkout', :js, type: :feature do
       fill_addresses_fields_with(address)
       click_button 'Save and Continue'
 
+      expect(page).to have_content 'UPS Ground'
+
       click_button 'Save and Continue'
+
+      expect(page).to have_content(/Payment Information/i)
+
       click_button 'Save and Continue'
       click_button 'Place Order'
 
@@ -89,7 +94,12 @@ RSpec.feature 'Checkout', :js, type: :feature do
       fill_addresses_fields_with(address)
       click_button 'Save and Continue'
 
+      expect(page).to have_content 'UPS Ground'
+
       click_button 'Save and Continue'
+
+      expect(page).to have_content(/Payment Information/i)
+
       click_button 'Save and Continue'
       click_button 'Place Order'
 
@@ -145,9 +155,15 @@ RSpec.feature 'Checkout', :js, type: :feature do
       expect(page).to have_text 'You have signed up successfully.'
 
       fill_addresses_fields_with(address)
-      click_button 'Save and Continue'
 
       click_button 'Save and Continue'
+
+      expect(page).to have_content 'UPS Ground'
+
+      click_button 'Save and Continue'
+
+      expect(page).to have_content(/Payment Information/i)
+
       click_button 'Save and Continue'
       click_button 'Place Order'
 
