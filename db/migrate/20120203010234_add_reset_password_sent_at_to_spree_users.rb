@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddResetPasswordSentAtToSpreeUsers < SolidusSupport::Migration[4.2]
+class AddResetPasswordSentAtToSpreeUsers < ActiveRecord::Migration[4.2]
   def change
     Spree::User.reset_column_information
     unless Spree::User.column_names.include?("reset_password_sent_at")

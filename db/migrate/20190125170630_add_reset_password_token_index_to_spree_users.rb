@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddResetPasswordTokenIndexToSpreeUsers < SolidusSupport::Migration[4.2]
+class AddResetPasswordTokenIndexToSpreeUsers < ActiveRecord::Migration[4.2]
   # We're not using the standard Rails index name because somebody could have
   #  already added that index to the table. By using a custom name we ensure
   # that the index can effectively be added and removed via migrations/rollbacks
