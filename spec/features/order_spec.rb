@@ -20,7 +20,7 @@ RSpec.feature "Orders", :js, type: :feature do
       click_link "RoR Mug"
       click_button "Add To Cart"
 
-      visit spree.login_path
+      click_link "Login"
       fill_in "Email", with: user.email
       fill_in "Password", with: user.password
       click_button "Login"
@@ -35,7 +35,7 @@ RSpec.feature "Orders", :js, type: :feature do
       click_link "RoR Shirt"
       click_button "Add To Cart"
 
-      visit spree.login_path
+      click_link "Login"
       fill_in "Email", with: user.email
       fill_in "Password", with: user.password
       click_button "Login"

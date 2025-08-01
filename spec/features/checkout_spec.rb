@@ -80,7 +80,7 @@ RSpec.feature "Checkout", :js, type: :feature do
       click_link "RoR Mug"
       click_button "Add To Cart"
 
-      visit spree.login_path
+      click_link "Login"
       fill_in "Email", with: user.email
       fill_in "Password", with: user.password
       click_button "Login"
@@ -113,7 +113,7 @@ RSpec.feature "Checkout", :js, type: :feature do
       click_link "RoR Mug"
       click_button "Add To Cart"
 
-      visit spree.login_path
+      click_link "Login"
       click_link "Forgot Password?"
       fill_in "spree_user_email", with: "email@person.com"
       click_button "Reset my password"
