@@ -51,3 +51,6 @@ gemspec
 # We use `send` instead of calling `eval_gemfile` to work around an issue with
 # how Dependabot parses projects: https://github.com/dependabot/dependabot-core/issues/1658.
 send(:eval_gemfile, "Gemfile-local") if File.exist? "Gemfile-local"
+
+# Pin state_machines
+gem "state_machines", "= 0.6.0"
