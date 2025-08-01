@@ -117,6 +117,7 @@ RSpec.feature "Checkout", :js, type: :feature do
       click_link "Forgot Password?"
       fill_in "spree_user_email", with: "email@person.com"
       click_button "Reset my password"
+      expect(page).to have_content("you will receive an email with instructions")
 
       # Need to do this now because the token stored in the DB is the encrypted version
       # The 'plain-text' version is sent in the email and there's one way to get that!
