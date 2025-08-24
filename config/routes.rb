@@ -46,7 +46,8 @@ Spree::Core::Engine.routes.draw do
         path_names: { sign_out: 'logout' },
         controllers: {
           sessions: 'spree/admin/user_sessions',
-          passwords: 'spree/admin/user_passwords'
+          passwords: 'spree/admin/user_passwords',
+          unlocks: 'spree/admin/user_unlocks'
         },
         router_name: :spree
       })
@@ -61,6 +62,9 @@ Spree::Core::Engine.routes.draw do
         post '/password/recover', to: 'user_passwords#create', as: :reset_password
         get '/password/change', to: 'user_passwords#edit', as: :edit_password
         put '/password/change', to: 'user_passwords#update', as: :update_password
+
+        get '/unlock', to: 'user_unlocks#show', as: :unlock
+        post '/unlock', to: 'user_unlocks#create'
       end
     end
   end
