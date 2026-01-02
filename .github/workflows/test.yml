@@ -26,8 +26,8 @@ jobs:
           - "7.2"
           - "8.0"
         ruby-version:
-          - "3.1"
           - "3.4"
+          - "4.0"
         solidus-branch:
           - "v4.4"
           - "v4.5"
@@ -37,12 +37,12 @@ jobs:
           - "mysql"
           - "sqlite"
         exclude:
-          - solidus-branch: "v4.5"
-            ruby-version: "3.1"
-          - solidus-branch: "v4.6"
-            ruby-version: "3.1"
           - solidus-branch: "v4.4"
             rails-version: "8.0"
+          - solidus-branch: "v4.4"
+            ruby-version: "4.0"
+          - solidus-branch: "v4.5"
+            ruby-version: "4.0"
     env:
       TEST_RESULTS_PATH: coverage/coverage.xml
       CAPYBARA_JAVASCRIPT_DRIVER: selenium_headless
