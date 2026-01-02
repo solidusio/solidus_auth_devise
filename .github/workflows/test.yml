@@ -18,3 +18,5 @@ permissions:
 jobs:
   Test:
     uses: solidusio/test-solidus-extension/.github/workflows/test.yml@v1
+    with:
+      ruby_versions: "['3.4', '4.0']"
