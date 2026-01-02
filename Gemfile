@@ -54,3 +54,8 @@ send(:eval_gemfile, "Gemfile-local") if File.exist? "Gemfile-local"
 
 # Pin state_machines
 gem "state_machines", "= 0.6.0"
+
+if RUBY_VERSION >= "4.0"
+  # Necessary for github_changelog_generator
+  gem "benchmark", "~> 0.5.0"
+end
