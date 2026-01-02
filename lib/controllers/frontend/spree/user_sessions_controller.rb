@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Spree::UserSessionsController < Devise::SessionsController
-  helper 'spree/base', 'spree/store'
+  helper "spree/base", "spree/store"
 
   include Spree::Core::ControllerHelpers::Auth
   include Spree::Core::ControllerHelpers::Common
@@ -18,7 +18,7 @@ class Spree::UserSessionsController < Devise::SessionsController
     if spree_user_signed_in?
       respond_to do |format|
         format.html do
-          flash[:success] = I18n.t('spree.logged_in_succesfully')
+          flash[:success] = I18n.t("spree.logged_in_succesfully")
           redirect_back_or_default(after_sign_in_path_for(spree_current_user))
         end
         format.js { render success_json }
@@ -26,11 +26,11 @@ class Spree::UserSessionsController < Devise::SessionsController
     else
       respond_to do |format|
         format.html do
-          flash.now[:error] = t('devise.failure.invalid')
+          flash.now[:error] = t("devise.failure.invalid")
           render :new
         end
         format.js do
-          render json: { error: t('devise.failure.invalid') },
+          render json: {error: t("devise.failure.invalid")},
             status: :unprocessable_entity
         end
       end
@@ -40,13 +40,13 @@ class Spree::UserSessionsController < Devise::SessionsController
   protected
 
   def translation_scope
-    'devise.user_sessions'
+    "devise.user_sessions"
   end
 
   private
 
   def accurate_title
-    I18n.t('spree.login')
+    I18n.t("spree.login")
   end
 
   def redirect_back_or_default(default)
