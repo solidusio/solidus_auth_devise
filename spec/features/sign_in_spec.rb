@@ -48,6 +48,7 @@ RSpec.feature "Sign In", type: :feature do
     fill_in "Email", with: @user.email
     fill_in "Password", with: @user.password
     click_button "Login"
+    expect(page).to have_text "Logged in successfully"
     expect(current_path).to eq "/account"
   end
 end

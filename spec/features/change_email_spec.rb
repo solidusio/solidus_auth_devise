@@ -11,6 +11,7 @@ RSpec.feature "Change email", type: :feature do
     fill_in "spree_user[email]", with: user.email
     fill_in "spree_user[password]", with: "secret"
     click_button "Login"
+    expect(page).to have_text "Logged in successfully"
 
     visit spree.edit_account_path
   end

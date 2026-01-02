@@ -40,6 +40,7 @@ RSpec.feature "Orders", :js, type: :feature do
       fill_in "Email", with: user.email
       fill_in "Password", with: user.password
       click_button "Login"
+      expect(page).to have_text "Logged in successfully"
 
       # Order should have been merged with first session
       click_link "Cart"
