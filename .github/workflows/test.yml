@@ -45,6 +45,7 @@ jobs:
             rails-version: "8.0"
     env:
       TEST_RESULTS_PATH: coverage/coverage.xml
+      CAPYBARA_JAVASCRIPT_DRIVER: selenium_headless
     steps:
       - uses: actions/checkout@v4
       - name: Run extension tests
