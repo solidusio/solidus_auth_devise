@@ -15,6 +15,7 @@ module Spree
       include Spree::ParanoiaDeprecations
 
       include Discard::Model
+
       self.discard_column = :deleted_at
     end
 
