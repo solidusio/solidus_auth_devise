@@ -24,6 +24,7 @@ RSpec.feature "Orders", :js, type: :feature do
       fill_in "Email", with: user.email
       fill_in "Password", with: user.password
       click_button "Login"
+      expect(page).to have_text "Logged in successfully"
 
       click_link "Cart"
       expect(page).to have_text "RoR Mug"
