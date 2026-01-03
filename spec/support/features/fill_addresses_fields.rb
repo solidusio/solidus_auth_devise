@@ -14,6 +14,8 @@ module FillAddressFields
       %w[firstname lastname]
     end
 
+    expect(page).to have_text "Billing Address"
+
     fields.each do |field|
       fill_in "order_bill_address_attributes_#{field}", with: address.send(field).to_s
     end

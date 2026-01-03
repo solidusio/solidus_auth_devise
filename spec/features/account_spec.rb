@@ -9,6 +9,7 @@ RSpec.feature "Accounts", type: :feature do
       fill_in "Email", with: user.email
       fill_in "Password", with: user.password
       click_button "Login"
+      expect(page).to have_text "Logged in successfully"
 
       click_link "My Account"
       expect(page).to have_text "admin@person.com"
@@ -22,6 +23,7 @@ RSpec.feature "Accounts", type: :feature do
       fill_in "Password", with: "password"
       fill_in "Password Confirmation", with: "password"
       click_button "Create"
+      expect(page).to have_text "You have signed up successfully"
 
       click_link "My Account"
       expect(page).to have_text "email@person.com"
@@ -43,6 +45,7 @@ RSpec.feature "Accounts", type: :feature do
       fill_in "Email", with: user.email
       fill_in "Password", with: user.password
       click_button "Login"
+      expect(page).to have_text "Logged in successfully"
 
       click_link "My Account"
       expect(page).to have_text "email@person.com"

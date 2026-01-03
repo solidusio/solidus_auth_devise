@@ -79,11 +79,13 @@ RSpec.feature "Checkout", :js, type: :feature do
       user = create(:user, email: "email@person.com", password: "password", password_confirmation: "password")
       click_link "RoR Mug"
       click_button "Add To Cart"
+      within("h1") { expect(page).to have_text "Shopping Cart" }
 
       click_link "Login"
       fill_in "Email", with: user.email
       fill_in "Password", with: user.password
       click_button "Login"
+      expect(page).to have_text "Logged in successfully"
       click_link "Cart"
 
       expect(page).to have_text "RoR Mug"
@@ -112,6 +114,7 @@ RSpec.feature "Checkout", :js, type: :feature do
       create(:user, email: "email@person.com", password: "password", password_confirmation: "password")
       click_link "RoR Mug"
       click_button "Add To Cart"
+      within("h1") { expect(page).to have_text "Shopping Cart" }
 
       click_link "Login"
       click_link "Forgot Password?"
@@ -142,6 +145,7 @@ RSpec.feature "Checkout", :js, type: :feature do
     scenario "allow a user to register during checkout" do
       click_link "RoR Mug"
       click_button "Add To Cart"
+      within("h1") { expect(page).to have_text "Shopping Cart" }
       click_button "Checkout"
 
       expect(page).to have_text "Registration"

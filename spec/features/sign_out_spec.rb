@@ -15,6 +15,7 @@ RSpec.feature "Sign Out", type: :feature, js: true do
     # Regression test for #1257
     check "Remember me"
     click_button "Login"
+    expect(page).to have_text "Logged in successfully"
   end
 
   scenario "allow a signed in user to logout" do
