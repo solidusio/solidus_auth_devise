@@ -14,14 +14,12 @@ class RenameColumnsForDevise < SolidusSupport::Migration[4.2]
     rename_column :spree_users, :last_login_at, :last_sign_in_at
     rename_column :spree_users, :current_login_ip, :current_sign_in_ip
     rename_column :spree_users, :last_login_ip, :last_sign_in_ip
-    add_column :spree_users, :authentication_token, :string
     add_column :spree_users, :unlock_token, :string
     add_column :spree_users, :locked_at, :datetime
     remove_column :spree_users, :openid_identifier
   end
 
   def down
-    remove_column :spree_users, :authentication_token
     remove_column :spree_users, :locked_at
     remove_column :spree_users, :unlock_token
     rename_column :spree_users, :last_sign_in_ip, :last_login_ip

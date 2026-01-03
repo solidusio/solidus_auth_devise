@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-module Spree
-  module CheckoutControllerDecorator
+module SolidusAuthDevise
+  module CheckoutControllerPatch
     def self.prepended(base)
       base.before_action :check_registration, except: [:registration, :update_registration]
       base.before_action :check_authorization
 
       # This action builds some associations on the order, ex. addresses, which we
-      # don't to build or save here.
+      # don't want to build or save here.
       base.skip_before_action :setup_for_current_state, only: [:registration, :update_registration]
     end
 
@@ -21,20 +21,20 @@ module Spree
       else
         flash[:registration_error] = t(:email_is_invalid, scope: [:errors, :messages])
         @user = Spree::User.new
-        render 'registration'
+        render "registration"
       end
     end
 
     private
 
     def order_params
-      params.
-        fetch(:order, {}).
-        permit(:email)
+      params
+        .fetch(:order, {})
+        .permit(:email)
     end
 
     def skip_state_validation?
-      %w(registration update_registration).include?(params[:action])
+      %w[registration update_registration].include?(params[:action])
     end
 
     def check_authorization

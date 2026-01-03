@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 class Spree::Admin::UserPasswordsController < Devise::PasswordsController
-  helper 'spree/base'
+  helper "spree/base"
 
   include Spree::Core::ControllerHelpers::Auth
   include Spree::Core::ControllerHelpers::Common
   include Spree::Core::ControllerHelpers::Store
 
-  helper 'spree/admin/navigation'
-  layout 'spree/layouts/admin'
+  helper "spree/admin/navigation"
+  layout "spree/layouts/admin"
 
   skip_before_action :require_no_authentication, only: [:create]
 
@@ -40,6 +40,17 @@ class Spree::Admin::UserPasswordsController < Devise::PasswordsController
       render :edit
     else
       super
+    end
+  end
+
+  private
+
+  # NOTE: as soon as this gem stops supporting Solidus 3.1 if-else should be removed and left only include
+  if defined?(::Spree::Admin::SetsUserLanguageLocaleKey)
+    include ::Spree::Admin::SetsUserLanguageLocaleKey
+  else
+    def set_user_language_locale_key
+      :admin_locale
     end
   end
 end

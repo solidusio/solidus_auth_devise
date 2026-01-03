@@ -8,7 +8,8 @@ RSpec.configure do |config|
       begin
         example.run
       ensure
-        Spree.const_set('User', old_user)
+        Spree.send(:remove_const, :User)
+        Spree.const_set(:User, old_user)
       end
     else
       example.run
@@ -20,7 +21,7 @@ RSpec.configure do |config|
       stub_spree_preferences(Spree::Auth::Config, confirmable: example.metadata[:confirmable])
 
       Spree.send(:remove_const, :User)
-      load File.expand_path('../../../app/models/spree/user.rb', __FILE__)
+      load File.expand_path("../../../app/models/spree/user.rb", __FILE__)
     end
   end
 end

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-module Spree
+module SolidusAuthDevise
   module Admin
-    module BaseControllerDecorator
+    module BaseControllerPatch
       protected
 
       def model_class

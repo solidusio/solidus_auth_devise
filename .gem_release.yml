@@ -1,5 +1,5 @@
 bump:
   recurse: false
-  file: 'lib/spree/auth/version.rb'
+  file: 'lib/solidus_auth_devise/version.rb'
   message: Bump SolidusAuthDevise to %{version}
   tag: true

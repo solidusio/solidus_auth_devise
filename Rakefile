@@ -1,23 +1,11 @@
 # frozen_string_literal: true
 
-require 'bundler'
-Bundler::GemHelper.install_tasks
+# Don't build a dummy app with solidus_bolt enabled
+ENV["SKIP_SOLIDUS_BOLT"] = "true"
 
-require 'rspec/core/rake_task'
-require 'spree/testing_support/common_rake'
+require "bundler/gem_tasks"
 
-RSpec::Core::RakeTask.new
+require "solidus_dev_support/rake_tasks"
+SolidusDevSupport::RakeTasks.install(user_class: "Spree::User")
 
-task :default do
-  if Dir["spec/dummy"].empty?
-    Rake::Task[:test_app].invoke
-    Dir.chdir("../../")
-  end
-  Rake::Task[:spec].invoke
-end
-
-desc 'Generates a dummy app for testing'
-task :test_app do
-  ENV['LIB_NAME'] = 'solidus/auth'
-  Rake::Task['common:test_app'].invoke("Spree::User")
-end
+task default: "extension:specs"
