@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateUsers < SolidusSupport::Migration[4.2]
+class CreateUsers < ActiveRecord::Migration[4.2]
   def up
     unless table_exists?("spree_users")
       create_table "spree_users", force: true do |t|
