@@ -19,6 +19,29 @@ jobs:
   rspec:
     name: Solidus ${{ matrix.solidus-branch }}, Rails ${{ matrix.rails-version }} and Ruby ${{ matrix.ruby-version }} on ${{ matrix.database }}
     runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_HOST_AUTH_METHOD: trust
+        options: >-
+          --health-cmd="pg_isready"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+        ports:
+          - 5432:5432
+      mysql:
+        image: mysql:8
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+        ports:
+          - 3306:3306
     strategy:
       fail-fast: false
       matrix:
@@ -42,6 +65,8 @@ jobs:
           - solidus-branch: "v4.6"
             ruby-version: "3.1"
           - solidus-branch: "v4.4"
+            rails-version: "8.0"
+          - database: "mysql" # https://github.com/rails/rails/issues/53673
             rails-version: "8.0"
     env:
       TEST_RESULTS_PATH: coverage/coverage.xml
