@@ -66,8 +66,6 @@ jobs:
             ruby-version: "3.1"
           - solidus-branch: "v4.4"
             rails-version: "8.0"
-          - database: "mysql" # https://github.com/rails/rails/issues/53673
-            rails-version: "8.0"
     env:
       TEST_RESULTS_PATH: coverage/coverage.xml
       CAPYBARA_JAVASCRIPT_DRIVER: selenium_headless
