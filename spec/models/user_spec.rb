@@ -12,7 +12,7 @@ RSpec.describe Spree::User, type: :model do
     let(:user) { create(:user) }
 
     it "generates the reset password token" do
-      expect(Spree::UserMailer).to receive(:reset_password_instructions).with(user, anything, {}).and_return(double(deliver: true))
+      expect(Spree::UserMailer).to receive(:reset_password_instructions).with(user, anything, {}).and_return(double(deliver_now: true))
       expect { user.send_reset_password_instructions }.to change(user, :reset_password_token).to be_present
     end
 
