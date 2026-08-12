@@ -8,6 +8,11 @@ RSpec.describe Spree::User, type: :model do
     expect(create(:user).admin?).to be false
   end
 
+  describe "#timezone" do
+    subject(:user) { create(:user) }
+    it { expect(user).to respond_to(:timezone) }
+  end
+
   context "recoverable" do
     let(:user) { create(:user) }
 
