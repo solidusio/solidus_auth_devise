@@ -50,7 +50,7 @@ module SolidusAuthDevise
     end
 
     def registration_required?
-      Spree::Auth::Config[:registration_step] &&
+      Spree::Auth::Config.registration_step &&
         !already_registered?
     end
 
@@ -60,7 +60,7 @@ module SolidusAuthDevise
 
     def guest_authenticated?
       current_order&.email.present? &&
-        Spree::Config[:allow_guest_checkout]
+        Spree::Config.allow_guest_checkout
     end
 
     # Overrides the equivalent method defined in Spree::Core.  This variation of the method will ensure that users
