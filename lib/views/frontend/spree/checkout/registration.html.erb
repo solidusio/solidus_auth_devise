@@ -4,7 +4,7 @@
   <div id="account" class="columns alpha eight">
     <%= render template: 'spree/user_sessions/new' %>
   </div>
-  <% if Spree::Config[:allow_guest_checkout] %>
+  <% if Spree::Config.allow_guest_checkout %>
     <div id="guest_checkout" data-hook class="columns omega eight">
       <h6><%= t('spree.guest_user_account') %></h6>
       <% if flash[:registration_error] %>

@@ -36,7 +36,7 @@ To enable Devise's Confirmable module, which will send the user an email with a 
 * Add this line to an initializer in your Rails project (typically `config/initializers/spree.rb`):
 
 ```ruby
-Spree::Auth::Config[:confirmable] = true
+Spree::Auth::Config.confirmable = true
 ```
 
 * Add a Devise initializer to your Rails project (typically `config/initializers/devise.rb`):

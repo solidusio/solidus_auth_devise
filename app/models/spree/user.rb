@@ -7,7 +7,7 @@ module Spree
 
     devise :database_authenticatable, :registerable, :recoverable,
       :rememberable, :trackable, :validatable, :encryptable
-    devise :confirmable if Spree::Auth::Config[:confirmable]
+    devise :confirmable if Spree::Auth::Config.confirmable
 
     after_destroy :scramble_email_and_password
     after_discard :scramble_email_and_password
