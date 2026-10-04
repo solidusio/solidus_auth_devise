@@ -7,8 +7,20 @@ if Spree::User.admin.any?
   return
 end
 
-email = ENV["ADMIN_EMAIL"] || "admin@example.com"
-password = ENV["ADMIN_PASSWORD"] || "test123"
+email = ENV["ADMIN_EMAIL"]
+password = ENV["ADMIN_PASSWORD"]
+
+if Rails.env.development? || Rails.env.test?
+  email ||= "admin@example.com"
+  password ||= "test123"
+elsif email.blank? || password.blank?
+  abort <<~MSG
+    Refusing to create an admin user with default credentials in the #{Rails.env} environment.
+    Set ADMIN_EMAIL and ADMIN_PASSWORD and run the task again, for example:
+
+      ADMIN_EMAIL=you@example.com ADMIN_PASSWORD=... bin/rails spree_auth:admin:create
+  MSG
+end
 
 puts "Creating admin user with:"
 puts "  - email: #{email}"

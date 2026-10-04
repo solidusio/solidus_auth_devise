@@ -27,7 +27,17 @@ bundle exec rake db:seed
 
 #### Default Username/Password
 
-As part of running the above installation steps, you will be asked to set an admin email/password combination. The default values are `admin@example.com` and `test123`, respectively.
+The seed creates an admin user when no admin exists yet. Set the `ADMIN_EMAIL`
+and `ADMIN_PASSWORD` environment variables to choose its credentials:
+
+```shell
+ADMIN_EMAIL=you@example.com ADMIN_PASSWORD=... bundle exec rake spree_auth:admin:create
+```
+
+In the `development` and `test` environments, the credentials default to
+`admin@example.com` and `test123` when the variables are not set. In every other
+environment (`production`, `staging`, etc.) both variables are required, and the
+seed aborts with an error if either is missing.
 
 #### Confirmable
 
