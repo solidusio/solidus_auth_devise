@@ -12,7 +12,7 @@ password = ENV["ADMIN_PASSWORD"] || "test123"
 
 puts "Creating admin user with:"
 puts "  - email: #{email}"
-puts "  - password: #{password}"
+puts "  - password: #{ENV["ADMIN_PASSWORD"] ? "(from ADMIN_PASSWORD)" : password}"
 puts "(please use the ADMIN_EMAIL and ADMIN_PASSWORD environment variables to control how the default admin user is created)"
 
 if Spree::User.find_by(email: email)
