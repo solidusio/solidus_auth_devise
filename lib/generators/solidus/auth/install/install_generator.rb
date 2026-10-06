@@ -18,14 +18,7 @@ module Solidus
         end
 
         def add_migrations
-          admin_email = options[:admin_email] || (options[:interactive] && ask("Email:", default: "admin@example.com"))
-          admin_password = options[:admin_password] || (options[:interactive] && ask("Password:", default: "test123"))
-
-          options = []
-          options << "ADMIN_EMAIL=#{admin_email}" if admin_email
-          options << "ADMIN_PASSWORD=#{admin_password}" if admin_password
-
-          rake "railties:install:migrations FROM=solidus_auth #{options.shelljoin}"
+          rake "railties:install:migrations FROM=solidus_auth"
         end
 
         def run_migrations
@@ -33,10 +26,25 @@ module Solidus
               options[:auto_run_migrations] == false || # exclude nil
               options[:interactive] && no?("Would you like to run the migrations now?")
 
+            @migrations_skipped = true
             say_status :skip, "Skipping rake db:migrate, don't forget to run it!", :yellow
           else
             rake "db:migrate"
           end
+        end
+
+        def create_admin_user
+          return if @migrations_skipped
+
+          admin_email = options[:admin_email] || (options[:interactive] && ask("Email:", default: "admin@example.com"))
+          admin_password = options[:admin_password] || (options[:interactive] && ask("Password:", default: "test123"))
+          return unless admin_email || admin_password
+
+          env = []
+          env << "ADMIN_EMAIL=#{admin_email.shellescape}" if admin_email
+          env << "ADMIN_PASSWORD=#{admin_password.shellescape}" if admin_password
+
+          rake "spree_auth:admin:create #{env.join(" ")}"
         end
       end
     end
