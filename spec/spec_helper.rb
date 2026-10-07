@@ -38,6 +38,6 @@ RSpec.configure do |config|
   end
 
   config.before(:each, type: :controller) do
-    ActionMailer::Base.default_url_options[:host] = 'example.com'
+    ActionMailer::Base.default_url_options[:host] = "example.com"
   end
 end
