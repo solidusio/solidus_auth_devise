@@ -41,5 +41,45 @@ RSpec.describe Spree::Admin::UserPasswordsController, type: :controller do
         end
       end
     end
+
+    context "when Devise is in paranoid mode" do
+      around do |example|
+        original_paranoid = Devise.paranoid
+        Devise.paranoid = true
+        example.run
+        Devise.paranoid = original_paranoid
+      end
+
+      context "when a user without admin access is signed in" do
+        before { sign_in(create(:user)) }
+
+        it "redirects to the same location whether or not the email is found" do
+          post :create, params: {spree_user: {email: "admin@example.com"}}
+          found_location = response.location
+
+          post :create, params: {spree_user: {email: "unknown@example.com"}}
+
+          expect(found_location).to eq(response.location)
+        end
+      end
+
+      context "when an admin is signed in" do
+        before { sign_in(create(:admin_user)) }
+
+        it "redirects to the found user's admin page" do
+          user = Spree::User.find_by!(email: "admin@example.com")
+
+          post :create, params: {spree_user: {email: "admin@example.com"}}
+
+          expect(response).to redirect_to spree.admin_user_path(user)
+        end
+
+        it "redirects to the login page when the email is not found" do
+          post :create, params: {spree_user: {email: "unknown@example.com"}}
+
+          expect(response).to redirect_to spree.admin_login_path
+        end
+      end
+    end
   end
 end

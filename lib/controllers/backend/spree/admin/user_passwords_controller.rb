@@ -25,7 +25,7 @@ class Spree::Admin::UserPasswordsController < Devise::PasswordsController
     set_flash_message(:notice, :send_instructions) if is_navigational_format?
 
     if successfully_sent?(resource)
-      location = (spree_current_user && resource.persisted?) ? admin_user_path(resource) : admin_login_path
+      location = (resource.persisted? && can?(:admin, Spree.user_class)) ? admin_user_path(resource) : admin_login_path
       respond_with resource, location: location
     else
       respond_with_navigational(resource) { render :new }
