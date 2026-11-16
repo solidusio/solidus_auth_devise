@@ -57,7 +57,7 @@ class Spree::UserSessionsController < Devise::SessionsController
   def success_json
     {
       json: {
-        user: spree_current_user,
+        user: Spree::Auth::Config.sign_in_user_json.call(spree_current_user),
         ship_address: spree_current_user.ship_address,
         bill_address: spree_current_user.bill_address
       }.to_json

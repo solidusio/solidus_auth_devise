@@ -86,6 +86,26 @@ RSpec.describe Spree::UserSessionsController, type: :controller do
           expect(parsed).to have_key("ship_address")
           expect(parsed).to have_key("bill_address")
         end
+
+        context "when Spree::Auth::Config.sign_in_user_json is not set" do
+          it "serializes only the id and email of the user" do
+            subject
+            parsed = ActiveSupport::JSON.decode(response.body)
+            expect(parsed["user"]).to eq("id" => user.id, "email" => user.email)
+          end
+        end
+
+        context "when Spree::Auth::Config.sign_in_user_json is set" do
+          before do
+            stub_spree_preferences(Spree::Auth::Config, sign_in_user_json: ->(user) { {id: user.id} })
+          end
+
+          it "serializes the user with the configured proc" do
+            subject
+            parsed = ActiveSupport::JSON.decode(response.body)
+            expect(parsed["user"]).to eq("id" => user.id)
+          end
+        end
       end
     end
 
