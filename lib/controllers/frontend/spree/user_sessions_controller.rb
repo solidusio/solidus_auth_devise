@@ -57,10 +57,24 @@ class Spree::UserSessionsController < Devise::SessionsController
   def success_json
     {
       json: {
-        user: spree_current_user,
+        user: sign_in_user_json,
         ship_address: spree_current_user.ship_address,
         bill_address: spree_current_user.bill_address
       }.to_json
     }
+  end
+
+  def sign_in_user_json
+    if (serializer = Spree::Auth::Config.sign_in_user_json)
+      serializer.call(spree_current_user)
+    else
+      Spree.deprecator.warn(<<~MSG)
+        The default user JSON payload will change to only include id and email
+        in solidus_auth_devise 3.0. Set `Spree::Auth::Config.sign_in_user_json`
+        if you want to customize the payload.
+      MSG
+
+      Spree.deprecator.silence { spree_current_user.as_json }
+    end
   end
 end
