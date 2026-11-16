@@ -80,11 +80,34 @@ RSpec.describe Spree::UserSessionsController, type: :controller do
         let(:format) { :js }
 
         it "returns a json with ship and bill address" do
+          allow(Spree.deprecator).to receive(:warn)
           subject
           parsed = ActiveSupport::JSON.decode(response.body)
           expect(parsed).to have_key("user")
           expect(parsed).to have_key("ship_address")
           expect(parsed).to have_key("bill_address")
+        end
+
+        context "when Spree::Auth::Config.sign_in_user_json is not set" do
+          it "serializes the whole user and warns about the upcoming default" do
+            expect(Spree.deprecator).to receive(:warn).with(/sign_in_user_json/)
+            subject
+            parsed = ActiveSupport::JSON.decode(response.body)
+            expect(parsed["user"]["email"]).to eq user.email
+          end
+        end
+
+        context "when Spree::Auth::Config.sign_in_user_json is set" do
+          before do
+            stub_spree_preferences(Spree::Auth::Config, sign_in_user_json: ->(user) { {id: user.id} })
+          end
+
+          it "serializes the user with the configured proc without warning" do
+            expect(Spree.deprecator).not_to receive(:warn)
+            subject
+            parsed = ActiveSupport::JSON.decode(response.body)
+            expect(parsed["user"]).to eq("id" => user.id)
+          end
         end
       end
     end
