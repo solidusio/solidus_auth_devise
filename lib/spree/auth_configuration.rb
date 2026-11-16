@@ -7,6 +7,6 @@ module Spree
     preference :confirmable, :boolean, default: false
     preference :draw_frontend_routes, :boolean, default: true
     preference :draw_backend_routes, :boolean, default: true
-    preference :sign_in_user_json, :proc, default: nil
+    preference :sign_in_user_json, :proc, default: proc { ->(user) { {id: user.id, email: user.email} } }
   end
 end
